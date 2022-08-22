@@ -25,4 +25,17 @@ Rails.application.routes.draw do
 
   end
 
+  # scope module: :public do
+  #   resources :users
+  # end
+  scope module: :public do
+    resources :users, only:[:show, :edit, :update] do
+      collection do
+        get '/mypage' => 'users#show', as: 'mypage'
+        get 'mypage/edit' => 'users#edit', as: 'edit'
+        get '/mypage' => 'users#update', as: 'update'
+      end
+    end
+  end
 end
+

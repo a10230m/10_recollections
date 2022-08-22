@@ -30,6 +30,20 @@
         </div>
 
         <div class="field">
+          <i class="fa-solid fa-cake-candles"></i>
+          <%= f.label :birthdate %><span style="color:#a9a9a9;">（任意）</span>
+          <%= f.date_field :birthdate %>
+        </div>
+
+        <div class="field">
+          <i class="fa-solid fa-circle-info"></i>
+          <%= f.label :introduction %><span style="color:#a9a9a9;">（任意）</span>
+          <%= f.text_field :introduction, id: "introduction", placeholder: "about me" %>
+
+        </div>
+
+
+        <div class="field">
           <i class="fa-solid fa-key"></i>
           <%= f.label :password %>
 

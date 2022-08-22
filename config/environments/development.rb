@@ -76,4 +76,6 @@ Rails.application.configure do
 
   config.hosts << "7af8f896f47b4dfbb3d38f4dc9be3a49.vfs.cloud9.us-east-1.amazonaws.com"
 
+  config.active_job.queue_adapter = :inline
+
 end

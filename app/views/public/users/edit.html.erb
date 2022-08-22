@@ -1,0 +1,50 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6 border rounded-pill p-3">
+      <div class="edit">
+        <h2 class="text-center">EDIT</h2>
+        <br>
+
+        <%= form_with model: @user, url: mypage_users_path, local: true do |f| %>
+
+        <div class="field">
+          <i class="fa-solid fa-user"></i>
+          <%= f.label :name %>
+          <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
+        </div>
+
+        <div class="field">
+          <i class="fa-solid fa-cake-candles"></i>
+          <%= f.label :birthdate %><span style="color:#a9a9a9;">（任意）</span>
+          <%= f.date_field :birthdate %>
+        </div>
+
+        <div class="field">
+          <i class="fa-solid fa-circle-info"></i>
+          <%= f.label :introduction %><span style="color:#a9a9a9;">（任意）</span>
+          <%= f.text_field :introduction, id: "introduction", placeholder: "about me" %>
+        </div>
+
+
+        <div class="field">
+          <i class="fa-solid fa-envelope"></i>
+          <%= f.label :email %>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+        </div>
+
+
+        <div class="actions text-center">
+          <%= f.submit "UPDATE", class: "btn btn-success" %>
+        </div>
+        <br>
+        <div class="line"></div>
+        <% end %>
+        <br>
+
+        <div class="col-md-3"></div>
+      </div>
+    </div>
+  </div>
+</div>
+

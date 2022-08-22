@@ -5,15 +5,17 @@ class ApplicationController < ActionController::Base
    protected
 
   def configure_sign_up_params
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:email, :password, :name])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :email, :birthdate, :introductio, :password])
   end
 
   def after_sign_in_path_for(resource)
     case resource
     when Admin
       root_path
+      # ↑後でURL変更
+
     when User
-      root_path
+      mypage_users_path
     end
   end
 
@@ -22,7 +24,7 @@ class ApplicationController < ActionController::Base
     if resource == :admin
       new_admin_session_path
     else
-    root_path
+      user_session_path
     end
   end
 
