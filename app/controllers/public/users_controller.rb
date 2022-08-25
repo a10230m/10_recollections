@@ -1,5 +1,9 @@
 class Public::UsersController < ApplicationController
 
+  def new
+    @user = User.new
+  end
+
   def show
     @user = current_user
   end
@@ -9,11 +13,22 @@ class Public::UsersController < ApplicationController
   end
 
   def update
-  @user = current_user
-  @user.update(user_params)
-  redirect_to mypage_users_path
+    @user = current_user
+    @user.update(user_params)
+    redirect_to mypage_users_path
   end
+
+
+  def withdraw
+    @user = current_user
+    @user.update(is_active: true)
+    reset_session
+    flash[:notice] = "ありがとうございました。またのご利用を心よりお待ちしております。"
+    redirect_to user_session_path
+  end
+
 end
+
 
 private
 

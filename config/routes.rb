@@ -30,10 +30,22 @@ Rails.application.routes.draw do
   # end
   scope module: :public do
     resources :users, only:[:show, :edit, :update] do
+      member do
+        get :photo_images
+      end
       collection do
         get '/mypage' => 'users#show', as: 'mypage'
         get 'mypage/edit' => 'users#edit', as: 'edit'
         get '/mypage' => 'users#update', as: 'update'
+        get :confirm
+        patch 'withdraw' => 'users#withdraw', as: 'withdraw'
+
+      end
+    end
+
+    resources :photo_images, only: [:new, :index, :show, :edit, :destroy, :update] do
+      member do
+        get :photo_images
       end
     end
   end

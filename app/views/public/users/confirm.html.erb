@@ -1,0 +1,23 @@
+<br><br><br>
+<div class="container">
+  <div class="text-center">
+    <h4 class="bold">
+        本当に退会しますか？
+    </h4>
+    <br>
+    <p>
+      退会すると、これまでの写真やアルバムが閲覧できなくなります。<br />
+      退会する場合は、「退会する」をクリックしてください。<br />
+    </p>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="btn-group">
+      <button class="btn"><%= link_to "　退会しない　", mypage_users_path(@user), class: "btn btn-primary" %></button>
+      <button class="btn"><%= link_to "　 退会する 　", withdraw_users_path(@user), method: :patch, class: "btn btn-danger" %></button>
+    </div>
+  </div>
+</div>
+<br><br><br>

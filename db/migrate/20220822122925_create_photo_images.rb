@@ -5,6 +5,7 @@ class CreatePhotoImages < ActiveRecord::Migration[6.1]
       t.integer :user_id, null: false, default: ""
       t.string :photo_title
       t.text :photo_caption
+      
 
       t.timestamps
     end
