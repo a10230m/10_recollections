@@ -1,15 +1,17 @@
+
   <% if @photo_image.image.attached? %>
-    <%= image_tag @photo_image.image, size: '400x300' %>
+    <%= image_tag @photo_image.get_image, size: '600x500' %>
   <% end %>
 
 
   <p>Title:<%= @photo_image.photo_title %></p>
   <p>caption:<%= @photo_image.photo_caption %></p>
   <p>name:<%= @photo_image.user.name %></p>
-  <p><%= @photo_image.created_at.strftime('%Y/%m/%d') %></p>
+  <%= @photo_image.created_at.strftime('%Y/%m/%d %H:%M') %>
 
   <% if @photo_image.user == current_user %>
-    <%= link_to "削除", photo_image_path(@photo_image.id), method: :delete %>
+    <%= link_to "edit", edit_photo_image_path(@photo_image.id) %>
+    <%= link_to "delete", photo_image_path(@photo_image.id), method: :delete %>
   <% end %>
   <!--< % if @photo_image.favorited_by?(current_user) %>-->
   <!--  <p>-->

@@ -1,0 +1,2 @@
+module Public::AlbumImagesHelper
+end

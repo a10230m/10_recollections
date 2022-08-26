@@ -1,12 +1,8 @@
-class PhotoImage < ApplicationRecord
-
+class AlbumImage < ApplicationRecord
   belongs_to :user
-  has_one_attached :image
-
-
-
-
-  def get_image
+  has_many_attached :images
+  
+    def get_images
     unless image.attached?
       file_path = Rails.root.join('app/assets/images/noimage.jpeg')
       image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
