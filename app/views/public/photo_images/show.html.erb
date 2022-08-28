@@ -12,6 +12,8 @@
   <% if @photo_image.user == current_user %>
     <%= link_to "edit", edit_photo_image_path(@photo_image.id) %>
     <%= link_to "delete", photo_image_path(@photo_image.id), method: :delete %>
+    <%= link_to "戻る",photo_images_path %>
+
   <% end %>
   <!--< % if @photo_image.favorited_by?(current_user) %>-->
   <!--  <p>-->

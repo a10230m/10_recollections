@@ -24,10 +24,11 @@
             <li class="nav-item">
 
               <% if current_user %>
-                <%= link_to "Mypage", mypage_users_path %>
-                <%= link_to "ALL", photo_images_path %>
+                <%= link_to "Mypage", mypage_users_path %> /
+                <%= link_to "ALL", photo_images_path %> /
                 <!--< %= link_to "商品一覧", items_path, class: "btn btn-outline-secondary" %>-->
                 <!--< %= link_to "カート", cart_items_path, class: "btn btn-outline-secondary" %>-->
+                <%= link_to "ALBUM", albums_path %> /
                 <%= link_to "Logout", destroy_user_session_path, method: :delete %>
               <% elsif current_admin %>
                 <!--< %= link_to "商品一覧", admin_items_path, class: "btn btn-outline-secondary" %>-->
@@ -49,7 +50,7 @@
     </div>
 
     <%= link_to "+", new_photo_image_path %><br>
-    <%= link_to "+++", new_album_image_path %><br>
+    <%= link_to "+++", new_album_path %><br>
 
 
     <%= yield %>

@@ -1,8 +1,0 @@
-<h1>ALL</h1>
-<% @album_images.each do |album_image| %>
-
-  <%= image_tag album_image.get_images, size: '200x100' %><br>
-  <%= link_to "編集", edit_album_image_path(album_image.id) %><br>
-  <%= album_image.created_at.strftime('%Y/%m/%d %H:%M') %><br>
-<% end %>
-

@@ -48,9 +48,14 @@ Rails.application.routes.draw do
         get :photo_images
       end
     end
-    resources :album_images, only: [:new, :create, :index, :show, :edit, :destroy, :update] do
+    resources :albums, only: [:new, :create, :index, :show, :edit, :destroy, :update] do
       member do
-        get :album_images
+        get :albums
+      end
+    end
+    resources :album_photo_images, only: [:index, :show, :edit, :destroy, :update] do
+      member do
+        get :album_photo_images
       end
     end
   end

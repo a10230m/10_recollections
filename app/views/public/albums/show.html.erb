@@ -1,0 +1,20 @@
+
+<% @album.album_photo_images.each do |album_photo_image| %>
+  <%= link_to album_photo_image_path(album_photo_image.id) do %>
+    <%= image_tag album_photo_image.image, size: '300x200' %>
+  <% end %>
+<% end %>
+
+
+
+
+  <p>Title:<%= @album.album_title %></p>
+  <p>caption:<%= @album.album_caption %></p>
+  <p>name:<%= @album.user.name %></p>
+  <%= @album.created_at.strftime('%Y/%m/%d %H:%M') %>
+
+  <% if @album.user == current_user %>
+    <%= link_to "edit", edit_album_path(@album.id) %>
+    <%= link_to "delete", album_path(@album.id), method: :delete %>
+    <!--< %= link_to "戻る", edit_album_path(@album.id) %>-->
+ <% end %>

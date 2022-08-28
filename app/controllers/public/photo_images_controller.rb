@@ -22,7 +22,6 @@ class Public::PhotoImagesController < ApplicationController
 
   def index
     @photo_images = PhotoImage.all
-
     # @photo_images = PhotoImage.page(params[:page])
   end
 
