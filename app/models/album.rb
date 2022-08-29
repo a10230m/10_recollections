@@ -1,6 +1,7 @@
 class Album < ApplicationRecord
   belongs_to :user
   has_many :album_photo_images
+  has_many_attached :images
   # has_many :pictures, dependent: :destroy
 
   def get_images

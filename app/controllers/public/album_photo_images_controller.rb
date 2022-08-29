@@ -3,14 +3,14 @@ class Public::AlbumPhotoImagesController < ApplicationController
 
 
   def show
-    @album_photo_image = album.album_photo_image.find(params[:id])
+    @album_photo_image = AlbumPhotoImage.find(params[:id])
   end
 
 
 
   def edit
-     @album.album_photo_image = AlbumPhotoImage.find(params[:id])
-     if @album_photo_image.user != current_user
+     @album_photo_image = AlbumPhotoImage.find(params[:id])
+     if @album_photo_image.album.user != current_user
        redirect_to album_photo_images_path
      end
   end
@@ -33,7 +33,7 @@ class Public::AlbumPhotoImagesController < ApplicationController
   private
   # ストロングパラメータ
   def album_photo_image_params
-    params.require([:album][:album_photo_image]).permit(:album_photo_title, :album_photo_caption, :created_at)
+    params.require(:album_photo_image).permit(:album_photo_title, :album_photo_caption, :created_at, :image)
   end
 
 

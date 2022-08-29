@@ -14,6 +14,9 @@ module Recollections
     config.time_zone = "Tokyo"
     config.active_record.default_timezone = :local
 
+    #ActiveStorage上書きしない
+    config.active_storage.replace_on_assign_to_many = false
+
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files

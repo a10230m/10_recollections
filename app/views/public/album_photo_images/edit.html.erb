@@ -5,12 +5,12 @@
 </div>
 
 <div class="container">
-  <%= form_with model: @album.album_photo_image, url: album_path(@album.id), method: :patch do |f| %>
-    <%= f.file_field :images, multiple: true %><br><br>
+  <%= form_with model: @album_photo_image, url: album_photo_image_path(@album_photo_image.id), method: :patch do |f| %>
+    <%= f.file_field :image %><br><br>
     <%= f.label :album_photo_title %><br>
     <%= f.text_field :album_photo_title %><br>
     <%= f.label :album_photo_caption %><br>
     <%= f.text_area :album_photo_caption %><br><br>
-    <%= f.submit "変更を保存", class: "btn btn-success" %>
+    <%= f.submit "UPDATE", class: "btn btn-success" %>
 　<% end %>
 </div>

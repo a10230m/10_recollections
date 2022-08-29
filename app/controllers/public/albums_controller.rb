@@ -15,9 +15,9 @@ class Public::AlbumsController < ApplicationController
         album_photo_image.save
       end
       redirect_to album_path(@album.id), notice: 'Created successfully! Thank you.'
-    else
+      else
       render :new
-    end
+      end
   end
 
 
@@ -27,6 +27,8 @@ class Public::AlbumsController < ApplicationController
 
   def index
     @albums = Album.all
+    @albums = Album.order('id DESC')
+    # @albumss = Album.order('id DESC').limit(4)
     # @albums = Album.page(params[:page])
   end
 
@@ -37,8 +39,11 @@ class Public::AlbumsController < ApplicationController
      end
   end
 
+
+
   def update
     @album = Album.find(params[:id])
+    # @album.images.detach #一旦、すべてのimageの紐つけを解除
     if @album.update(album_params)
       redirect_to album_path(@album.id), notice: 'Updated successfully! Thank you.'
     else
@@ -55,7 +60,7 @@ class Public::AlbumsController < ApplicationController
   private
   # ストロングパラメータ
   def album_params
-    params.require(:album).permit(:album_title, :album_caption, :user_id, :created_at)
+    params.require(:album).permit(:album_title, :album_caption, :user_id, :created_at, images: [])
   end
 
 

@@ -1,16 +1,26 @@
 <h1>ALBUM ALL</h1>
 
+<!--< %= @album.images.attached? ? @album.images.count : 0 %>-->
 
   <% @albums.each do |album| %>
     <% if album.album_photo_images.any? && album.album_photo_images.first.image.attached? %>
-      <%= image_tag album.album_photo_images.first.image, size: '200x100' %><br>
+      <%= link_to album_path(album.id) do %>
+        <%= image_tag album.album_photo_images.first.image, size: '200x100' %><br>
+      <% end %>
     <% end %>
 
-    <p>Title:<%= album.album_title %></p>
+    <p>Title:
+      <%= link_to album_path(album.id) do %>
+        <%= album.album_title %>
+      <% end %>
+    </p>
     <p>caption:<%= album.album_caption %></p>
     <p>name:<%= album.user.name %></p>
 
-    <%= link_to "編集", edit_album_path(album.id) %><br>
+    <% if album.user == current_user %>
+      <%= link_to "edit", edit_album_path(album.id) %>
+      <%= link_to "delete", album_path(album.id), method: :delete %><br>
+    <% end %>
     <%= album.created_at.strftime('%Y/%m/%d %H:%M') %><br>
   <% end %>
 

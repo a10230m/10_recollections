@@ -1,14 +1,17 @@
 <div class="container">
-  <h2>EDIT</h2>
+  <h2>PHOTO EDIT</h2>
 </div>
 
 <div class="container">
   <%= form_with model: @photo_image, url: photo_image_path(@photo_image.id), method: :patch do |f| %>
     <%= f.file_field :image, accept: "image/*" %><br><br>
-    <%= f.label :title %><br>
+    <%= f.label :title %>
     <%= f.text_field :photo_title %><br>
-    <%= f.label :caption %><br>
-    <%= f.text_area :photo_caption %><br><br>
-    <%= f.submit "変更を保存", class: "btn btn-success" %>
+    <%= f.label :caption %>
+    <%= f.text_area :photo_caption %>
+    <div class="line"></div>
+    <%= f.submit "UPDATE", class: "btn btn-success" %>
 　<% end %>
+　<%= link_to "back",photo_images_path %>
+
 </div>
