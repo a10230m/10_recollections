@@ -39,6 +39,7 @@ Rails.application.routes.draw do
         get '/mypage' => 'users#update', as: 'update'
         get :confirm
         patch 'withdraw' => 'users#withdraw', as: 'withdraw'
+        # get 'photo_images/download/:id' => 'photo_images#download'
 
       end
     end
@@ -57,6 +58,9 @@ Rails.application.routes.draw do
       member do
         get :album_photo_images
       end
+      # collection do
+      #   get 'album_photo_images/download/:id' => 'album_photo_images#download'
+      # end
     end
   end
 end

@@ -6,6 +6,11 @@ class Public::AlbumPhotoImagesController < ApplicationController
     @album_photo_image = AlbumPhotoImage.find(params[:id])
   end
 
+  # def download
+  #   data = @album.album_photo_image.image.download
+  #   send_data(data, type: 'image/png', filename: 'download.jpg')
+  # end
+
 
 
   def edit

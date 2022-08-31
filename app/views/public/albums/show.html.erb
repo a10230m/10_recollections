@@ -1,4 +1,5 @@
 
+
 <% @album.album_photo_images.each do |album_photo_image| %>
   <%= link_to album_photo_image_path(album_photo_image.id) do %>
     <%= image_tag album_photo_image.image, size: '300x200' %>

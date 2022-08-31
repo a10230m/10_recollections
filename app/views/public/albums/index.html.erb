@@ -9,6 +9,8 @@
       <% end %>
     <% end %>
 
+    <%= album.album_photo_images.count %>
+
     <p>Title:
       <%= link_to album_path(album.id) do %>
         <%= album.album_title %>

@@ -13,6 +13,25 @@
     <%= f.label :album_caption %>
     <%= f.text_area :album_caption %>
     <div class="line"></div>
+
+
+    <% if @album.images.attached? %>
+      <p>削除する画像にチェック！</p>
+        <div style="display: flex; flex-wrap: wrap; width: 100%;">
+          <% @album.album_photo_images.each do |album_photo_image| %>
+            <div style="display: flex; margin:7px 7px 7px 7px;">
+
+              <%= f.check_box :album_photo_image_ids, { multiple: true , checked: false}, album_photo_image.id  %>
+              <label for="_image_ids_<%= album_photo_image.id %>" >
+                <%= link_to album_photo_image_path(album_photo_image.id) do %>
+                  <%= image_tag album_photo_image.image, size: '300x200' %>
+                <% end %>
+               </label>
+            </div>
+          <% end %>
+        </div>
+    <% end %>
     <%= f.submit "UPDATE", class: "btn btn-success" %>
-　<% end %>
+  <% end %>
+  <%= link_to "back", album_path(@album.id) %>
 </div>
