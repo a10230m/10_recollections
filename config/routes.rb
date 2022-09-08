@@ -29,12 +29,12 @@ Rails.application.routes.draw do
   #   resources :users
   # end
   scope module: :public do
-    resources :users, only:[:show, :edit, :update] do
+    resources :users, only:[:mypage, :show, :index, :edit, :update] do
       member do
         get :photo_images
       end
       collection do
-        get '/mypage' => 'users#show', as: 'mypage'
+        get '/mypage' => 'users#mypage', as: 'mypage'
         get 'mypage/edit' => 'users#edit', as: 'edit'
         get '/mypage' => 'users#update', as: 'update'
         get :confirm
@@ -44,20 +44,25 @@ Rails.application.routes.draw do
       end
     end
 
+
+
     resources :photo_images, only: [:new, :create, :index, :show, :edit, :destroy, :update] do
       member do
         get :photo_images
       end
+      resource :favorites, only: [:create, :index, :show, :destroy]
     end
     resources :albums, only: [:new, :create, :index, :show, :edit, :destroy, :update] do
       member do
         get :albums
       end
+      resource :favorites, only: [:create, :index, :show, :destroy]
     end
     resources :album_photo_images, only: [:index, :show, :edit, :destroy, :update] do
       member do
         get :album_photo_images
       end
+      resource :favorites, only: [:create, :index, :show, :destroy]
       # collection do
       #   get 'album_photo_images/download/:id' => 'album_photo_images#download'
       # end

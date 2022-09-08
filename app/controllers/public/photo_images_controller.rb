@@ -23,9 +23,6 @@ class Public::PhotoImagesController < ApplicationController
   def index
     @photo_images = PhotoImage.all
     @photo_images = PhotoImage.order('id DESC')
-    # @photo_images = PhotoImage.order('id DESC').limit(4)
-
-
     @photo_image_count = PhotoImage.where(params[:photo_image_id]).count
     # @photo_images = PhotoImage.page(params[:page])
   end

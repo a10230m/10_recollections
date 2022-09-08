@@ -4,8 +4,24 @@ class Public::UsersController < ApplicationController
     @user = User.new
   end
 
-  def show
+  def mypage
     @user = current_user
+  end
+
+  def show
+    @user = User.find(params[:id])
+    if current_user == @user
+      redirect_to mypage_users_path
+    end
+    @photo_images =@user.photo_images
+    @photo_image_count = @user.photo_images.where(params[:photo_image_id]).count
+    @photo_images = @user.photo_images.order('id DESC').limit(4)
+    @albums = @user.albums
+    @albums = @user.albums.order('id DESC').limit(5)
+  end
+
+  def index
+    @users = User.all
   end
 
   def edit
@@ -33,6 +49,6 @@ end
 private
 
   def user_params
-  params.require(:user).permit(:name, :email, :birthdate, :introduction)
+  params.require(:user).permit(:name, :email, :birthdate, :introduction, :user_id)
 
   end

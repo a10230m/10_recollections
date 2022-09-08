@@ -2,6 +2,18 @@
   <% if @photo_image.image.attached? %>
     <%= image_tag @photo_image.get_image, size: '600x500' %>
   <% end %>
+  <br>
+  <% if @photo_image.favorited_by?(current_user) %>
+    <%= link_to photo_image_favorites_path(@photo_image), method: :delete do %>
+      <i class="fa-solid fa-heart"></i>
+    <% end %>
+    <%= @photo_image.favorites.count %>
+  <% else %>
+    <%= link_to photo_image_favorites_path(@photo_image), method: :post do %>
+      <i class="fa-brands fa-gratipay"></i>
+    <% end %>
+    <%= @photo_image.favorites.count %>
+  <% end %>
 
 
   <p>Title:<%= @photo_image.photo_title %></p>
@@ -25,42 +37,3 @@
 
 
 </div>
-
-
-
-
-
-  <!--< % if @photo_image.favorited_by?(current_user) %>-->
-  <!--  <p>-->
-  <!--    < %= link_to photo_image_favorites_path(@photo_image), method: :delete do %>-->
-  <!--      ♥< %= @photo_image.favorites.count %> いいね-->
-  <!--    < % end %>-->
-  <!--  </p>-->
-  <!--  < % else %>-->
-  <!--  <p>-->
-  <!--    < %= link_to photo_image_favorites_path(@photo_image), method: :post do %>-->
-  <!--      ♡< %= @photo_image.favorites.count %> いいね-->
-  <!--    < % end %>-->
-  <!--  </p>-->
-  <!--< % end %>-->
-
-
-<!--<div>-->
-<!--  <p>コメント件数:< %= @photo_image.post_comments.count %></p>-->
-<!--  < % @photo_image.post_comments.each do |post_comment| %>-->
-<!--   <p>< %= image_tag post_comment.user.get_profile_image(100,100) %></p>-->
-<!--   < %= post_comment.user.name %>-->
-<!--   < %= post_comment.created_at.strftime('%Y/%m/%d') %>< %= post_comment.comment %>-->
-<!--   < % if post_comment.user == current_user %>-->
-<!--    < %= link_to "削除", photo_image_post_comment_path(post_comment.photo_image, post_comment), method: :delete %>-->
-<!--   < % end %>-->
-
-<!--  < % end %>-->
-<!--</div>-->
-
-<!--<div>-->
-<!--  < %= form_with model: [@photo_image, @post_comment] do |f| %>-->
-<!--   < %= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>-->
-<!--   < %= f.submit "送信する" %>-->
-<!--  < % end %>-->
-<!--</div>-->

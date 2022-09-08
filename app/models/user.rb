@@ -5,7 +5,15 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :photo_images, dependent: :destroy
-  has_many_attached :album
+  has_many :albums, dependent: :destroy
+  has_many :favorites, dependent: :destroy
+    # has_many_attached :album
+
+
+
+  def favorited_by?(photo_image_id)
+    favorites.where(photo_image_id: photo_image.id).exists?
+  end
 
 
 

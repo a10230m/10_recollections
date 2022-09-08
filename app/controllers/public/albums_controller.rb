@@ -30,7 +30,6 @@ class Public::AlbumsController < ApplicationController
   def index
     @albums = Album.all
     @albums = Album.order('id DESC')
-    # @albumss = Album.order('id DESC').limit(4)
     # @albums = Album.page(params[:page])
   end
 
