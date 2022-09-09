@@ -6,6 +6,10 @@ class Public::UsersController < ApplicationController
 
   def mypage
     @user = current_user
+    @photo_image_count = @user.photo_images.where(params[:photo_image_id]).count
+    @photo_images = @user.photo_images
+    @albums = @user.albums.order('id DESC').limit(5)
+
   end
 
   def show
@@ -16,7 +20,6 @@ class Public::UsersController < ApplicationController
     @photo_images =@user.photo_images
     @photo_image_count = @user.photo_images.where(params[:photo_image_id]).count
     @photo_images = @user.photo_images.order('id DESC').limit(4)
-    @albums = @user.albums
     @albums = @user.albums.order('id DESC').limit(5)
   end
 
@@ -43,12 +46,11 @@ class Public::UsersController < ApplicationController
     redirect_to user_session_path
   end
 
-end
-
 
 private
 
   def user_params
-  params.require(:user).permit(:name, :email, :birthdate, :introduction, :user_id)
+  params.require(:user).permit(:name, :email, :birthdate, :introduction, :user_id, :albums_id)
 
   end
+end

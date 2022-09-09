@@ -54,7 +54,7 @@ Rails.application.routes.draw do
     end
     resources :albums, only: [:new, :create, :index, :show, :edit, :destroy, :update] do
       member do
-        get :albums
+        get :useralbums
       end
       resource :favorites, only: [:create, :index, :show, :destroy]
     end

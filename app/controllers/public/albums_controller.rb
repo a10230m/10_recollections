@@ -33,6 +33,12 @@ class Public::AlbumsController < ApplicationController
     # @albums = Album.page(params[:page])
   end
 
+  def useralbums
+    @user = User.find(params[:id])
+    @albums = @user.album.all
+    @albums = @user.album.all.order('id DESC').limit(5)
+  end
+
   def edit
      @album = Album.find(params[:id])
      if @album.user != current_user
@@ -82,43 +88,10 @@ class Public::AlbumsController < ApplicationController
   end
 
 
+  def user_params
+  params.require(:user).permit(:name, :email, :birthdate, :introduction, :user_id, :albums_id)
+
+  end
+
+
 end
-
-#   def show
-#     @album_pimage = Album.find(params[:id])
-#   end
-
-#   def index
-#     @albums = Album.all
-#     # @albums = Album.page(params[:page])
-#   end
-
-#   def edit
-#     @album = Album.find(params[:id])
-#     if @album.user != current_user
-#       redirect_to albums_path
-#     end
-#   end
-
-#   def update
-#     @album = Album.find(params[:id])
-#     if @album.update(album_params)
-#       redirect_to album_path(@album.id), notice: 'Updated successfully! Thank you.'
-#     else
-#       render :edit
-#     end
-#   end
-
-#   def destroy
-#     @album = Album.find(params[:id])
-#     @album.destroy
-#     redirect_to albums_path
-#   end
-
-#   private
-#   # ストロングパラメータ
-#   def album_params
-#     params.require(:album).permit(:album_title, :album_caption, :user_id, :created_at, images: [])
-#   end
-
-# end
