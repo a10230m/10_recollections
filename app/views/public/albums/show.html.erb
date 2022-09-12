@@ -1,10 +1,25 @@
 
-
+<p>111</p>
+<p>album::<%#= @album.album_photo_images.inspect %></p>
 <% @album.album_photo_images.each do |album_photo_image| %>
+  <p>222</p>
   <%= link_to album_photo_image_path(album_photo_image.id) do %>
     <%= image_tag album_photo_image.image, size: '300x200' %>
   <% end %>
 <% end %>
+
+    <% if @album.favorited_by?(current_user) %>
+      <%= link_to album_album_favorites_path(@album), method: :delete do %>
+        <i class="fa-solid fa-heart"></i>
+      <% end %>
+      <%= @album.album_photo_images.count %>
+    <% else %>
+      <%= link_to album_album_favorites_path(@album), method: :post do %>
+        <i class="fa-brands fa-gratipay"></i>
+      <% end %>
+      <%= @album.album_photo_images.count %>
+    <% end %>
+
 
   <p>Title:<%= @album.album_title %></p>
   <p>caption:<%= @album.album_caption %></p>

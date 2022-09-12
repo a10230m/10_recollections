@@ -25,8 +25,6 @@ class Public::AlbumsController < ApplicationController
     @album = Album.find(params[:id])
   end
 
-
-
   def index
     @albums = Album.all
     @albums = Album.order('id DESC')
@@ -34,9 +32,9 @@ class Public::AlbumsController < ApplicationController
   end
 
   def useralbums
-    @user = User.find(params[:id])
-    @albums = @user.album.all
-    @albums = @user.album.all.order('id DESC').limit(5)
+    @album = Album.find(params[:id])
+    @albums = @album.user.albums
+    # @albums = @user.album.all.order('id DESC').limit(5)
   end
 
   def edit

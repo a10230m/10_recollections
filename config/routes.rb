@@ -49,15 +49,23 @@ Rails.application.routes.draw do
     resources :photo_images, only: [:new, :create, :index, :show, :edit, :destroy, :update] do
       member do
         get :photo_images
+        get :userphotos
       end
       resource :favorites, only: [:create, :index, :show, :destroy]
     end
+
+    post 'favorite/:id' => 'favorites#create', as: 'create_favorite'
+    delete 'favorite/:id' => 'favorites#destroy', as: 'destroy_favorite'
+
     resources :albums, only: [:new, :create, :index, :show, :edit, :destroy, :update] do
       member do
         get :useralbums
       end
-      resource :favorites, only: [:create, :index, :show, :destroy]
+      resource :album_favorites, only: [:create, :index, :show, :destroy]
     end
+    post 'album_favorite/:id' => 'album_favorites#create', as: 'create_album_favorite'
+    delete 'album_favorite/:id' => 'album_favorites#destroy', as: 'destroy_album_favorite'
+
     resources :album_photo_images, only: [:index, :show, :edit, :destroy, :update] do
       member do
         get :album_photo_images
@@ -67,6 +75,7 @@ Rails.application.routes.draw do
       #   get 'album_photo_images/download/:id' => 'album_photo_images#download'
       # end
     end
+
   end
 end
 

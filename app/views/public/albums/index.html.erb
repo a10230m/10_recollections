@@ -6,7 +6,15 @@
       <% end %>
     <% end %>
 
+
     <%= album.album_photo_images.count %>
+
+    <div id="favorite_btn_<%= album.id %>">
+      <%= render 'public/album_favorites/album_favorite', album: album %>
+    </div>
+
+
+
 
     <p>Title:
       <%= link_to album_path(album.id) do %>

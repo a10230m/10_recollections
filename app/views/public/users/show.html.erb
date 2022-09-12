@@ -5,8 +5,13 @@
 
     <div class="line"></div>
 
-    <h4>Photo All<span><%= @photo_image_count %>件</span></h4>
-      <% @photo_images.each do |photo_image| %>
+    <h4>
+      <%= @user.name %>>><%= link_to "Photo All", userphotos_photo_image_path(@photo_images.first) %>
+      <span><%= @user.photo_images.count %>件</span>
+    </h4>
+
+
+      <% @user.photo_images.each do |photo_image| %>
           <%= link_to photo_image_path(photo_image.id) do %>
             <%= image_tag photo_image.get_image, size: '200x100' %>
           <% end %>
@@ -25,9 +30,12 @@
 
       <div class="line"></div>
 
-      <h4>Album All</h4>
-    <!--以下の一行　特定のユーザーだけ表示ができない-->
-      <%= link_to "ALBUM ALL", useralbums_album_path(@albums) %>
+      <h4>
+        <%= @user.name %>>>
+        <%= link_to "ALBUM ALL", useralbums_album_path(@albums.first) %>
+      </h4>
+
+
 
       <% @albums.each do |album| %>
         <% if album.album_photo_images.any? && album.album_photo_images.first.image.attached? %>

@@ -1,0 +1,7 @@
+<!--cocoon？？-->
+
+<%= form_with model: album, local: true do |f| %>
+  <%= f.fields_for :album_photo_images do |child|%>
+    <%= child.file_field :image, multiple: false %><br><br>
+  <% end %>
+<% end %>

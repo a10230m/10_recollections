@@ -6,8 +6,13 @@
       <div class="col-md-6 border rounded-pill p-3">
         <div class="album_new">
           <h2 class="text-center">ALBUM</h2><br>
+          
+          <!--cocoon？？？-->
+            <%= render 'public/albums/a_images' %>
+                <%#= render 'public/favorites/favorite', photo_image: @photo_image %>
+
+
             <%= form_with model: @album, local: true do |f| %>
-            <%= f.file_field :images, multiple: true %><br><br>
             <h4>ALBUM title　  　<%= f.text_field :album_title %></h4><br>
             <h4>ALBUM caption　<%= f.text_area :album_caption %></h4>
             <div class="line"></div>

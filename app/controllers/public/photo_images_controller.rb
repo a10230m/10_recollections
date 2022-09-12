@@ -27,6 +27,16 @@ class Public::PhotoImagesController < ApplicationController
     # @photo_images = PhotoImage.page(params[:page])
   end
 
+
+  def userphotos
+    # @user = @photo_images.user
+    @photo_image = PhotoImage.find(params[:id])
+    @photo_images = @photo_image.user.photo_images
+
+    # @albums = @user.album.all.order('id DESC').limit(5)
+  end
+
+
   def edit
      @photo_image = PhotoImage.find(params[:id])
      if @photo_image.user != current_user

@@ -1,0 +1,3 @@
+
+$('#favorite_btn_<%= @photo_image.id %>').html("<%= j(render partial: 'public/favorites/favorite', locals: {photo_image: @photo_image}) %>");
+

@@ -1,0 +1,30 @@
+  <!--< % if user_signed_in? %>-->
+  <!--< % if photo_image.favorited_by?(current_user) %>-->
+  <!--  < %= link_to photo_image_favorites_path(photo_image), method: :delete remote: true do %>-->
+  <!--    <i class="fa-solid fa-heart"></i>-->
+  <!--  < % end %>-->
+  <!--  < %= photo_image.favorites.count %>-->
+  <!--< % else %>-->
+  <!--  < %= link_to photo_image_favorites_path(photo_image), method: :post remote: true do %>-->
+  <!--    <i class="fa-brands fa-gratipay"></i>-->
+  <!--  < % end %>-->
+  <!--  < %= photo_image.favorites.count %>-->
+  <!--< % end %>-->
+
+  <% if photo_image.favorited_by?(current_user) %>
+    <td>
+      <%= link_to destroy_favorite_path(photo_image), method: :DELETE, remote: true do %>
+        <i class="fa-solid fa-heart"></i>
+      <% end %>
+      <%= photo_image.favorites.count %>
+    </td>
+  <% else %>
+    <td>
+      <%= link_to create_favorite_path(photo_image), method: :POST, remote: true do %>
+        <i class="fa-brands fa-gratipay"></i>
+      <% end %>
+      <%= photo_image.favorites.count %>
+    </td>
+  <% end %>
+
+
