@@ -5,19 +5,17 @@ class Public::AlbumsController < ApplicationController
   end
 
   def create
-    @album = Album.new(album_params)
-
+    @album = Album.new(album_params.except(:album_photo_images))
     @album.user_id = current_user.id
-      if @album.save
-      params[:album][:images].each do |image|
-        album_photo_image = @album.album_photo_images.new
-        album_photo_image.image.attach(image)
-        album_photo_image.save
-      end
+    album_params[:album_photo_images][:image].each do |image|
+      album_photo_image = @album.album_photo_images.new
+      album_photo_image.image.attach(image)
+    end
+    if @album.save
       redirect_to album_path(@album.id), notice: 'Created successfully! Thank you.'
-      else
+    else
       render :new
-      end
+    end
   end
 
 
@@ -27,6 +25,7 @@ class Public::AlbumsController < ApplicationController
 
   def index
     @albums = Album.all
+    @album_photo_images = album.album_photo_image
     @albums = Album.order('id DESC')
     # @albums = Album.page(params[:page])
   end
@@ -48,8 +47,8 @@ class Public::AlbumsController < ApplicationController
   def update
     @album = Album.find(params[:id])
     #添付画像を個別に削除
-    if params[:album][:images]
-      params[:album][:images].each do |image|
+    if params[:album_photo_images][:image]
+      params[:album_photo_images][:image].each do |image|
       album_photo_image = @album.album_photo_images.new
       album_photo_image.image.attach(image)
       album_photo_image.save
@@ -82,7 +81,7 @@ class Public::AlbumsController < ApplicationController
   private
   # ストロングパラメータ
   def album_params
-    params.require(:album).permit(:album_title, :album_caption, :user_id, :created_at, album_photo_images: [])
+    params.require(:album).permit(:album_title, :album_caption, :user_id, :created_at, album_photo_images: {})
   end
 
 
