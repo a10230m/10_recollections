@@ -11,6 +11,11 @@
     </h4>
 
 
+    <%= link_to "いいねした投稿", favorites_user_path(@user) %>
+
+
+
+
       <% @user.photo_images.each do |photo_image| %>
           <%= link_to photo_image_path(photo_image.id) do %>
             <%= image_tag photo_image.get_image, size: '200x100' %>

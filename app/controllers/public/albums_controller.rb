@@ -24,9 +24,9 @@ class Public::AlbumsController < ApplicationController
   end
 
   def index
-    @albums = Album.all
-    @album_photo_images = album.album_photo_image
-    @albums = Album.order('id DESC')
+    @albums = Album.all.order('id DESC')
+    # @album_photo_images = album.album_photo_images
+    # @albums = Album.order('id DESC')
     # @albums = Album.page(params[:page])
   end
 

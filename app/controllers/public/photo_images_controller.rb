@@ -21,10 +21,17 @@ class Public::PhotoImagesController < ApplicationController
   end
 
   def index
-    @photo_images = PhotoImage.all
-    @photo_images = PhotoImage.order('id DESC')
+    @photo_images = PhotoImage.all.order('id DESC')
     @photo_image_count = PhotoImage.where(params[:photo_image_id]).count
     # @photo_images = PhotoImage.page(params[:page])
+    # @photo_images = PhotoImage.where(created_at: @month.in_time_zone.all_month).order(created_at: :asc)
+  end
+
+
+
+  def search
+      @photo_images = PhotoImage.where(params[:search])
+      @photo_images = PhotoImage.all.order('id DESC')
   end
 
 
@@ -66,9 +73,13 @@ class Public::PhotoImagesController < ApplicationController
   private
   # ストロングパラメータ
   def photo_image_params
-    params.require(:photo_image).permit(:photo_title, :photo_caption, :user_id, :image, :created_at)
+    params.require(:photo_image).permit(:photo_title, :photo_caption, :user_id, :image, :created_at, :search
+    )
   end
 
+  def search_params
+    params.require(:search).permit(:created_at)
+  end
   # def image_params
   #   params.require(:image).permit(:image, :photo_title, :photo_caption, :created_at)
   # end

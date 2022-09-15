@@ -19,4 +19,25 @@ class PhotoImage < ApplicationRecord
     favorites.exists?(user_id: user.id)
   end
 
+  # def self.search(search)
+  #   return PhotoImage.all unless search
+  #     PhotoImage.where("cast(strftime('%Y', date_column) as int) = ?", desired_year)
+  #     PhotoImage.where("cast(strftime('%m', date_column) as int) = ?", desired_month)
+  #     PhotoImage.where("cast(strftime('%d', date_column) as int) = ?", desired_day_of_month)
+  # end
+
+  def self.search(search)
+    return PhotoImage.all unless search
+      PhotoImage.where(created_at: search.in_time_zone.all_year)
+      PhotoImage.where(created_at: search.in_time_zone.all_month)
+      PhotoImage.where(created_at: search.in_time_zone.all_day)
+  end
+
+
+  # def self.by_year(year)
+  #   where('extract(year from date_column) = ?', year)
+  # end
+
+
 end
+

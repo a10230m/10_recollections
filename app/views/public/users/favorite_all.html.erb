@@ -1,0 +1,14 @@
+
+<%# @favorite_photo_images.each do |favorite_photo_image| %>
+  <%# photo_image = PhotoImage.find_by(id: favorite.photo_image_id) %>
+  <%# user = User.find_by(id: photo_image.user_id) %>
+<%# end %>
+
+
+
+いいね一覧
+<% @favorite_posts.each do |post|%>
+  <%= link_to photo_image_path(photo_image.id) do %>
+    <%= image_tag photo_image.get_image, size: '200x100' %>
+  <% end %>
+<% end %>

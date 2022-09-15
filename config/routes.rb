@@ -32,6 +32,7 @@ Rails.application.routes.draw do
     resources :users, only:[:mypage, :show, :index, :edit, :update] do
       member do
         get :photo_images
+        get :favorites
       end
       collection do
         get '/mypage' => 'users#mypage', as: 'mypage'
@@ -50,6 +51,9 @@ Rails.application.routes.draw do
       member do
         get :photo_images
         get :userphotos
+      end
+      collection do
+        get 'search'
       end
       resource :favorites, only: [:create, :index, :show, :destroy]
     end
