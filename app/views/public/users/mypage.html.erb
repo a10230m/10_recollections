@@ -8,51 +8,29 @@
 
 <div class="line"></div>
 
-<h4><%= @user.name %>>>Photo All<span><%= @photo_image_count %>件</span></h4>
-  <% @photo_images.each do |photo_image| %>
-    <%= link_to photo_image_path(photo_image.id) do %>
-      <%= image_tag photo_image.get_image, size: '200x100' %>
-    <% end %>
-    <br>
+<h4><%= @user.name %>>><%= link_to "Photo All", userphotos_user_path(@user.id) %>
+  <span><%= @photo_image_count %>件</span>
+</h4>
+<div class="row row no-gutters">
+  <%= render 'public/photo_images/index', photo_images: @photo_images %>
+</div>
 
-    <% if photo_image.user == current_user %>
-      <%= link_to edit_photo_image_path(photo_image.id) do %>
-        <i class="fa-solid fa-pen-to-square"></i>
-      <% end %>
-      <%= link_to photo_image_path(photo_image.id), method: :delete do %>
-        <i class="fa-solid fa-trash-can"></i>
-      <% end %>
-    <% end %>
-    <%= photo_image.created_at.strftime('%Y/%m/%d %H:%M') %><br>
-  <% end %>
 
-  <div class="line"></div>
+<div class="row row no-gutters">
+  <%= render 'public/photo_images/index', photo_images: @photo_images %>
+</div>
 
-  <h4><%= @user.name %>>>Album All</h4>
+
+
+<div class="line"></div>
+
+  <h4><%= @user.name %>>>
     <!--以下の一行　特定のユーザーだけ表示ができない-->
-    <%= link_to "ALBUM ALL", useralbums_album_path(@albums) %>
+    <%= link_to "ALBUM ALL", useralbums_user_path(current_user) %>
+    <span><%= @user.albums.count %>件</span>
+  </h4>
+    <div class="row row no-gutters">
+      <%= render 'public/albums/index', albums: @albums %>
+    </div>
 
-
-    <% @albums.each do |album| %>
-      <% if album.album_photo_images.any? && album.album_photo_images.first.image.attached? %>
-        <%= link_to album_path(album.id) do %>
-          <%= image_tag album.album_photo_images.first.image, size: '200x100' %><br>
-        <% end %>
-      <% end %>
-
-      <%= album.album_photo_images.count %>
-
-      <p>Title:
-        <%= link_to album_path(album.id) do %>
-          <%= album.album_title %>
-        <% end %>
-      </p>
-      <p>caption:<%= album.album_caption %></p>
-      <p>name:<%= album.user.name %></p>
-
-      <% if album.user == current_user %>
-        <%= link_to "edit", edit_album_path(album.id) %>
-        <%= link_to "delete", album_path(album.id), method: :delete %><br>
-      <% end %>
-      <%= album.created_at.strftime('%Y/%m/%d %H:%M') %><br>
-    <% end %>
+\

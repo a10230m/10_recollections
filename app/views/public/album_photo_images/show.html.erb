@@ -1,5 +1,5 @@
 
-  <%= image_tag @album_photo_image.image, size: '300x200' %>
+  <%= image_tag @album_photo_image.get_image(200, 100), size: '200x100' %>
 
   <p>Title:<%= @album_photo_image.album_photo_title %></p>
   <p>caption:<%= @album_photo_image.album_photo_caption %></p>

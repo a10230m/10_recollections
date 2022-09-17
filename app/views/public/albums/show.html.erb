@@ -1,10 +1,9 @@
 
-<% @album.album_photo_images.each do |album_photo_image| %>
-  <%= link_to album_photo_image_path(album_photo_image.id) do %>
-    <%= image_tag album_photo_image, size: '300x200' %>
-  <% end %>
-<% end %>
-<br>
+<div class="row row no-gutters">
+   <%= render 'public/album_photo_images/index', album_photo_images: @album.album_photo_images %>
+</div>
+
+
     <% if @album.favorited_by?(current_user) %>
       <%= link_to album_album_favorites_path(@album), method: :delete do %>
         <i class="fa-solid fa-heart"></i>

@@ -1,6 +1,6 @@
 <h1>ALBUM ALL</h1>
   <% @albums.each do |album| %>
-    <% if album.album_photo_images.image.any? && album.album_photo_images.first.image.attached? %>
+    <% if album.album_photo_images.first.image.attached? %>
       <%= link_to album_path(album.id) do %>
         <%= image_tag album.album_photo_images.first.image, size: '200x100' %><br>
       <% end %>

@@ -33,6 +33,8 @@ Rails.application.routes.draw do
       member do
         get :photo_images
         get :favorites
+        get :useralbums
+        get :userphotos
       end
       collection do
         get '/mypage' => 'users#mypage', as: 'mypage'
@@ -41,7 +43,6 @@ Rails.application.routes.draw do
         get :confirm
         patch 'withdraw' => 'users#withdraw', as: 'withdraw'
         # get 'photo_images/download/:id' => 'photo_images#download'
-
       end
     end
 
@@ -50,7 +51,6 @@ Rails.application.routes.draw do
     resources :photo_images, only: [:new, :create, :index, :show, :edit, :destroy, :update] do
       member do
         get :photo_images
-        get :userphotos
       end
       collection do
         get 'search'
@@ -62,9 +62,6 @@ Rails.application.routes.draw do
     delete 'favorite/:id' => 'favorites#destroy', as: 'destroy_favorite'
 
     resources :albums, only: [:new, :create, :index, :show, :edit, :destroy, :update] do
-      member do
-        get :useralbums
-      end
       resource :album_favorites, only: [:create, :index, :show, :destroy]
     end
     post 'album_favorite/:id' => 'album_favorites#create', as: 'create_album_favorite'

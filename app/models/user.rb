@@ -7,7 +7,7 @@ class User < ApplicationRecord
   has_many :photo_images, dependent: :destroy
   has_many :albums, dependent: :destroy
   has_many :favorites, dependent: :destroy
-  has_many_attached :album
+#  has_many_attached :album
   has_many :album_favorites, dependent: :destroy
 
 

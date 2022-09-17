@@ -17,7 +17,7 @@ class Public::UsersController < ApplicationController
     if current_user == @user
       redirect_to mypage_users_path
     end
-    @photo_images =@user.photo_images
+    @photo_images = @user.photo_images
     @photo_image_count = @user.photo_images.where(params[:photo_image_id]).count
     @photo_images = @user.photo_images.order('id DESC').limit(4)
     @albums = @user.albums.order('id DESC').limit(5)
@@ -51,6 +51,16 @@ class Public::UsersController < ApplicationController
     reset_session
     flash[:notice] = "ありがとうございました。またのご利用を心よりお待ちしております。"
     redirect_to user_session_path
+  end
+
+  def userphotos
+    @user = User.find(params[:id])
+    @photo_images = @user.photo_images
+  end
+
+  def useralbums
+    @user = User.find(params[:id])
+    @albums = @user.albums
   end
 
 
