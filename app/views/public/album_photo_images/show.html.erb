@@ -1,6 +1,10 @@
 
   <%= image_tag @album_photo_image.get_image(200, 100), size: '200x100' %>
 
+  <div id="favorite_btn_<%= @photo_image.id %>">
+    <%= render 'public/album_photo_image_favorites/album_photo_image_favorite', album_photo_image: @album_photo_image %>
+  </div>
+
   <p>Title:<%= @album_photo_image.album_photo_title %></p>
   <p>caption:<%= @album_photo_image.album_photo_caption %></p>
   <p>name:<%= @album_photo_image.album.user.name %></p>

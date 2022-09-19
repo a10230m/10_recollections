@@ -1,7 +1,9 @@
 
   <h4>User</h4>
-    <i class="fa-solid fa-user"></i><%= @user.name %><i class="fa-solid fa-cake-candles"></i><%= @user.birthdate %><br>
-    <i class="fa-solid fa-circle-info"></i><%= @user.introduction %><i class="fa-solid fa-envelope"></i><br>
+    <i class="fa-solid fa-user"></i><%= @user.name %>
+    <i class="fa-solid fa-cake-candles"></i><%= @user.birthdate %><br>
+    <i class="fa-solid fa-circle-info"></i><%= @user.introduction %>
+    <i class="fa-solid fa-envelope"></i><br>
 
     <div class="line"></div>
 
@@ -26,6 +28,6 @@
         <%= link_to "ALBUM ALL", useralbums_user_path(@user.id) %>
         <span><%= @user.albums.count %>件</span>
       </h4>
-
+      <%= link_to "いいねした投稿", album_favorites_user_path(@user) %>
 
       <%= render 'public/albums/index', albums: @user.albums %>

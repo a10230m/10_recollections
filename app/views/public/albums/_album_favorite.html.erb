@@ -1,0 +1,14 @@
+Album いいね一覧
+<div class="container">
+  <div class="row row no-gutters">
+    <div class="col-4">
+      <% favorited_albums.each do |album| %>
+        <% if album.album_photo_images.any? && album.album_photo_images.first.image.attached? %>
+          <%= link_to album_path(album.id) do %>
+            <%= image_tag album.album_photo_images.first.get_image(200, 100), size: '200x100' %><br>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

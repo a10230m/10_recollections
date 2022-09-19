@@ -2,15 +2,19 @@
   <h4>MY PAGE</h4>
   <%= link_to "EDIT", edit_users_path %><br>
 
-  <i class="fa-solid fa-user"></i><%= @user.name %><i class="fa-solid fa-cake-candles"></i><%= @user.birthdate %><br>
-  <i class="fa-solid fa-circle-info"></i><%= @user.introduction %><i class="fa-solid fa-envelope"></i><%= @user.email %><br>
+  <i class="fa-solid fa-user"></i><%= @user.name %>
+  <i class="fa-solid fa-cake-candles"></i><%= @user.birthdate %><br>
+  <i class="fa-solid fa-circle-info"></i><%= @user.introduction %>
+  <i class="fa-solid fa-envelope"></i><%= @user.email %><br>
 <% end %>
 
 <div class="line"></div>
-
 <h4><%= @user.name %>>><%= link_to "Photo All", userphotos_user_path(@user.id) %>
   <span><%= @photo_image_count %>件</span>
 </h4>
+
+<%= link_to "いいねした投稿", favorites_user_path(@user) %>
+
 <div class="row row no-gutters">
   <%= render 'public/photo_images/index', photo_images: @photo_images %>
 </div>

@@ -13,8 +13,8 @@ class Album < ApplicationRecord
     image
   end
 
-  def favorited_by?(user)
-    album_favorites.exists?(user_id: user.id)
+  def album_favorited_by?(user)
+    album_favorites.exists?(user_id: user_id)
   end
 
 end

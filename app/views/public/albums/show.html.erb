@@ -1,29 +1,52 @@
+<div class="container">
+  <div class="row">
+    <div class="col-4">
+      <p>
+        Title:<%= @album.album_title %><br>
+        caption:<%= @album.album_caption %><br>
+        name:<%= @album.user.name %><br>
+        <%= @album.created_at.strftime('%Y/%m/%d %H:%M') %><br>
+      </p>
+    </div>
+  </div>
 
-<div class="row row no-gutters">
-   <%= render 'public/album_photo_images/index', album_photo_images: @album.album_photo_images %>
+  <div class="row">
+    <div class="col-4">
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-4">
+      <p class="text-right">
+        <% if @album.user == current_user %>
+          <%= link_to "edit", edit_album_path(@album.id) %>
+          <%= link_to "delete", album_path(@album.id), method: :delete %>
+          <!--< %= link_to "戻る", edit_album_path(@album.id) %>-->
+        <% end %>
+        <br>
+      </p>
+    </div>
+  </div>
 </div>
 
+<div class="container">
+  <div class="row row no-gutters">
+     <%= render 'public/album_photo_images/index', album_photo_images: @album.album_photo_images %>
+  </div>
 
-    <% if @album.favorited_by?(current_user) %>
-      <%= link_to album_album_favorites_path(@album), method: :delete do %>
-        <i class="fa-solid fa-heart"></i>
+  <div class="favorite">
+    <div class="text-right">
+      <% if @album.favorited_by?(current_user) %>
+        <%= link_to album_album_favorites_path(@album), method: :delete do %>
+          <i class="fa-solid fa-heart"></i>
+        <% end %>
+        <%= @album.album_photo_images.count %>
+      <% else %>
+        <%= link_to album_album_favorites_path(@album), method: :post do %>
+          <i class="fa-brands fa-gratipay"></i>
+        <% end %>
+        <%= @album.album_photo_images.count %>
       <% end %>
-      <%= @album.album_photo_images.count %>
-    <% else %>
-      <%= link_to album_album_favorites_path(@album), method: :post do %>
-        <i class="fa-brands fa-gratipay"></i>
-      <% end %>
-      <%= @album.album_photo_images.count %>
-    <% end %>
-
-
-  <p>Title:<%= @album.album_title %></p>
-  <p>caption:<%= @album.album_caption %></p>
-  <p>name:<%= @album.user.name %></p>
-  <%= @album.created_at.strftime('%Y/%m/%d %H:%M') %>
-
-  <% if @album.user == current_user %>
-    <%= link_to "edit", edit_album_path(@album.id) %>
-    <%= link_to "delete", album_path(@album.id), method: :delete %>
-    <!--< %= link_to "戻る", edit_album_path(@album.id) %>-->
- <% end %>
+    </div>
+  </div>
+</div>

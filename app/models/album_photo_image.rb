@@ -1,7 +1,7 @@
 class AlbumPhotoImage < ApplicationRecord
   belongs_to :album
   has_one_attached :image # ←いじらない
-  has_many :favorites, dependent: :destroy
+  has_many :album_photo_image_favorites, dependent: :destroy
   # belongstoをいれると、けんさくをかけてしまうので、関係ないものをいれないこと（バリデーションの動作をする）
     # accepts_nested_attributes_for :images
 
@@ -14,8 +14,8 @@ class AlbumPhotoImage < ApplicationRecord
     image.variant(resize_to_limit: [width, height]).processed
   end
 
-  def favorited_by?(user)
-    favorites.exists?(user_id: user.id)
+  def album_photo_image_favorited_by?(user)
+    album_photo_image_favorites.exists?(user_id: user_id)
   end
 
 end

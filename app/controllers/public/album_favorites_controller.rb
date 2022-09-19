@@ -16,6 +16,7 @@ class Public::AlbumFavoritesController < ApplicationController
   # end
 
   before_action :album_params
+  
   def create
     AlbumFavorite.create(user_id: current_user.id, album_id: params[:id])
   end

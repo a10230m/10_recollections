@@ -1,0 +1,12 @@
+Photo いいね一覧
+<div class="container">
+  <div class="row row no-gutters">
+    <div class="col-4">
+      <% favorited_photo_images.each do |photo_image| %>
+        <%= link_to photo_image_path(photo_image.id) do %>
+          <%= image_tag photo_image.get_image(200, 100) %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,12 @@
+
+  <% if album_photo_image.favorited_by?(current_user) %>
+        <%= link_to destroy_album_favorites_path(album), method: :delete do %>
+          <i class="fa-solid fa-heart"></i>
+        <% end %>
+        <%= @album.album_photo_images.count %>
+      <% else %>
+        <%= link_to album_favorites_path(album), method: :post do %>
+          <i class="fa-brands fa-gratipay"></i>
+        <% end %>
+        <%= @album.album_photo_images.count %>
+      <% end %>

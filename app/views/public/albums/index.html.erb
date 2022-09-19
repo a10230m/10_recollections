@@ -1,33 +1,7 @@
-<h1>ALBUM ALL</h1>
-  <% @albums.each do |album| %>
-    <% if album.album_photo_images.first.image.attached? %>
-      <%= link_to album_path(album.id) do %>
-        <%= image_tag album.album_photo_images.first.image, size: '200x100' %><br>
-      <% end %>
-    <% end %>
+<h1>ALBUM ALL</h1><br>
 
+<div class="row row no-gutters">
+  <%= render 'public/albums/index', albums: @albums %>
+</div>
 
-    <%= album.album_photo_images.count %>
-
-    <div id="favorite_btn_<%= album.id %>">
-      <%= render 'public/album_favorites/album_favorite', album: album %>
-    </div>
-
-
-
-
-    <p>Title:
-      <%= link_to album_path(album.id) do %>
-        <%= album.album_title %>
-      <% end %>
-    </p>
-    <p>caption:<%= album.album_caption %></p>
-    <p>name:<%= album.user.name %></p>
-
-    <% if album.user == current_user %>
-      <%= link_to "edit", edit_album_path(album.id) %>
-      <%= link_to "delete", album_path(album.id), method: :delete %><br>
-    <% end %>
-    <%= album.created_at.strftime('%Y/%m/%d %H:%M') %><br>
-  <% end %>
 

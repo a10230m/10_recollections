@@ -6,9 +6,7 @@
 
 
 
-いいね一覧
-<% @favorite_photo_images.each do |photo_image| %>
-  <%= link_to photo_image_path(photo_image.id) do %>
-    <%= image_tag photo_image.get_image, size: '200x100' %>
-  <% end %>
-<% end %>
+<div class="row row no-gutters">
+  <%= render 'public/photo_images/favorite', favorited_photo_images: @favorited_photo_images %>
+</div>
+

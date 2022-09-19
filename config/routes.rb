@@ -33,6 +33,8 @@ Rails.application.routes.draw do
       member do
         get :photo_images
         get :favorites
+        get :album_favorites
+        get :album_photo_images_favorites
         get :useralbums
         get :userphotos
       end
@@ -71,7 +73,7 @@ Rails.application.routes.draw do
       member do
         get :album_photo_images
       end
-      resource :favorites, only: [:create, :index, :show, :destroy]
+      resource :album_photo_image_favorites, only: [:create, :index, :show, :destroy]
       # collection do
       #   get 'album_photo_images/download/:id' => 'album_photo_images#download'
       # end
