@@ -1,19 +1,20 @@
 class Public::AlbumPhotoImageFavoritesController < ApplicationController
 
-  before_action :album_photo_image_params
+  before_action :set_album_photo_image
 
   def create
-    AlbumPhotoImageFavorite.create(user_id: current_user.id, album_photo_image_id: params[:id])
+    @album_photo_image.album_photo_image_favorites.create(user_id: current_user.id)
+    render :toggle
   end
 
   def destroy
-    AlbumPhotoImageFavorite.find_by(user_id: current_user.id, album_photo_image_id: params[:id]).destroy
+    @album_photo_image.album_photo_image_favorites.find_by(user_id: current_user.id).destroy
+    render :toggle
   end
 
   private
 
-  def album_photo_image_params
-    @album_photo_image = AlbumPhotoImage.find(params[:id])
+  def set_album_photo_image
+    @album_photo_image = AlbumPhotoImage.find(params[:album_photo_image_id])
   end
-
 end

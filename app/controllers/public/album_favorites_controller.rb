@@ -1,18 +1,19 @@
 class Public::AlbumFavoritesController < ApplicationController
-  before_action :album_params
+  before_action :set_album
 
   def create
-    AlbumFavorite.create(user_id: current_user.id, album_id: params[:id])
+    @album.album_favorites.create(user_id: current_user.id)
+    render :toggle
   end
 
   def destroy
-    AlbumFavorite.find_by(user_id: current_user.id, album_id: params[:id]).destroy
+    @album.album_favorites.find_by(user_id: current_user.id).destroy
+    render :toggle
   end
 
   private
 
-  def album_params
+  def set_album
     @album = Album.find(params[:album_id])
   end
-
 end

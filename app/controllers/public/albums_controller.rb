@@ -47,21 +47,11 @@ class Public::AlbumsController < ApplicationController
   def update
     @album = Album.find(params[:id])
     #添付画像を個別に削除
-    if params[:album_photo_images][:image]
-      params[:album_photo_images][:image].each do |image|
-      album_photo_image = @album.album_photo_images.new
-      album_photo_image.image.attach(image)
-      album_photo_image.save
-      end
-    end
-
-    params[:album][:album_photo_image_ids].delete("0")
-
-    if params[:album][:album_photo_image_ids]
-      params[:album][:album_photo_image_ids].each do |image_id|
-        image = @album.album_photo_images.find(image_id)
-        image.destroy
-      end
+    album_photo_image_ids = params[:album][:album_photo_image_ids]
+    if album_photo_image_ids
+      album_photo_image_ids.delete("0")
+      album_photo_images = AlbumPhotoImage.where(id: album_photo_image_ids)
+      album_photo_images.destroy_all
     end
 
     # @album.images.detach #一旦、すべてのimageの紐つけを解除

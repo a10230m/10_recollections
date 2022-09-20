@@ -12,21 +12,9 @@
           <%= album.album_photo_images.count %>件
           <div class="text-right">
             <!--album_favorite-->
-            <% if album.album_favorited_by?(current_user) %>
-              <td>
-                <%= link_to destroy_album_favorite_path(album), method: :DELETE, remote: true do %>
-                  <i class="fa-solid fa-heart"></i>
-                <% end %>
-                <%= album.album_favorites.count %>
-              </td>
-            <% else %>
-              <td>
-                <%= link_to create_album_favorite_path(album), method: :POST, remote: true do %>
-                  <i class="fa-brands fa-gratipay"></i>
-                <% end %>
-                <%= album.album_favorites.count %>
-              </td>
-            <% end %>
+            <div id="favorite_btn_<%= album.id %>">
+              <%= render partial: 'public/album_favorites/album_favorite', locals: {album: album} %>
+            </div>
             <!--end-->
           </div>
         </div>

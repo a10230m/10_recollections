@@ -65,22 +65,17 @@ Rails.application.routes.draw do
     delete 'favorite/:id' => 'favorites#destroy', as: 'destroy_favorite'
 
     resources :albums, only: [:new, :create, :index, :show, :edit, :destroy, :update] do
-      resource :album_favorites, only: [:create, :index, :show, :destroy]
+      resource :album_favorites, only: [:create, :destroy]
       member do
         get :album
       end
     end
-    post 'album_favorite/:id' => 'album_favorites#create', as: 'create_album_favorite'
-    delete 'album_favorite/:id' => 'album_favorites#destroy', as: 'destroy_album_favorite'
 
     resources :album_photo_images, only: [:index, :show, :edit, :destroy, :update] do
-      resource :album_photo_image_favorites, only: [:create, :index, :show, :destroy]
+      resource :album_photo_image_favorites, only: [:create, :destroy]
       member do
         get :album_photo_images
       end
-
-      post 'album_photo_image_favorite/:id' => 'album_photo_image_favorites#create', as: 'create_album_photo_image_favorite'
-      delete 'album_photo_image_favorite/:id' => 'album_photo_image_favorites#destroy', as: 'destroy_album_photo_image_favorite'
       # collection do
       #   get 'album_photo_images/download/:id' => 'album_photo_images#download'
       # end

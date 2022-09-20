@@ -1,16 +1,16 @@
-  <% if album_photo_image_album_photo_image.favorited_by?(current_user) %>
+  <% if album_photo_image.favorited_by?(current_user) %>
     <td>
-      <%= link_to album_photo_image_destroy_album_photo_image_favorite_path(album_photo_image), method: :DELETE , remote: true do %>
+      <%= link_to album_photo_image_album_photo_image_favorites_path(album_photo_image), method: :delete , remote: true do %>
         <i class="fa-solid fa-heart"></i>
       <% end %>
-      <%= album.album_photo_images.count %>
+      <%= album_photo_image.album_photo_image_favorites.count %>
     </td>
-    <% else %>
-      <td>
-        <%= link_to album_photo_image_create_album_photo_image_favorites_path(album_photo_image), method: :POST, remote: true do %>
-          <i class="fa-brands fa-gratipay"></i>
-        <% end %>
-        <%= album.album_photo_images.count %>
-      </td>
-    <% end %>
+  <% else %>
+    <td>
+      <%= link_to album_photo_image_album_photo_image_favorites_path(album_photo_image), method: :post, remote: true do %>
+        <i class="fa-brands fa-gratipay"></i>
+      <% end %>
+      <%= album_photo_image.album_photo_image_favorites.count %>
+    </td>
+  <% end %>
 
