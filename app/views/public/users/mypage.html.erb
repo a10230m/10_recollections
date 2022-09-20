@@ -33,6 +33,8 @@
     <%= link_to "ALBUM ALL", useralbums_user_path(current_user) %>
     <span><%= @user.albums.count %>件</span>
   </h4>
+  <%= link_to "いいねした投稿", album_favorites_user_path(@user) %>
+
     <div class="row row no-gutters">
       <%= render 'public/albums/index', albums: @albums %>
     </div>

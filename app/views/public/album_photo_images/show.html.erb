@@ -1,7 +1,10 @@
+<div class="container">
+  <% if @album_photo_image.image.attached? %>
+    <%= image_tag @album_photo_image.get_image(200, 100), size: '200x100' %>
+  <% end %>
+  <br>
 
-  <%= image_tag @album_photo_image.get_image(200, 100), size: '200x100' %>
-
-  <div id="favorite_btn_<%= @photo_image.id %>">
+  <div id="favorite_btn_<%= @album_photo_image.id %>">
     <%= render 'public/album_photo_image_favorites/album_photo_image_favorite', album_photo_image: @album_photo_image %>
   </div>
 
@@ -10,8 +13,16 @@
   <p>name:<%= @album_photo_image.album.user.name %></p>
   <%= @album_photo_image.album.created_at.strftime('%Y/%m/%d %H:%M') %>
 
-  <% if @album_photo_image.album.user == current_user %>
-    <%= link_to "edit", edit_album_photo_image_path(@album_photo_image.id) %>
-    <%= link_to "delete", album_photo_image_path(@album_photo_image.id), method: :delete %>
-    <!--< %= link_to "戻る", edit_album_image_path(@album_image.id) %>-->
- <% end %>
+  <div class="text-right">
+    <% if @album_photo_image.album.user == current_user %>
+      <%= link_to edit_album_photo_image_path(@album_photo_image.id) do %>
+        <i class="fa-solid fa-pen-to-square"></i>
+      <% end %>
+      <%= link_to album_photo_image_path(@album_photo_image.id), method: :delete do %>
+        <i class="fa-solid fa-trash-can"></i>
+      <% end %>
+   <% end %>
+  </div>
+
+   <%= link_to "back",album_image_path(@album_image.id) %>
+</div>

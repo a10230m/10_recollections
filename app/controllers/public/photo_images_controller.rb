@@ -12,7 +12,6 @@ class Public::PhotoImagesController < ApplicationController
     else
       render :new
     end
-
   end
 
   def show
@@ -26,8 +25,6 @@ class Public::PhotoImagesController < ApplicationController
     # @photo_images = PhotoImage.page(params[:page])
     # @photo_images = PhotoImage.where(created_at: @month.in_time_zone.all_month).order(created_at: :asc)
   end
-
-
 
   def search
       @photo_images = PhotoImage.where(params[:search])

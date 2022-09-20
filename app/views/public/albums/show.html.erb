@@ -36,7 +36,7 @@
 
   <div class="favorite">
     <div class="text-right">
-      <% if @album.favorited_by?(current_user) %>
+      <% if @album.album_favorited_by?(current_user) %>
         <%= link_to album_album_favorites_path(@album), method: :delete do %>
           <i class="fa-solid fa-heart"></i>
         <% end %>

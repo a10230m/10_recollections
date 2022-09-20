@@ -38,7 +38,7 @@ class Public::AlbumPhotoImagesController < ApplicationController
   private
   # ストロングパラメータ
   def album_photo_image_params
-    params.require(:album_photo_image).permit(:album_photo_title, :album_photo_caption, :created_at, :image)
+    params.require(:album_photo_image).permit(:album_photo_image_title, :album_photo__image_caption, :created_at, :image)
   end
 
 

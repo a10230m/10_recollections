@@ -14,8 +14,8 @@ class AlbumPhotoImage < ApplicationRecord
     image.variant(resize_to_limit: [width, height]).processed
   end
 
-  def album_photo_image_favorited_by?(user)
-    album_photo_image_favorites.exists?(user_id: user_id)
+  def album_photo_image_album_photo_image_favorited_by?(user)
+    album_photo_image_album_photo_image_favorites.exists?(user_id: user_id)
   end
 
 end

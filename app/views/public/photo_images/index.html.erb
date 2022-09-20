@@ -2,12 +2,14 @@
   <h1>ALL <span><%= @photo_image_count %>件</span></h1>
 </div>
 
+<div class="container">
+  <div class="row row no-gutters">
+    <%= render 'public/photo_images/search' %>
+  </div>
+</div>
 
 <div class="container">
   <div class="row row no-gutters">
     <%= render 'public/photo_images/index', photo_images: @photo_images %>
-
-
-
   </div>
 </div>

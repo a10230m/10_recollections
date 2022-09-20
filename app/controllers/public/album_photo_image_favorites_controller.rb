@@ -12,8 +12,8 @@ class Public::AlbumPhotoImageFavoritesController < ApplicationController
 
   private
 
-  def album_params
-    @album = Album.find(params[:id])
+  def album_photo_image_params
+    @album_photo_image = AlbumPhotoImage.find(params[:id])
   end
 
 end

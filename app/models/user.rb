@@ -14,6 +14,7 @@ class User < ApplicationRecord
   has_many :favorited_albums, through: :album_favorites, source: :album
 
   has_many :album_photo_image_favorites, dependent: :destroy
+  has_many :favorited_album_photo_images, through: :album_photo_image_favorites, source: :album_photo_image
 
 
 
@@ -26,7 +27,7 @@ class User < ApplicationRecord
     album_favorites.where(album_id: album_id).exists?
   end
 
-  def album_photo_image_favorited_by?(album_id)
+  def album_photo_image_favorited_by?(album_photo_image_id)
     album_photo_image_favorites.where(album_photo_image_id: album_photo_image_id).exists?
   end
 

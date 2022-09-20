@@ -51,13 +51,14 @@ Rails.application.routes.draw do
 
 
     resources :photo_images, only: [:new, :create, :index, :show, :edit, :destroy, :update] do
+      resource :favorites, only: [:create, :index, :show, :destroy]
       member do
         get :photo_images
       end
       collection do
         get 'search'
       end
-      resource :favorites, only: [:create, :index, :show, :destroy]
+
     end
 
     post 'favorite/:id' => 'favorites#create', as: 'create_favorite'
@@ -65,15 +66,21 @@ Rails.application.routes.draw do
 
     resources :albums, only: [:new, :create, :index, :show, :edit, :destroy, :update] do
       resource :album_favorites, only: [:create, :index, :show, :destroy]
+      member do
+        get :album
+      end
     end
     post 'album_favorite/:id' => 'album_favorites#create', as: 'create_album_favorite'
     delete 'album_favorite/:id' => 'album_favorites#destroy', as: 'destroy_album_favorite'
 
     resources :album_photo_images, only: [:index, :show, :edit, :destroy, :update] do
+      resource :album_photo_image_favorites, only: [:create, :index, :show, :destroy]
       member do
         get :album_photo_images
       end
-      resource :album_photo_image_favorites, only: [:create, :index, :show, :destroy]
+
+      post 'album_photo_image_favorite/:id' => 'album_photo_image_favorites#create', as: 'create_album_photo_image_favorite'
+      delete 'album_photo_image_favorite/:id' => 'album_photo_image_favorites#destroy', as: 'destroy_album_photo_image_favorite'
       # collection do
       #   get 'album_photo_images/download/:id' => 'album_photo_images#download'
       # end
