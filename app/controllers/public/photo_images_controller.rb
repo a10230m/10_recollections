@@ -27,8 +27,8 @@ class Public::PhotoImagesController < ApplicationController
   end
 
   def search
-      @photo_images = PhotoImage.where(params[:search])
-      @photo_images = PhotoImage.all.order('id DESC')
+    @photo_images = PhotoImage.search(params[:year],params[:month],params[:day])
+
   end
 
 

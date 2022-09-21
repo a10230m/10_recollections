@@ -22,11 +22,19 @@ class PhotoImage < ApplicationRecord
   #     PhotoImage.where("cast(strftime('%d', date_column) as int) = ?", desired_day_of_month)
   # end
 
-  def self.search(search)
-    return PhotoImage.all unless search
-      PhotoImage.where(created_at: search.in_time_zone.all_year)
-      PhotoImage.where(created_at: search.in_time_zone.all_month)
-      PhotoImage.where(created_at: search.in_time_zone.all_day)
+  def self.search(year = nil, month = nil,day = nil)
+    if year.present? && month.present? && day.present?
+      date = year + month + day
+      PhotoImage.where(created_at: date.in_time_zone.all_day)
+    elsif year.present? && month.present?
+      date = year + month + "01"
+      PhotoImage.where(created_at: date.in_time_zone.all_month)
+    elsif year.present?
+      date = year + "01" + "01"
+      PhotoImage.where(created_at: date.in_time_zone.all_year)
+    else
+      PhotoImage.all
+    end
   end
 
 
