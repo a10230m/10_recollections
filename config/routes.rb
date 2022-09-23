@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
 
   # get 'homes/top'
-  get '/top' => 'homes#top'
-  root to: 'homes#top'
+  get '/top' => 'users#mypage'
+  root to: 'public/users#mypage'
 
 
   # 顧客用
@@ -30,6 +30,7 @@ Rails.application.routes.draw do
   # end
   scope module: :public do
     resources :users, only:[:mypage, :show, :index, :edit, :update] do
+      resources :notifications, only: :index
       member do
         get :photo_images
         get :favorites
@@ -51,7 +52,8 @@ Rails.application.routes.draw do
 
 
     resources :photo_images, only: [:new, :create, :index, :show, :edit, :destroy, :update] do
-      resource :favorites, only: [:create, :index, :show, :destroy]
+      resource :favorites, only: [:create, :destroy]
+      resources :photo_comments, only: [:create, :destroy]
       member do
         get :photo_images
       end
@@ -61,18 +63,20 @@ Rails.application.routes.draw do
 
     end
 
-    post 'favorite/:id' => 'favorites#create', as: 'create_favorite'
-    delete 'favorite/:id' => 'favorites#destroy', as: 'destroy_favorite'
 
     resources :albums, only: [:new, :create, :index, :show, :edit, :destroy, :update] do
       resource :album_favorites, only: [:create, :destroy]
       member do
         get :album
       end
+      collection do
+        get 'search'
+      end
     end
 
     resources :album_photo_images, only: [:index, :show, :edit, :destroy, :update] do
       resource :album_photo_image_favorites, only: [:create, :destroy]
+      resources :album_photo_comments, only: [:create, :destroy]
       member do
         get :album_photo_images
       end
@@ -80,6 +84,8 @@ Rails.application.routes.draw do
       #   get 'album_photo_images/download/:id' => 'album_photo_images#download'
       # end
     end
+
+    resources :notifications, only: :index
 
   end
 end

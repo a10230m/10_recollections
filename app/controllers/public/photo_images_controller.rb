@@ -16,7 +16,7 @@ class Public::PhotoImagesController < ApplicationController
 
   def show
     @photo_image = PhotoImage.find(params[:id])
-    # @post_comment = PostComment.new
+    @photo_comment = PhotoComment.new
   end
 
   def index
@@ -70,14 +70,11 @@ class Public::PhotoImagesController < ApplicationController
   private
   # ストロングパラメータ
   def photo_image_params
-    params.require(:photo_image).permit(:photo_title, :photo_caption, :user_id, :image, :created_at, :search
-    )
+    params.require(:photo_image).permit(:photo_title, :photo_caption, :user_id, :image, :created_at, :search)
   end
 
   def search_params
     params.require(:search).permit(:created_at)
   end
-  # def image_params
-  #   params.require(:image).permit(:image, :photo_title, :photo_caption, :created_at)
-  # end
+
 end

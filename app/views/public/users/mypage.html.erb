@@ -9,33 +9,34 @@
 <% end %>
 
 <div class="line"></div>
-<h4><%= @user.name %>>><%= link_to "Photo All", userphotos_user_path(@user.id) %>
+<h4>
+  <%= link_to "♡", favorites_user_path(@user) %>
+</h4>
+
+<%#= @user.name %>
+<h4>
+  <%= link_to "Photo All", userphotos_user_path(@user.id) %>
   <span><%= @photo_image_count %>件</span>
 </h4>
 
-<%= link_to "いいねした投稿", favorites_user_path(@user) %>
 
 <div class="row row no-gutters">
   <%= render 'public/photo_images/index', photo_images: @photo_images %>
 </div>
-
-
-<div class="row row no-gutters">
-  <%= render 'public/photo_images/index', photo_images: @photo_images %>
-</div>
-
 
 
 <div class="line"></div>
+<h4>
+  <%= link_to "♡", album_favorites_user_path(@user) %>
+</h4>
 
-  <h4><%= @user.name %>>>
-    <!--以下の一行　特定のユーザーだけ表示ができない-->
-    <%= link_to "ALBUM ALL", useralbums_user_path(current_user) %>
+<h4>
+  <%= link_to "ALBUM ALL", useralbums_user_path(current_user) %>
     <span><%= @user.albums.count %>件</span>
-  </h4>
-  <%= link_to "いいねした投稿", album_favorites_user_path(@user) %>
+</h4>
 
-    <div class="row row no-gutters">
-      <%= render 'public/albums/index', albums: @albums %>
-    </div>
+
+<div class="row row no-gutters">
+  <%= render 'public/albums/index', albums: @albums %>
+</div>
 

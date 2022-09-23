@@ -4,6 +4,8 @@ class Public::AlbumPhotoImagesController < ApplicationController
 
   def show
     @album_photo_image = AlbumPhotoImage.find(params[:id])
+    @album_photo_comment = AlbumPhotoComment.new
+    # @album = Album.find(params[:id])
   end
 
   # def download

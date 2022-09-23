@@ -30,6 +30,11 @@ class Public::AlbumsController < ApplicationController
     # @albums = Album.page(params[:page])
   end
 
+  def search
+    @albums = Album.search(params[:year],params[:month],params[:day])
+
+  end
+
   def useralbums
     @album = Album.find(params[:id])
     @albums = @album.user.albums
@@ -78,6 +83,9 @@ class Public::AlbumsController < ApplicationController
   def user_params
   params.require(:user).permit(:name, :email, :birthdate, :introduction, :user_id, :albums_id)
 
+  end
+  def search_params
+    params.require(:search).permit(:created_at)
   end
 
 

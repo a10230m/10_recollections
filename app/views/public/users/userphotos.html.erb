@@ -2,7 +2,10 @@
     Photo All<span><%= @photo_images.count %>件</span>
   </h4>
 
-  <div class="row row no-gutters">
-      <%= render 'public/photo_images/index', photo_images: @photo_images %>
+  <div class="container">
+    <div class="row row no-gutters">
+        <%= render 'public/photo_images/index', photo_images: @photo_images %>
     </div>
-<%= link_to "back", user_path(@user.id) %>
+  </div>
+
+    <%= link_to "back", user_path(@user.id) %>

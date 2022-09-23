@@ -1,3 +1,5 @@
-<h1>ALBUM ALL</h1>
+<h4>ALBUM ALL</h4>
+<div class="row row no-gutters">
   <%= render 'public/albums/index', albums: @user.albums %>
+</div>
 <%= link_to "back", user_path(@user.id) %>

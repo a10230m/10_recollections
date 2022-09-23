@@ -1,4 +1,3 @@
-
   <% if album.favorited_by?(current_user) %>
     <td>
       <%= link_to album_album_favorites_path(album), method: :delete, remote: true do %>

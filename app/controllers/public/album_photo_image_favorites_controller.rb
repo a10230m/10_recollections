@@ -17,4 +17,5 @@ class Public::AlbumPhotoImageFavoritesController < ApplicationController
   def set_album_photo_image
     @album_photo_image = AlbumPhotoImage.find(params[:album_photo_image_id])
   end
+
 end

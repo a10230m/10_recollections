@@ -2,6 +2,7 @@ class AlbumPhotoImage < ApplicationRecord
   belongs_to :album
   has_one_attached :image # ←いじらない
   has_many :album_photo_image_favorites, dependent: :destroy
+  has_many :album_photo_comments, dependent: :destroy
   # belongstoをいれると、けんさくをかけてしまうので、関係ないものをいれないこと（バリデーションの動作をする）
     # accepts_nested_attributes_for :images
 

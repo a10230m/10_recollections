@@ -6,28 +6,33 @@
     <i class="fa-solid fa-envelope"></i><br>
 
     <div class="line"></div>
+    <h4>
+      <%= link_to "♡", favorites_user_path(@user) %>
+    </h4>
 
     <h4>
-      <%= @user.name %>>><%= link_to "Photo All", userphotos_user_path(@user.id) %>
+      <%= link_to "Photo All", userphotos_user_path(@user.id) %>
       <span><%= @user.photo_images.count %>件</span>
     </h4>
 
-    <%= link_to "いいねした投稿", favorites_user_path(@user) %>
 
 
     <div class="row row no-gutters">
       <%= render 'public/photo_images/index', photo_images: @user.photo_images %>
     </div>
 
+    <div class="line"></div>
+    <h4>
+      <%= link_to "♡", album_favorites_user_path(@user) %>
+    </h4>
+
+    <h4>
+      <%#= @user.name %>
+      <%= link_to "ALBUM ALL", useralbums_user_path(@user.id) %>
+      <span><%= @user.albums.count %>件</span>
+    </h4>
 
 
-      <div class="line"></div>
-
-      <h4>
-        <%= @user.name %>>>
-        <%= link_to "ALBUM ALL", useralbums_user_path(@user.id) %>
-        <span><%= @user.albums.count %>件</span>
-      </h4>
-      <%= link_to "いいねした投稿", album_favorites_user_path(@user.id) %>
-
+    <div class="row row no-gutters">
       <%= render 'public/albums/index', albums: @user.albums %>
+    </div>

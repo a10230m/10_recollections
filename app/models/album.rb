@@ -15,4 +15,19 @@ class Album < ApplicationRecord
     album_favorites.exists?(user_id: user.id)
   end
 
+  def self.search(year = nil, month = nil,day = nil)
+    if year.present? && month.present? && day.present?
+      date = year + month + day
+      Album.where(created_at: date.in_time_zone.all_day)
+    elsif year.present? && month.present?
+      date = year + month + "01"
+      Album.where(created_at: date.in_time_zone.all_month)
+    elsif year.present?
+      date = year + "01" + "01"
+      Album.where(created_at: date.in_time_zone.all_year)
+    else
+      Album.all
+    end
+  end
+
 end

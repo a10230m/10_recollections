@@ -16,6 +16,8 @@
   </div>
   <br>
   <%= photo_image.created_at.strftime('%Y/%m/%d %H:%M') %><br>
-  </div>
+  
+  <p><%= link_to "#{photo_image.photo_comments.count} コメント", photo_image_path(photo_image.id) %></p>
+</div>
 <% end %>
 <!--< %= link_to "戻る", edit_album_path(@album.id) %>-->
