@@ -30,10 +30,6 @@ class Public::UsersController < ApplicationController
   def favorites
     user = User.find(params[:id])
     @favorited_photo_images = user.favorited_photo_images
-  end
-
-  def album_favorites
-    user = User.find(params[:id])
     @favorited_albums = user.favorited_albums
   end
 

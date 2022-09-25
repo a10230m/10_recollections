@@ -16,6 +16,16 @@ class Album < ApplicationRecord
   end
 
   def self.search(year = nil, month = nil,day = nil)
+    if month != nil
+      if month.length == 1
+        month = "0" + month
+      end
+    end
+    if day != nil
+      if day.length == 1
+        day = "0" + day
+      end
+    end
     if year.present? && month.present? && day.present?
       date = year + month + day
       Album.where(created_at: date.in_time_zone.all_day)

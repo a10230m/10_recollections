@@ -27,8 +27,7 @@ class Public::PhotoImagesController < ApplicationController
   end
 
   def search
-    @photo_images = PhotoImage.search(params[:year],params[:month],params[:day])
-
+    @photo_images = PhotoImage.search(params["search(1i)"],params["search(2i)"],params["search(3i)"])
   end
 
 

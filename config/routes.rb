@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
 
   # get 'homes/top'
-  get '/top' => 'users#mypage'
-  root to: 'public/users#mypage'
+  get '/top' => 'homes#top'
+  root to: 'homes#top'
 
 
   # 顧客用
@@ -30,7 +30,6 @@ Rails.application.routes.draw do
   # end
   scope module: :public do
     resources :users, only:[:mypage, :show, :index, :edit, :update] do
-      resources :notifications, only: :index
       member do
         get :photo_images
         get :favorites
@@ -85,8 +84,11 @@ Rails.application.routes.draw do
       # end
     end
 
-    resources :notifications, only: :index
-
+    resources :notifications, only: [:index, :destroy] do
+      collection do
+        post 'destroy_all' => 'notifications#destroy_all'
+      end
+    end
   end
 end
 

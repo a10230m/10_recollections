@@ -9,6 +9,8 @@
     <h4>
       <%= link_to "♡", favorites_user_path(@user) %>
     </h4>
+    <div class="line"></div>
+    
 
     <h4>
       <%= link_to "Photo All", userphotos_user_path(@user.id) %>
@@ -22,10 +24,6 @@
     </div>
 
     <div class="line"></div>
-    <h4>
-      <%= link_to "♡", album_favorites_user_path(@user) %>
-    </h4>
-
     <h4>
       <%#= @user.name %>
       <%= link_to "ALBUM ALL", useralbums_user_path(@user.id) %>

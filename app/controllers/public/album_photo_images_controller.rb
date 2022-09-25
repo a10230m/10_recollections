@@ -1,19 +1,16 @@
 class Public::AlbumPhotoImagesController < ApplicationController
 
-
-
   def show
     @album_photo_image = AlbumPhotoImage.find(params[:id])
     @album_photo_comment = AlbumPhotoComment.new
-    # @album = Album.find(params[:id])
+    @album = @album_photo_image.album
+    # ひもづいているものがひとつであれば、findは不要
   end
 
   # def download
   #   data = @album.album_photo_image.image.download
   #   send_data(data, type: 'image/png', filename: 'download.jpg')
   # end
-
-
 
   def edit
      @album_photo_image = AlbumPhotoImage.find(params[:id])
@@ -40,8 +37,6 @@ class Public::AlbumPhotoImagesController < ApplicationController
   private
   # ストロングパラメータ
   def album_photo_image_params
-    params.require(:album_photo_image).permit(:album_photo_image_title, :album_photo__image_caption, :created_at, :image)
+    params.require(:album_photo_image).permit(:album_photo_image_title, :album_photo_image_caption, :created_at, :album_id, :image)
   end
-
-
 end

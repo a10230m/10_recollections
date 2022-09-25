@@ -31,7 +31,7 @@ class Public::AlbumsController < ApplicationController
   end
 
   def search
-    @albums = Album.search(params[:year],params[:month],params[:day])
+    @albums = Album.search(params["search(1i)"],params["search(2i)"],params["search(3i)"])
 
   end
 
@@ -51,6 +51,13 @@ class Public::AlbumsController < ApplicationController
 
   def update
     @album = Album.find(params[:id])
+    if params[:album][:images]
+      params[:album][:images].each do |image|
+      album_photo_image = @album.album_photo_images.new
+      album_photo_image.image.attach(image)
+      album_photo_image.save
+      end
+    end
     #添付画像を個別に削除
     album_photo_image_ids = params[:album][:album_photo_image_ids]
     if album_photo_image_ids
@@ -58,8 +65,6 @@ class Public::AlbumsController < ApplicationController
       album_photo_images = AlbumPhotoImage.where(id: album_photo_image_ids)
       album_photo_images.destroy_all
     end
-
-    # @album.images.detach #一旦、すべてのimageの紐つけを解除
     if  @album.update(album_params)
       redirect_to album_path(@album.id), notice: 'Updated successfully! Thank you.'
     else

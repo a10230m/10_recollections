@@ -21,7 +21,7 @@ class Public::PhotoCommentsController < ApplicationController
 
   # ここから通知機能
 
-  def create
+  def notification_create
     @photo_image = PhotoImage.find(params[:photo_image_id])
     #投稿に紐づいたコメントを作成
     @photo_comment = @photo_image.photo_comments.build(photo_comment_params)

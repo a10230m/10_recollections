@@ -32,12 +32,20 @@
             <li class="nav-item">
 
               <% if current_user %>
+                <% if unchecked_notifications.any? %>
+                  <i class="fa fa-circle" style="color: gold;"></i>
+                <% end %>
+                <li>
+                  <%= link_to "NOTICE", notifications_path, class: "btn-default" %>/
+                </li>
+                <%= link_to "Mypage", mypage_users_path, class: "btn-default" %> /
+                <%= link_to "ALL", photo_images_path, class: "btn-default" %> /
+                <%= link_to "ALBUM", albums_path, class: "btn-default" %> /
+                <%= link_to "User", users_path, class: "btn-default" %> /
+                <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "btn-default" %>
 
-                <%= link_to "Mypage", mypage_users_path %> /
-                <%= link_to "ALL", photo_images_path %> /
-                <%= link_to "ALBUM", albums_path %> /
-                <%= link_to "User", users_path %> /
-                <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+
+
               <% elsif current_admin %>
                 <!--< %= link_to "商品一覧", admin_items_path, class: "btn btn-outline-secondary" %>-->
                 <!--< %= link_to "会員一覧", admin_customers_path, class: "btn btn-outline-secondary" %>-->
@@ -48,16 +56,10 @@
                 <!--< %= link_to "About", about_path, class: "btn btn-outline-secondary" %>-->
                 <!--< %= link_to "商品一覧", items_path, class: "btn btn-outline-secondary" %>-->
                 <!--< %= link_to "新規登録", new_customer_registration_path, class: "btn btn-outline-secondary" %>-->
-                <!--< %= link_to "ログイン", customer_session_path, class: "btn btn-outline-secondary" %>-->
+                <%= link_to "ログイン", user_session_path, class: "btn btn-outline-secondary" %>
               <% end %>
 
-<!--エラー要解消-->
-              <!--<%# if unchecked_notifications.any? %>-->
-              <!--  <i class="fa fa-circle" style="color: gold;"></i>-->
-              <!--<%# end %>-->
-              <!--<li>-->
-              <!--    <%#= link_to "NOTICE", user_notifications_path, class: "btn-default" %>-->
-              <!--</li>-->
+
             </li>
             </ul>
           </div>
