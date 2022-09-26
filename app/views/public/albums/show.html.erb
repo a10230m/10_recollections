@@ -21,7 +21,6 @@
         <% if @album.user == current_user %>
           <%= link_to "edit", edit_album_path(@album.id) %>
           <%= link_to "delete", album_path(@album.id), method: :delete %>
-          <!--< %= link_to "戻る", edit_album_path(@album.id) %>-->
         <% end %>
         <br>
       </p>
@@ -33,5 +32,5 @@
   <div class="row row no-gutters">
      <%= render 'public/album_photo_images/index', album_photo_images: @album.album_photo_images %>
   </div>
-
+  <%= link_to "back", albums_path(@album) %>
 </div>

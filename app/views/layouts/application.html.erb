@@ -44,13 +44,10 @@
                 <%= link_to "User", users_path, class: "btn-default" %> /
                 <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "btn-default" %>
 
-
-
               <% elsif current_admin %>
-                <!--< %= link_to "商品一覧", admin_items_path, class: "btn btn-outline-secondary" %>-->
-                <!--< %= link_to "会員一覧", admin_customers_path, class: "btn btn-outline-secondary" %>-->
-                <!--< %= link_to "注文履歴一覧", admin_root_path, class: "btn btn-outline-secondary" %>-->
-                <%= link_to "logout", destroy_admin_session_path, method: :delete %>
+                <span class"text-center">management page</span>
+                <%= link_to "User", admin_users_path, class: "btn btn-outline-secondary" %>
+                <%= link_to "logout", destroy_admin_session_path, method: :delete, class: "btn btn-outline-secondary" %>
 
               <% else %>
                 <!--< %= link_to "About", about_path, class: "btn btn-outline-secondary" %>-->

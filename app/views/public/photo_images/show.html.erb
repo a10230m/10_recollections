@@ -15,19 +15,22 @@
   <p>name:<%= @photo_image.user.name %></p>
   <%= @photo_image.created_at.strftime('%Y/%m/%d %H:%M') %>
 
-  <div class="text-right">
-    <% if @photo_image.user == current_user %>
-      <%= link_to edit_photo_image_path(@photo_image.id) do %>
-        <i class="fa-solid fa-pen-to-square"></i>
-      <% end %>
-      <%= link_to photo_image_path(@photo_image.id), method: :delete do %>
-        <i class="fa-solid fa-trash-can"></i>
-      <% end %>
-    <% end %>
-  </div>
+  <!--<div class="text-right">-->
+  <!--  <%# if @photo_image.user == current_user %>-->
+  <!--    <%#= link_to edit_photo_image_path(@photo_image.id) do %>-->
+  <!--      <i class="fa-solid fa-pen-to-square"></i>-->
+  <!--    <#% end %>-->
+  <!--    <%#= link_to photo_image_path(@photo_image.id), method: :delete do %>-->
+  <!--      <i class="fa-solid fa-trash-can"></i>-->
+  <!--    <%# end %>-->
+  <!--  <%# end %>-->
+  <!--</div>-->
 
   <div class="container">
-    <p>コメント：<%= @photo_image.photo_comments.count %></p>
+    <p>
+      <i class="fa-solid fa-comment"></i>
+      <%= @photo_image.photo_comments.count %>
+    </p>
       <% @photo_image.photo_comments.each do |photo_comment| %>
       <!--<p>-->
         <%#= image_tag photo_comment.user.get_profile_image(100,100) %>

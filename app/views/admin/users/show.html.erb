@@ -1,0 +1,60 @@
+
+<div class="container">
+  <h4>
+    <strong>Information／<%= @user.name %></strong>
+  </h4>
+</div>
+<br>
+
+<div class="container">
+  <div class="row">
+    <div class="col-3">
+      <i class="fa-solid fa-user"></i>.name
+    </div>
+    <div class="col-3"><%= @user.name %></div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-3">
+      <i class="fa-solid fa-cake-candles"></i>.birthday
+    </div>
+    <div class="col-3"><%= @user.birthdate %></div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-3">
+      <i class="fa-solid fa-circle-info"></i>.introduction
+    </div>
+    <div class="col-3"><%= @user.introduction %></div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-3">
+      <i class="fa-solid fa-envelope"></i>.email
+    </div>
+    <div class="col-3"><%= @user.email %></div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-3">会員ステータス</div>
+    <div class="col-3">
+      <% if @user.is_active %>
+        <p class="font-weight-bold text-success">有効</p>
+      <% else %>
+        <p>退会</p>
+      <% end %>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-3"></div>
+    <div class="col-3"><%= link_to "edit", edit_admin_user_path(@user), class: "btn btn-success" %></div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-3"></div>
+    <div class="col-3"><%= link_to "back", admin_users_path(@user), class: "btn btn-success" %></div>
+  </div>
+</div>
+<br>
+<br>

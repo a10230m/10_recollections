@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_23_114449) do
+ActiveRecord::Schema.define(version: 2022_09_26_131518) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -76,10 +76,11 @@ ActiveRecord::Schema.define(version: 2022_09_23_114449) do
 
   create_table "album_photo_images", force: :cascade do |t|
     t.string "album_photo_title", default: "", null: false
-    t.text "album_photo_caption"
+    t.text "album_photo_caption", default: "", null: false
     t.integer "album_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id"
   end
 
   create_table "albums", force: :cascade do |t|
@@ -106,6 +107,9 @@ ActiveRecord::Schema.define(version: 2022_09_23_114449) do
     t.boolean "checked", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "album_photo_image_id"
+    t.integer "album_id"
+    t.integer "album_photo_comment_id"
   end
 
   create_table "photo_comments", force: :cascade do |t|
@@ -135,8 +139,8 @@ ActiveRecord::Schema.define(version: 2022_09_23_114449) do
     t.string "name"
     t.date "birthdate"
     t.text "introduction"
-    t.boolean "is_active", default: false
-    t.boolean "is_deleted", default: true
+    t.boolean "is_active", default: true, null: false
+    t.boolean "is_deleted", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

@@ -4,6 +4,7 @@ class Public::AlbumPhotoCommentsController < ApplicationController
     comment = current_user.album_photo_comments.new(album_photo_comment_params)
     comment.album_photo_image_id = album_photo_image.id
     comment.save
+    comment.album_photo_image.create_notification_comment!(current_user, comment.id)
     redirect_to album_photo_image_path(album_photo_image.id)
   end
 

@@ -36,5 +36,9 @@ class User < ApplicationRecord
     album_photo_image_favorites.where(album_photo_image_id: album_photo_image_id).exists?
   end
 
+  def active_for_authentication?
+    super && (is_deleted == false)
+  end
+
 
 end

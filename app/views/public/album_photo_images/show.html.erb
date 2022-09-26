@@ -25,7 +25,9 @@
   </div>
 
   <div class="container">
-    <p>コメント：<%= @album_photo_image.album_photo_comments.count %></p>
+    <p>
+      <i class="fa-solid fa-comment"></i>：<%= @album_photo_image.album_photo_comments.count %>
+    </p>
       <% @album_photo_image.album_photo_comments.each do |album_photo_comment| %>
       <!--<p>-->
         <%#= image_tag album_photo_comment.user.get_profile_image(100,100) %>

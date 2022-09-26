@@ -5,6 +5,8 @@ class Public::PhotoCommentsController < ApplicationController
     comment = current_user.photo_comments.new(photo_comment_params)
     comment.photo_image_id = photo_image.id
     comment.save
+    # 以下の一文が通知機能
+    comment.photo_image.create_notification_comment!(current_user, comment.id)
     redirect_to photo_image_path(photo_image.id)
   end
 
@@ -21,17 +23,17 @@ class Public::PhotoCommentsController < ApplicationController
 
   # ここから通知機能
 
-  def notification_create
-    @photo_image = PhotoImage.find(params[:photo_image_id])
-    #投稿に紐づいたコメントを作成
-    @photo_comment = @photo_image.photo_comments.build(photo_comment_params)
-    @photo_comment.user_id = current_user.id
-    @photo_comment_photo_image = @comment.photo_image
-    if @photo_comment.save
-      #通知の作成
-      @photo_comment_photo_image.create_notification_comment!(current_user, @photo_comment.id)
-      render :index
-    end
-  end
+  # def notification_create
+  #   @photo_image = PhotoImage.find(params[:photo_image_id])
+  #   #投稿に紐づいたコメントを作成
+  #   @photo_comment = @photo_image.photo_comments.build(photo_comment_params)
+  #   @photo_comment.user_id = current_user.id
+  #   @photo_comment_photo_image = @comment.photo_image
+  #   if @photo_comment.save
+  #     #通知の作成
+  #     @photo_comment_photo_image.create_notification_comment!(current_user, @photo_comment.id)
+  #     render :index
+  #   end
+  # end
 
 end
