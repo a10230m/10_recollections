@@ -21,32 +21,38 @@ class AlbumPhotoImage < ApplicationRecord
     album_photo_image_favorites.exists?(user_id: user.id)
   end
 
-# ここから通知機能
-  def create_notification_by(current_user)
-    notification = current_user.active_notifications.new(
+
+  # favorite通知機能
+  def create_notification_by(visiter)
+    notification = Notification.new(
       album_photo_image_id: id,
-      visited_id: user_id,
-      action: "favorite"
+      visited_id: visiter_id,
+      visiter_id: visiter_id,
+      action: "album_photo_image_favorite"
     )
-    notification.save if notification.valid?
-  end
-
-  def create_notification_comment!(current_user, album_photo_comment_id)
-    # 自分以外にコメントしている人をすべて取得し、全員に通知を送る
-    temp_ids = AlbumPhotoComment.where(album_photo_image_id: id).where.not(user_id: current_user.id).select(:user_id).distinct
-    temp_ids.each do |temp_id|
-      save_notification_comment!(current_user, album_photo_comment_id, temp_id['user_id'])
+    if notification.visiter_id == notification.visited_id
+      notification.checked = true
     end
-  	# まだ誰もコメントしていない場合は、投稿者に通知を送る
-  	save_notification_comment!(current_user, album_photo_comment_id, user_id) if temp_ids.blank?
+    notification.save! if notification.valid?
   end
 
-	def save_notification_comment!(current_user, album_photo_comment_id, visited_id)
-    # コメントは複数回することが考えられるため、１つの投稿に複数回通知する
-    notification = current_user.active_notifications.new(
+
+
+  def create_notification_comment!(visiter, album_photo_comment_id)
+    # 自分以外にコメントしている人をすべて取得し、全員に通知を送る
+    temp_ids = AlbumPhotoComment.where(album_photo_image_id: id).where.not(user_id: visiter.id).select(:user_id).distinct
+    temp_ids.each do |temp_id|
+      save_notification_comment!(visiter.id, album_photo_comment_id, temp_id['user_id'])
+    end
+  	save_notification_comment!(visiter.id, album_photo_comment_id, album.user_id) if temp_ids.blank?
+  end
+
+	def save_notification_comment!(visiter_id, album_photo_comment_id, visited_id)
+    notification = Notification.new(
       album_photo_image_id: id,
       album_photo_comment_id: album_photo_comment_id,
       visited_id: visited_id,
+      visiter_id: visiter_id,
       action: 'album_photo_comment'
     )
     # 自分の投稿に対するコメントの場合は、通知済みとする

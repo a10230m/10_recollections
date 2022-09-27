@@ -40,4 +40,18 @@ class Album < ApplicationRecord
     end
   end
 
+  # favorite通知機能
+  def create_notification_by(visiter)
+    notification = Notification.new(
+      album_id: id,
+      visited_id: visiter_id,
+      visiter_id: visiter_id,
+      action: "album_favorite"
+    )
+    if notification.visiter_id == notification.visited_id
+      notification.checked = true
+    end
+    notification.save! if notification.valid?
+  end
+
 end

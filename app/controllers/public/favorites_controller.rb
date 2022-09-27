@@ -31,7 +31,9 @@ class Public::FavoritesController < ApplicationController
       format.html {redirect_to request.referrer}
       format.js
     end
+
   end
+
 
 end
 
