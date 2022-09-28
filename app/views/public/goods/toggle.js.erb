@@ -1,0 +1,1 @@
+$('#good_btn_<%= @photo_comment.id %>').html("<%= j(render partial: 'public/goods/good', locals: {photo_image: @photo_image, photo_comment: @photo_comment}) %>");

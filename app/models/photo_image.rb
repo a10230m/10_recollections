@@ -17,6 +17,7 @@ class PhotoImage < ApplicationRecord
     favorites.exists?(user_id: user.id)
   end
 
+
   def self.search(year = nil, month = nil, day = nil)
     if month != nil
       if month.length == 1
@@ -42,19 +43,19 @@ class PhotoImage < ApplicationRecord
     end
   end
 
-  # favorite通知機能
-  def create_notification_by(visiter)
-    notification = Notification.new(
-      photo_image_id: id,
-      visited_id: visiter_id,
-      visiter_id: visiter_id,
-      action: "favorite"
-    )
-    if notification.visiter_id == notification.visited_id
-      notification.checked = true
-    end
-    notification.save! if notification.valid?
-  end
+  # # favorite通知機能
+  # def create_notification_by(visiter)
+  #   notification = Notification.new(
+  #     photo_image_id: id,
+  #     visited_id: visiter_id,
+  #     visiter_id: visiter_id,
+  #     action: "favorite"
+  #   )
+  #   if notification.visiter_id == notification.visited_id
+  #     notification.checked = true
+  #   end
+  #   notification.save! if notification.valid?
+  # end
 
 
   def create_notification_comment!(visiter, photo_comment_id)

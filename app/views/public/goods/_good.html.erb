@@ -1,0 +1,15 @@
+  <% if photo_comment.gooded_by?(current_user) %>
+    <td>
+      <%= link_to photo_image_photo_comment_goods_path(photo_image.id, photo_comment.id), method: :delete, remote: true do %>
+        <i class="fa-solid fa-thumbs-up"></i>
+      <% end %>
+      <%= photo_comment.goods.count %>
+    </td>
+  <% else %>
+    <td>
+      <%= link_to photo_image_photo_comment_goods_path(photo_image.id, photo_comment.id), method: :post, remote: true do %>
+        <i class="fa-solid fa-thumbs-up" style="color:#d3d3d3;"></i>
+      <% end %>
+      <%= photo_comment.goods.count %>
+    </td>
+  <% end %>

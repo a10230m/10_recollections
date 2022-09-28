@@ -16,7 +16,7 @@ class Public::PhotoImagesController < ApplicationController
 
   def show
     @photo_image = PhotoImage.find(params[:id])
-    @photo_comment = PhotoComment.new
+    @new_photo_comment = PhotoComment.new
   end
 
   def index

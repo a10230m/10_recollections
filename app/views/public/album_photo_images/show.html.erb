@@ -13,34 +13,36 @@
   <p>name:<%= @album_photo_image.album.user.name %></p>
   <%= @album_photo_image.album.created_at.strftime('%Y/%m/%d %H:%M') %>
 
-  <div class="text-right">
-    <% if @album_photo_image.album.user == current_user %>
-      <%= link_to edit_album_photo_image_path(@album_photo_image.id) do %>
-        <i class="fa-solid fa-pen-to-square"></i>
-      <% end %>
-      <%= link_to album_photo_image_path(@album_photo_image.id), method: :delete do %>
-        <i class="fa-solid fa-trash-can"></i>
-      <% end %>
-   <% end %>
-  </div>
+  <!--<div class="text-right">-->
+  <!--  <%# if @album_photo_image.album.user == current_user %>-->
+  <!--    <%#= link_to edit_album_photo_image_path(@album_photo_image.id) do %>-->
+  <!--      <i class="fa-solid fa-pen-to-square"></i>-->
+  <!--    <%# end %>-->
+  <!--    <%#= link_to album_photo_image_path(@album_photo_image.id), method: :delete do %>-->
+  <!--      <i class="fa-solid fa-trash-can"></i>-->
+  <!--    <%# end %>-->
+  <!-- <%# end %>-->
+  <!--</div>-->
 
   <div class="container">
     <p>
       <i class="fa-solid fa-comment"></i>：<%= @album_photo_image.album_photo_comments.count %>
     </p>
       <% @album_photo_image.album_photo_comments.each do |album_photo_comment| %>
-      <!--<p>-->
-        <%#= image_tag album_photo_comment.user.get_profile_image(100,100) %>
-      <!--</p>-->
         <p>name:<%= album_photo_comment.user.name %></p>
         <p><%= album_photo_comment.comment %></p>
         <p>[<%= album_photo_comment.created_at.strftime('%Y/%m/%d') %>]</p>
+
+        <div id="album_photo_good_btn_<%= album_photo_comment.id %>">
+          <%= render partial: 'public/album_photo_goods/album_photo_good', locals: {album_photo_image: @album_photo_image, album_photo_comment: album_photo_comment} %>
+        </div>
+
         <% if album_photo_comment.user == current_user %>
           <%= link_to "削除", album_photo_image_album_photo_comment_path(album_photo_comment.album_photo_image, album_photo_comment), method: :delete %>
         <% end %>
       <% end %>
       <div>
-        <%= form_with model: [@album_photo_image, @album_photo_comment] do |f| %>
+        <%= form_with model: [@album_photo_image, @new_album_photo_comment] do |f| %>
           <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
           <%= f.submit "送信する" %>
         <% end %>

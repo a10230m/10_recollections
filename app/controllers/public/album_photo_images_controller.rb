@@ -2,7 +2,7 @@ class Public::AlbumPhotoImagesController < ApplicationController
 
   def show
     @album_photo_image = AlbumPhotoImage.find(params[:id])
-    @album_photo_comment = AlbumPhotoComment.new
+    @new_album_photo_comment = AlbumPhotoComment.new
     @album = @album_photo_image.album
     # ひもづいているものがひとつであれば、findは不要
   end

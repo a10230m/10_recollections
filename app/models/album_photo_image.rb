@@ -5,6 +5,7 @@ class AlbumPhotoImage < ApplicationRecord
   has_many :album_photo_comments, dependent: :destroy
   has_many :notifications, dependent: :destroy
 
+
   # belongstoをいれると、けんさくをかけてしまうので、関係ないものをいれないこと（バリデーションの動作をする）
     # accepts_nested_attributes_for :images
 
@@ -22,19 +23,20 @@ class AlbumPhotoImage < ApplicationRecord
   end
 
 
-  # favorite通知機能
-  def create_notification_by(visiter)
-    notification = Notification.new(
-      album_photo_image_id: id,
-      visited_id: visiter_id,
-      visiter_id: visiter_id,
-      action: "album_photo_image_favorite"
-    )
-    if notification.visiter_id == notification.visited_id
-      notification.checked = true
-    end
-    notification.save! if notification.valid?
-  end
+
+  # # favorite通知機能
+  # def create_notification_by(visiter)
+  #   notification = Notification.new(
+  #     album_photo_image_id: id,
+  #     visited_id: visiter_id,
+  #     visiter_id: visiter_id,
+  #     action: "album_photo_image_favorite"
+  #   )
+  #   if notification.visiter_id == notification.visited_id
+  #     notification.checked = true
+  #   end
+  #   notification.save! if notification.valid?
+  # end
 
 
 
