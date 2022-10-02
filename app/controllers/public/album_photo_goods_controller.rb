@@ -4,6 +4,7 @@ class Public::AlbumPhotoGoodsController < ApplicationController
 
   def create
     @album_photo_comment.album_photo_goods.create!(user_id: current_user.id)
+    @album_photo_comment.create_notification_by(current_user.id)
     render :toggle
   end
 

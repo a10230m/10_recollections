@@ -4,6 +4,7 @@ class Public::GoodsController < ApplicationController
 
   def create
     @photo_comment.goods.create!(user_id: current_user.id)
+    @photo_comment.create_notification_by(current_user.id)
     render :toggle
   end
 
@@ -19,5 +20,7 @@ class Public::GoodsController < ApplicationController
     @photo_image = PhotoImage.find(params[:photo_image_id])
     @photo_comment = PhotoComment.find(params[:photo_comment_id])
   end
+
+
 
 end

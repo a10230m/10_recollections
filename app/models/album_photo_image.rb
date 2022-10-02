@@ -24,22 +24,6 @@ class AlbumPhotoImage < ApplicationRecord
 
 
 
-  # # favorite通知機能
-  # def create_notification_by(visiter)
-  #   notification = Notification.new(
-  #     album_photo_image_id: id,
-  #     visited_id: visiter_id,
-  #     visiter_id: visiter_id,
-  #     action: "album_photo_image_favorite"
-  #   )
-  #   if notification.visiter_id == notification.visited_id
-  #     notification.checked = true
-  #   end
-  #   notification.save! if notification.valid?
-  # end
-
-
-
   def create_notification_comment!(visiter, album_photo_comment_id)
     # 自分以外にコメントしている人をすべて取得し、全員に通知を送る
     temp_ids = AlbumPhotoComment.where(album_photo_image_id: id).where.not(user_id: visiter.id).select(:user_id).distinct
