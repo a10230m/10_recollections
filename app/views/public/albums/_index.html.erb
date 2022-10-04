@@ -24,7 +24,8 @@
         </h5>
         <p class="card-text">
           Album caption:<%= album.album_caption %><br>
-          name:<%= album.user.name %><br>
+          <%= image_tag album.user.get_profile_image(30,30) %>
+          <%= album.user.name %><br>
           <% if album.user == current_user %>
             <%= link_to "edit", edit_album_path(album.id) %>
             <%= link_to "delete", album_path(album.id), method: :delete %><br>

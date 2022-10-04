@@ -11,7 +11,10 @@
 
   <p>Title:<%= @photo_image.photo_title %></p>
   <p>caption:<%= @photo_image.photo_caption %></p>
-  <p>name:<%= @photo_image.user.name %></p>
+  <p>
+    <%= image_tag @photo_image.user.get_profile_image(30,30) %>
+    <%= @photo_image.user.name %>
+  </p>
   <%= @photo_image.created_at.strftime('%Y/%m/%d %H:%M') %>
 
 

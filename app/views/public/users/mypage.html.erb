@@ -1,7 +1,7 @@
 
 <div class="container">
   <h4>
-    <strong>Mypage／<%= @user.name %></strong>
+    <strong>Mypage／<%= image_tag @user.get_profile_image(30,30) %><%= @user.name %></strong>
   </h4>
   <% if user_signed_in? && @user == current_user %>
     <%= link_to "EDIT", edit_users_path %><br>
@@ -19,7 +19,10 @@
     </thead>
     <tbody>
       <tr>
-        <td><%= @user.name %></td>
+        <td>
+          <%= image_tag @user.get_profile_image(30,30) %>
+          <%= @user.name %>
+        </td>
         <td><%= @user.birthdate %></td>
         <td><%= @user.introduction %></td>
         <td><%= @user.email %></td>

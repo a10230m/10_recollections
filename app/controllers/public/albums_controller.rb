@@ -12,6 +12,21 @@ class Public::AlbumsController < ApplicationController
       album_photo_image.image.attach(image)
     end
     if @album.save
+      user_ids = params[:user_ids]
+  
+      unless user_ids == [""]
+        user_ids.shift
+        user_ids.each do |user_id|
+          @album.album_releases.create!(user_id: user_id)
+        end
+      else 
+        User.all.pluck(:id).each do |user_id|
+          @album.album_releases.create!(user_id: user_id)
+        end
+     
+      end
+      
+      
       redirect_to album_path(@album.id), notice: 'Created successfully! Thank you.'
     else
       render :new
@@ -24,7 +39,8 @@ class Public::AlbumsController < ApplicationController
   end
 
   def index
-    @albums = Album.all.order('id DESC')
+   
+    @albums = current_user.albums
     # @album_photo_images = album.album_photo_images
     # @albums = Album.order('id DESC')
     # @albums = Album.page(params[:page])
@@ -77,16 +93,23 @@ class Public::AlbumsController < ApplicationController
     @album.destroy
     redirect_to albums_path
   end
+  
+  
+  
+  def releases
+    @album = Album.first
+    
+  end
 
   private
   # ストロングパラメータ
   def album_params
-    params.require(:album).permit(:album_title, :album_caption, :user_id, :created_at, album_photo_images: {})
+    params.permit(:album_title, :album_caption, :user_id, :created_at, album_photo_images: {})
   end
 
 
   def user_params
-  params.require(:user).permit(:name, :email, :birthdate, :introduction, :user_id, :albums_id)
+  params.require(:user).permit(:name, :email, :birthdate, :introduction, :albums_id, user_ids: [])
 
   end
   def search_params

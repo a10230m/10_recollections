@@ -12,6 +12,10 @@
     <%= f.text_field :album_title %><br>
     <%= f.label :album_caption %>
     <%= f.text_area :album_caption %>
+
+    <%= f.label :user_id %>
+    <%= f.collection_check_boxes :user_ids, User.all, :id, :name %>
+
     <div class="line"></div>
     <p>削除する画像にチェック！</p>
     <% @album.album_photo_images.each do |album_photo_image| %>

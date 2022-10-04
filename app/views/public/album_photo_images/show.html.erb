@@ -10,7 +10,10 @@
 
   <p>Title:<%= @album_photo_image.album_photo_title %></p>
   <p>caption:<%= @album_photo_image.album_photo_caption %></p>
-  <p>name:<%= @album_photo_image.album.user.name %></p>
+  <p>
+    <%= image_tag @album_photo_image.album.user.get_profile_image(30,30) %>
+    <%= @album_photo_image.album.user.name %>
+  </p>
   <%= @album_photo_image.album.created_at.strftime('%Y/%m/%d %H:%M') %>
 
   <!--<div class="text-right">-->
@@ -29,7 +32,10 @@
       <i class="fa-solid fa-comment"></i>：<%= @album_photo_image.album_photo_comments.count %>
     </p>
       <% @album_photo_image.album_photo_comments.each do |album_photo_comment| %>
-        <p>name:<%= album_photo_comment.user.name %></p>
+        <p>
+          <%= image_tag album_photo_comment.user.get_profile_image(30,30) %>
+          <%= album_photo_comment.user.name %>
+        </p>
         <p><%= album_photo_comment.comment %></p>
         <p>[<%= album_photo_comment.created_at.strftime('%Y/%m/%d') %>]</p>
 

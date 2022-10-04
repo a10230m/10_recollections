@@ -72,5 +72,8 @@ class PhotoImage < ApplicationRecord
     notification.save! if notification.valid?
   end
 
+
+  # enum status: { public: 0, private: 1 }, _prefix: true
+
 end
 

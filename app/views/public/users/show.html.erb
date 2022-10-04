@@ -1,7 +1,7 @@
 
 <div class="container">
   <h4>
-    <strong>User／<%= @user.name %></strong>
+    <strong>User／<%= image_tag @user.get_profile_image(30,30) %><%= @user.name %></strong>
   </h4>
 </div>
 
@@ -16,7 +16,10 @@
     </thead>
     <tbody>
       <tr>
-        <td><%= @user.name %></td>
+        <td>
+          <%= image_tag @user.get_profile_image(30,30) %>
+          <%= @user.name %>
+        </td>
         <td><%= @user.birthdate %></td>
         <td>@<%= @user.introduction %></td>
       </tr>

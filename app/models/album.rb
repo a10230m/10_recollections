@@ -2,6 +2,8 @@ class Album < ApplicationRecord
   belongs_to :user
   has_many :album_favorites, dependent: :destroy
   has_many :album_photo_images, inverse_of: :album
+  has_many :album_releases, dependent: :destroy
+  has_many :users, through: :album_releases
 
   def get_images(width, height)
     unless image.attached?

@@ -18,6 +18,7 @@
     <tbody>
       <tr>
         <td>
+          <%= image_tag user.get_profile_image(30,30) %>
           <%= link_to user_path(user.id) do %>
             <%= user.name %>
           <% end %>

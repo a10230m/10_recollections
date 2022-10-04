@@ -3,9 +3,15 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+         
+
+  has_one_attached :profile_image
+
+  has_many :album_releases, dependent: :destroy
+  has_many :albums, through: :album_releases
 
   has_many :photo_images, dependent: :destroy
-  has_many :albums, dependent: :destroy
+ 
   has_many :favorites, dependent: :destroy
   # favoriteをとおして、フォトイメージを結ぶ
   has_many :favorited_photo_images, through: :favorites, source: :photo_image
@@ -22,9 +28,18 @@ class User < ApplicationRecord
   has_many :goods, dependent: :destroy
   has_many :album_photo_goods, dependent: :destroy
 
-
   has_many :active_notifications, class_name: "Notification", foreign_key: "visiter_id", dependent: :destroy
   has_many :passive_notifications, class_name: "Notification", foreign_key: "visited_id", dependent: :destroy
+
+
+  def get_profile_image(width, height)
+    unless profile_image.attached?
+      file_path = Rails.root.join('app/assets/images/猫のシルエット.png')
+      profile_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
+    end
+    profile_image.variant(resize_to_limit: [width, height]).processed
+  end
+
 
 
   def favorited_by?(photo_image_id)

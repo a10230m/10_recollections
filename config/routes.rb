@@ -67,13 +67,15 @@ Rails.application.routes.draw do
 
 
     resources :albums, only: [:new, :create, :index, :show, :edit, :destroy, :update] do
+      collection do
+        get 'search'
+        get 'releases'
+      end
       resource :album_favorites, only: [:create, :destroy]
       member do
         get :album
       end
-      collection do
-        get 'search'
-      end
+
     end
 
     resources :album_photo_images, only: [:index, :show, :edit, :destroy, :update] do
