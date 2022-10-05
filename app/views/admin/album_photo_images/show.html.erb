@@ -1,0 +1,46 @@
+<div class="container">
+  <% if @album_photo_image.image.attached? %>
+    <%= image_tag @album_photo_image.get_image(200, 100), size: '200x100' %>
+  <% end %>
+  <br>
+
+  <p>Title:<%= @album_photo_image.album_photo_title %></p>
+  <p>caption:<%= @album_photo_image.album_photo_caption %></p>
+  <p>
+    <%= image_tag @album_photo_image.album.user.get_profile_image(30,30) %>
+    <%= @album_photo_image.album.user.name %>
+  </p>
+  <%= @album_photo_image.album.created_at.strftime('%Y/%m/%d %H:%M') %>
+
+
+
+  <!--<div class="container">-->
+  <!--  <p>-->
+  <!--    <i class="fa-solid fa-comment"></i>：<%#= @album_photo_image.album_photo_comments.count %>-->
+  <!--  </p>-->
+  <!--    <%# @album_photo_image.album_photo_comments.each do |album_photo_comment| %>-->
+  <!--      <p>-->
+  <!--        <%#= image_tag album_photo_comment.user.get_profile_image(30,30) %>-->
+  <!--        <%#= album_photo_comment.user.name %>-->
+  <!--      </p>-->
+  <!--      <p><%#= album_photo_comment.comment %></p>-->
+  <!--      <p>[<%#= album_photo_comment.created_at.strftime('%Y/%m/%d') %>]</p>-->
+
+  <!--      <div id="album_photo_good_btn_<%#= album_photo_comment.id %>">-->
+  <!--        <%#= render partial: 'public/album_photo_goods/album_photo_good', locals: {album_photo_image: @album_photo_image, album_photo_comment: album_photo_comment} %>-->
+  <!--      </div>-->
+
+  <!--      <%# if album_photo_comment.user == current_user %>-->
+  <!--        <%#= link_to "削除", album_photo_image_album_photo_comment_path(album_photo_comment.album_photo_image, album_photo_comment), method: :delete %>-->
+  <!--      <%# end %>-->
+  <!--    <%# end %>-->
+  <!--    <div>-->
+  <!--      <%#= form_with model: [@album_photo_image, @new_album_photo_comment] do |f| %>-->
+  <!--        <%#= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>-->
+  <!--        <%#= f.submit "送信する" %>-->
+  <!--      <%# end %>-->
+  <!--    </div>-->
+  <!--</div>-->
+
+   <%= link_to "back", admin_album_path(@album.id) %>
+</div>

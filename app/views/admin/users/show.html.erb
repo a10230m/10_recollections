@@ -1,7 +1,7 @@
 
 <div class="container">
   <h4>
-    <strong>Information／<%= @user.name %></strong>
+    <strong>Information／<%= image_tag @user.get_profile_image(30,30) %><%= @user.name %></strong>
   </h4>
 </div>
 <br>
@@ -36,6 +36,33 @@
   </div>
   <br>
   <div class="row">
+    <div class="col-3">
+       <h4>PHOTO</h4>
+    </div>
+    <div class="col-3">
+      <%= link_to userphotos_admin_user_path(@user.id) do %>
+        <%= @user.photo_images.count %>
+      <% end %>
+      件
+    </div>
+  </div>
+
+  <br>
+  <div class="row">
+    <div class="col-3">
+       <h4>ALBUM</h4>
+    </div>
+    <div class="col-3">
+      <%= link_to useralbums_admin_user_path(@user.id) do %>
+        <%= @user.albums.count %>
+      <% end %>
+      件
+    </div>
+  </div>
+  <br>
+
+  <br>
+  <div class="row">
     <div class="col-3">会員ステータス</div>
     <div class="col-3">
       <% if @user.is_active %>
@@ -58,3 +85,4 @@
 </div>
 <br>
 <br>
+

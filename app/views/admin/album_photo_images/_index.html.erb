@@ -1,0 +1,15 @@
+
+<% album_photo_images.each do |album_photo_image| %>
+  <div class="col-4 px-2">
+    <div class="card" style="content-align: center; text-align:center;">
+    <%= link_to admin_album_photo_image_path(album_photo_image.id) do %>
+      <%= image_tag album_photo_image.get_image(200, 100), size:"200x100" %>
+    <% end %>
+      <div class="card-body">
+        <h5 class="card-title"><%= album_photo_image.album_photo_title %></h5>
+        <p class="card-text"><%= album_photo_image.album_photo_caption %></p>
+        <p><%= link_to "#{album_photo_image.album_photo_comments.count} コメント", album_photo_image_path(album_photo_image.id) %></p>
+      </div>
+    </div>
+  </div>
+<% end %>
