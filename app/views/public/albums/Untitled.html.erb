@@ -1,11 +1,6 @@
-class Public::AlbumsController < ApplicationController
-
-  def new
+def new
     @album = Album.new
-    @users = User.where.not(id: current_user.id)
-
   end
-
   def create
     @album = Album.new(album_params.except(:album_photo_images))
     @album.user_id = current_user.id
@@ -21,7 +16,7 @@ class Public::AlbumsController < ApplicationController
         user_ids.each do |user_id|
           @album.album_releases.create!(user_id: user_id)
         end
-      else
+      else 
         User.all.pluck(:id).each do |user_id|
           @album.album_releases.create!(user_id: user_id)
         end
@@ -34,44 +29,32 @@ class Public::AlbumsController < ApplicationController
       render :new
     end
   end
-
-
   def show
     @album = Album.find(params[:id])
   end
 
   def index
-    album_ids = current_user.albums.pluck(:id)
+    @albums = Album.all.order('id DESC')
 
-    album_ids.push(current_user.album_releases.pluck(:album_id))
-    album_ids.flatten!
-    @albums = Album.where(id: album_ids)
-
+    @albums = current_user.albums
     # @album_photo_images = album.album_photo_images
     # @albums = Album.order('id DESC')
     # @albums = Album.page(params[:page])
   end
-
   def search
     @albums = Album.search(params["search(1i)"],params["search(2i)"],params["search(3i)"])
-
   end
-
   def useralbums
     @album = Album.find(params[:id])
     @albums = @album.user.albums
     # @albums = @user.album.all.order('id DESC').limit(5)
   end
-
   def edit
      @album = Album.find(params[:id])
-     @users = User.where.not(id: current_user.id)
      if @album.user != current_user
        redirect_to albums_path
      end
   end
-
-
   def update
     @album = Album.find(params[:id])
     if params[:album][:images]
@@ -81,24 +64,6 @@ class Public::AlbumsController < ApplicationController
       album_photo_image.save
       end
     end
-
-    user_ids = params[:album][:user_ids]
-
-    unless user_ids == [""]
-      user_ids.shift
-      user_ids.each do |user_id|
-        unless @album.album_releases.find_by(user_id: user_id)
-          album_release = AlbumRelease.new
-          album_release.album_id = @album.id
-          album_release.user_id = user_id
-          album_release.save
-        end
-        @album.album_releases.where.not(user_id: user_ids).delete_all
-      end
-    else
-        @album.album_releases.delete_all
-    end
-
     #添付画像を個別に削除
     album_photo_image_ids = params[:album][:album_photo_image_ids]
     if album_photo_image_ids
@@ -112,7 +77,6 @@ class Public::AlbumsController < ApplicationController
       render :edit
     end
   end
-
   def destroy
     @album = Album.find(params[:id])
     @album.destroy
@@ -129,17 +93,17 @@ class Public::AlbumsController < ApplicationController
   private
   # ストロングパラメータ
   def album_params
+    params.require(:album).permit(:album_title, :album_caption, :user_id, :created_at, album_photo_images: {})
     params.permit(:album_title, :album_caption, :user_id, :created_at, album_photo_images: {})
   end
 
 
   def user_params
-    params.require(:user).permit(:name, :email, :birthdate, :introduction, :albums_id, user_ids: [])
-  end
+  params.require(:user).permit(:name, :email, :birthdate, :introduction, :user_id, :albums_id)
+  params.require(:user).permit(:name, :email, :birthdate, :introduction, :albums_id, user_ids: [])
 
+  end
   def search_params
     params.require(:search).permit(:created_at)
   end
-
-
 end

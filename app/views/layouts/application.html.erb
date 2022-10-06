@@ -18,10 +18,10 @@
           <span>
             <a class="navbar-brand" href="/">recollections</a>
             <%= link_to new_photo_image_path do %>
-              <i class="fa-solid fa-image"></i>
+              <i class="fa-solid fa-image fa-2x"></i>
             <% end %>
             <%= link_to new_album_path do %>
-              <i class="fa-solid fa-images"></i>
+              <i class="fa-solid fa-images fa-2x"></i>
             <% end %>
           </span>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -36,24 +36,40 @@
                   <i class="fa fa-circle" style="color: gold;"></i>
                 <% end %>
                 <li>
-                  <%= link_to "NOTICE", notifications_path, class: "btn-default" %>/
+                  <%= link_to "NOTICE", notifications_path, class: "btn btn-outline-turquoise w-90" %>
                 </li>
-                <%= link_to "Mypage", mypage_users_path, class: "btn-default" %> /
-                <%= link_to "ALL", photo_images_path, class: "btn-default" %> /
-                <%= link_to "ALBUM", albums_path, class: "btn-default" %> /
-                <%= link_to "User", users_path, class: "btn-default" %> /
-                <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "btn-default" %>
+                <li>
+                  <%= link_to "Mypage", mypage_users_path, class: "btn btn-outline-turquoise w-90" %>
+                </li>
+                <li>
+                  <%= link_to "ALL", photo_images_path, class: "btn btn-outline-turquoise w-90" %>
+                </li>
+                <li>
+                  <%= link_to "ALBUM", albums_path, class: "btn btn-outline-turquoise w-90" %>
+                </li>
+                <li>
+                  <%= link_to "User", users_path, class: "btn btn-outline-turquoise w-90" %>
+                </li>
+                <li>
+                  <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "btn btn-outline-turquoise w-90" %>
+                </li>
 
               <% elsif current_admin %>
+              <li>
                 <span class"text-center">management page</span>
-                <%= link_to "User", admin_users_path, class: "btn btn-outline-secondary" %>
-                <%= link_to "logout", destroy_admin_session_path, method: :delete, class: "btn btn-outline-secondary" %>
+              </li>
+              <li>
+                <%= link_to "User", admin_users_path, class: "btn btn-outline-turquoise w-90" %>
+              </li>
+              <li>
+                <%= link_to "logout", destroy_admin_session_path, method: :delete, class: "btn btn-outline-turquoise w-90" %>
+              </li>
 
               <% else %>
-                <!--< %= link_to "About", about_path, class: "btn btn-outline-secondary" %>-->
-                <!--< %= link_to "商品一覧", items_path, class: "btn btn-outline-secondary" %>-->
-                <!--< %= link_to "新規登録", new_customer_registration_path, class: "btn btn-outline-secondary" %>-->
-                <%= link_to "ログイン", user_session_path, class: "btn btn-outline-secondary" %>
+                <!--< %= link_to "About", about_path, class: "btn btn-turquoise" %>-->
+                <!--< %= link_to "商品一覧", items_path, class: "btn btn-turquoise" %>-->
+                <!--< %= link_to "新規登録", new_customer_registration_path, class: "btn btn-turquoise" %>-->
+                <%= link_to "ログイン", user_session_path, class: "btn btn-outline-turquoise" %>
               <% end %>
 
 

@@ -3,15 +3,17 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-         
+
 
   has_one_attached :profile_image
 
+  has_many :albums
+
   has_many :album_releases, dependent: :destroy
-  has_many :albums, through: :album_releases
+  has_many :released_albums, through: :album_releases, source: :album
 
   has_many :photo_images, dependent: :destroy
- 
+
   has_many :favorites, dependent: :destroy
   # favoriteをとおして、フォトイメージを結ぶ
   has_many :favorited_photo_images, through: :favorites, source: :photo_image

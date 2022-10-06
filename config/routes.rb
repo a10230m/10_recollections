@@ -84,7 +84,6 @@ Rails.application.routes.draw do
       member do
         get :album
       end
-
     end
 
     resources :album_photo_images, only: [:index, :show, :edit, :destroy, :update] do

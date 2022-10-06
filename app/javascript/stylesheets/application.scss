@@ -54,3 +54,54 @@
 .ninni {
   font-color: #f5f5f5;
 }
+
+.fa-2x {
+  color: black;
+  margin: 10px;
+}
+
+.fa-image:hover, .fa-images:hover {
+  color: #008075;
+}
+
+// outline: none !important;
+
+.btn {
+    padding: 10px 20px;
+    margin: 3px;
+    border: 0 none;
+    font-weight: 700;
+    letter-spacing: 0;
+    text-transform: uppercase;
+}
+
+/* 通常のボタン色 */
+.btn-outline-outline-turquoise,
+.btn-outline-turquoise.disabled, .btn-outline-turquoise:disabled {
+  color: #fff;
+  background-color: #00a497;
+  border-color: #00a497;
+}
+
+/* focusされた時の枠線の色 */
+.btn-outline-turquoise:focus, .btn-outline-turquoise.focus,
+.btn-outline-turquoise:not(:disabled):not(.disabled):active:focus, .btn-outline-turquoise:not(:disabled):not(.disabled).active:focus,
+.show > .btn-outline-turquoise.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem rgba(0, 204, 187, 0.5);
+}
+
+
+/* hover時（マウスカーソルを重ねた時）の色（通常より濃いor暗めの色を指定）*/
+.btn-outline-turquoise:hover {
+  color: #fff;
+  background-color: #008075;
+  border-color: #008075;
+}
+
+/* active時の色（hover時と同等かさらに濃いor暗めの色を指定） */
+.btn-outline-turquoise:not(:disabled):not(.disabled):active, .btn-outline-turquoise:not(:disabled):not(.disabled).active,
+.show > .btn-outline-turquoise.dropdown-toggle {
+  color: #fff;
+  background-color: #00665e;
+  border-color: #00665e;
+}
