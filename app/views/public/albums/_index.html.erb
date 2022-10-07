@@ -1,37 +1,69 @@
 <% albums.each do |album| %>
+  <div class="col-3 px-2">
+    <div class="content-album">
 
-      <div class="col-3 px-2">
-        <div class="container-item">
-          <div class="container-item-img">
-            <% if album.album_photo_images.any? && album.album_photo_images.first.image.attached? %>
-              <%= link_to album_path(album.id) do %>
-                <%= image_tag album.album_photo_images.first.image %><br>
-              <% end %>
-            <% end %>
-          </div>
-          <div class="text">
-            <%= album.album_photo_images.count %>件
-              <div id="favorite_btn_<%= album.id %>">
-                <%= render partial: 'public/album_favorites/album_favorite', locals: {album: album} %>
-              </div>
-          </div>
-          <h5 class="title">
-            Album Title:
-            <%= link_to album_path(album.id) do %>
-              <%= album.album_title %>
-            <% end %>
-          </h5>
-          <div class="album-text">
-            Album caption:<%= album.album_caption %><br>
-            <%= image_tag album.user.get_profile_image(30,30) %>
-            <%= album.user.name %><br>
-            <% if album.user == current_user %>
-              <%= link_to "edit", edit_album_path(album.id) %>
-              <%= link_to "delete", album_path(album.id), method: :delete %><br>
-            <% end %>
-            <%= album.created_at.strftime('%Y/%m/%d %H:%M') %><br>
+      <div class="content-album-img">
+        <% if album.album_photo_images.any? && album.album_photo_images.first.image.attached? %>
+          <%= link_to album_path(album.id) do %>
+            <%= image_tag album.album_photo_images.first.image %><br>
+          <% end %>
+        <% end %>
+      </div>
+
+      <div class="flex">
+        <div class="favo">
+          <div id="favorite_btn_<%= album.id %>">
+            <%= render partial: 'public/album_favorites/album_favorite', locals: {album: album} %>
           </div>
         </div>
+        <div class="edit-delete">
+          <% if album.user == current_user %>
+            <%= link_to edit_album_path(album.id) do %>
+              <i class="fa-solid fa-pen-to-square size"></i>
+            <% end %>
+            <%= link_to album_path(album.id), method: :delete do %>
+              <i class="fa-solid fa-trash-can size"></i>
+            <% end %>
+            <br>
+          <% end %>
+        </div>
       </div>
+
+<!--データがない場合一行分あける※高さを揃えたい-->
+
+      <div class="info-album">
+        <div class="title">
+          <% if album.album_title.present? %>
+            <%= link_to album_path(album.id), class: "link" do %>
+              <%= album.album_title %>
+            <% end %>
+          <% else%>
+            <div class="blank"></div>
+          <% end %>
+        </div>
+        <div class="cap">
+          <% if album.album_title.present? %>
+            <%= album.album_caption %>
+          <% else%>
+            <div class="blank"></div>
+          <% end %>
+        </div>
+
+        <!--<div class="line2"></div>-->
+        <div class="flex">
+          <div class="name">
+            <%= image_tag album.user.get_profile_image(20,20) %>
+            <%= album.user.name %>
+          </div>
+          <div class="count">
+            <%= album.album_photo_images.count %>photos
+          </div>
+        </div>
+
+        <%= album.created_at.strftime('%Y/%m/%d %H:%M') %><br>
+      </div>
+    </div>
+  </div>
+
 <% end %>
 

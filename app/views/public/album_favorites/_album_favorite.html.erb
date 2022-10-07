@@ -1,14 +1,14 @@
   <% if album.favorited_by?(current_user) %>
     <td>
       <%= link_to album_album_favorites_path(album), method: :delete, remote: true do %>
-        <i class="fa-solid fa-heart"></i>
+        <i class="fa-solid fa-heart hearton"></i>
       <% end %>
       <%= album.album_favorites.count %>
     </td>
   <% else %>
     <td>
       <%= link_to album_album_favorites_path(album), method: :post, remote: true do %>
-         ♡
+        <i class="fa-solid fa-heart heartoff"></i>
       <% end %>
       <%= album.album_favorites.count %>
     </td>

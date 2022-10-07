@@ -36,9 +36,6 @@
     <span><%= @user.photo_images.count %>件</span>
   </h4>
 
-  <div class="row row no-gutters">
-    <%= render 'public/photo_images/index', photo_images: @user.photo_images %>
-  </div>
 
   <div class="line"></div>
   <h4>
@@ -46,8 +43,4 @@
     <span><%= @user.albums.count %>件</span>
   </h4>
 
-
-  <div class="row row no-gutters">
-    <%= render 'public/albums/index', albums: @user.albums %>
-  </div>
 </div>

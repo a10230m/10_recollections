@@ -4,21 +4,37 @@
 *{
   box-sizing: border-box; /*余白や線を幅や高さに含める*/
 }
+body {
+  weight: 100%;
+  height: 800px;
+}
 
-// .container {
-//   padding-right: 15px;
-//   padding-left: 15px;
-//   margin-right: auto;
-//   margin-left: auto;
-//   margin-top: 30px;
-// }
+// header
+.fa-2x {
+  color: black;
+  margin: 10px;
+}
+
+.fa-image:hover, .fa-images:hover {
+  color: #008075;
+}
+//
+
+
+a {
+  text-decoration: none;
+}
 
 
 
+.container {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 30px;
+}
 
-// .rounded-lg {
-//   width: 400px;
-// }
 
 .sign_up .edit {
   width: 300px;
@@ -38,12 +54,6 @@
 
 
 
-// .photo_new {
-//   padding-right: 15px;
-//   padding-left: 15px;
-//   margin-right: auto;
-//   margin-left: auto;
-// }
 
 .line {
   border-bottom: 1px solid #dcdcdc;
@@ -55,41 +65,109 @@
   font-color: #f5f5f5;
 }
 
-.container{
-  display: flex;
-  justify-content: space-between;
-}
-.container-item{
+
+
+//
+
+.content-album{
+  flex-wrap: wrap;
   padding: 10px;
   border: 1px solid rgba(0, 51 ,39, 0.5);
 }
 
 
-.container-item-img img{
-  display: block;
+.content-album-img img{
   height: 150px;
   object-fit: cover;
   width: 100%;
 }
 
-.fa-2x {
-  color: black;
-  margin: 10px;
+
+
+
+
+.flex {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: flex;
+  margin-bottom: 10px;
 }
 
-.fa-image:hover, .fa-images:hover {
+.title {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+
+
+.cap {
+  padding: 0 9%;
+  margin-bottom: 10px;
+}
+
+.edit-delete, .count {
+  margin-left: auto;
+  align-items: center;
+}
+.size {
   color: #008075;
 }
+
+
+.name, .count {
+  display: flex;
+  align-items: center;
+}
+
+.info-album {
+  display: block;
+  color: gray;
+  font-size: 12px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+
+.link {
+  color: #008075;
+}
+
+.link:hover {
+  color: #008075;
+  // text-decoration: none;
+}
+
+.hearton {
+  color: #d7003a;
+}
+
+.heartoff {
+  color: #c0c6c9;
+}
+.blank {
+  line-height: 3;
+}
+.line2 {
+  border-bottom: 1px solid #dcdcdc;
+}
+
+p {
+  margin: 10px;
+}
+//
 
 // outline: none !important;
 
 .btn {
-    padding: 10px 20px;
-    margin: 3px;
-    border: 0 none;
-    font-weight: 700;
-    letter-spacing: 0;
-    text-transform: uppercase;
+  padding: 10px 20px;
+  margin: 3px;
+  border: 0 none;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: uppercase;
 }
 
 /* 通常のボタン色 */
