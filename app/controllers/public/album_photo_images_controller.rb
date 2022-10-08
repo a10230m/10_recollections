@@ -1,4 +1,5 @@
 class Public::AlbumPhotoImagesController < ApplicationController
+  before_action :authenticate_user!
 
   def show
     @album_photo_image = AlbumPhotoImage.find(params[:id])

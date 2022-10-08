@@ -73,6 +73,7 @@ a {
   flex-wrap: wrap;
   padding: 10px;
   border: 1px solid rgba(0, 51 ,39, 0.5);
+  height: 100%;
 }
 
 
@@ -84,7 +85,9 @@ a {
 
 
 
-
+.col-3, .px-2 {
+  margin-bottom: 15px;
+}
 
 .flex {
   display: -webkit-flex;
@@ -97,15 +100,18 @@ a {
 
 .title {
   font-weight: bold;
-  margin-bottom: 10px;
+  // margin-bottom: 10px;
+  height: 30px;
 }
 
 
 
 .cap {
   padding: 0 9%;
-  margin-bottom: 10px;
+  // margin-bottom: 10px;
+  height: 30px;
 }
+
 
 .edit-delete, .count {
   margin-left: auto;
@@ -147,9 +153,8 @@ a {
 .heartoff {
   color: #c0c6c9;
 }
-.blank {
-  line-height: 3;
-}
+
+
 .line2 {
   border-bottom: 1px solid #dcdcdc;
 }

@@ -1,28 +1,28 @@
 class Public::AlbumsController < ApplicationController
+  before_action :authenticate_user!
 
   def new
     @album = Album.new
-    @users = User.where.not(id: current_user.id)
-
+    @users = User.where(is_active: true).where.not(id: current_user.id)
   end
 
   def create
     @album = Album.new(album_params.except(:album_photo_images))
     @album.user_id = current_user.id
-    album_params[:album_photo_images][:image].each do |image|
+    params.dig(:album, :album_photo_images, :image)&.each do |image|
       album_photo_image = @album.album_photo_images.new
       album_photo_image.image.attach(image)
     end
-    if @album.save
-      user_ids = params[:user_ids]
 
+    if @album.save
+       user_ids = params[:album][:user_ids]
       unless user_ids == [""]
         user_ids.shift
         user_ids.each do |user_id|
           @album.album_releases.create!(user_id: user_id)
         end
       else
-        User.all.pluck(:id).each do |user_id|
+        User.where(is_active: true).pluck(:id).each do |user_id|
           @album.album_releases.create!(user_id: user_id)
         end
 
@@ -31,6 +31,7 @@ class Public::AlbumsController < ApplicationController
 
       redirect_to album_path(@album.id), notice: 'Created successfully! Thank you.'
     else
+       @users = User.where(is_active: true).where.not(id: current_user.id)
       render :new
     end
   end
@@ -65,7 +66,7 @@ class Public::AlbumsController < ApplicationController
 
   def edit
      @album = Album.find(params[:id])
-     @users = User.where.not(id: current_user.id)
+     @users = User.where(is_active: true).where.not(id: current_user.id)
      if @album.user != current_user
        redirect_to albums_path
      end
@@ -74,6 +75,7 @@ class Public::AlbumsController < ApplicationController
 
   def update
     @album = Album.find(params[:id])
+
     if params[:album][:images]
       params[:album][:images].each do |image|
       album_photo_image = @album.album_photo_images.new
@@ -83,7 +85,6 @@ class Public::AlbumsController < ApplicationController
     end
 
     user_ids = params[:album][:user_ids]
-
     unless user_ids == [""]
       user_ids.shift
       user_ids.each do |user_id|
@@ -106,6 +107,7 @@ class Public::AlbumsController < ApplicationController
       album_photo_images = AlbumPhotoImage.where(id: album_photo_image_ids)
       album_photo_images.destroy_all
     end
+
     if  @album.update(album_params)
       redirect_to album_path(@album.id), notice: 'Updated successfully! Thank you.'
     else
@@ -129,7 +131,7 @@ class Public::AlbumsController < ApplicationController
   private
   # ストロングパラメータ
   def album_params
-    params.permit(:album_title, :album_caption, :user_id, :created_at, album_photo_images: {})
+    params.require(:album).permit(:album_title, :album_caption, album_photo_images: [])
   end
 
 

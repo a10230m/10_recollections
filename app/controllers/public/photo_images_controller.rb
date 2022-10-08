@@ -1,4 +1,5 @@
 class Public::PhotoImagesController < ApplicationController
+  before_action :authenticate_user!
 
   def new
     @photo_image = PhotoImage.new

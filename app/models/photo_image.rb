@@ -57,7 +57,6 @@ class PhotoImage < ApplicationRecord
   end
 
 	def save_notification_comment!(visiter_id, photo_comment_id, visited_id)
-    # コメントは複数回することが考えられるため、１つの投稿に複数回通知する
     notification = Notification.new(
       photo_image_id: id,
       photo_comment_id: photo_comment_id,
@@ -65,12 +64,13 @@ class PhotoImage < ApplicationRecord
       visiter_id: visiter_id,
       action: 'photo_comment'
     )
-    # 自分の投稿に対するコメントの場合は、通知済みとする
     if notification.visiter_id == notification.visited_id
       notification.checked = true
     end
     notification.save! if notification.valid?
   end
+
+   validates :image, presence: true
 
 
   # enum status: { public: 0, private: 1 }, _prefix: true

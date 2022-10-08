@@ -5,6 +5,8 @@ class Album < ApplicationRecord
   has_many :album_releases, dependent: :destroy
   has_many :users, through: :album_releases
 
+  validates :album_photo_images, presence: true
+
   def get_images(width, height)
     unless image.attached?
       file_path = Rails.root.join('app/assets/images/noimage.jpeg')
@@ -55,5 +57,6 @@ class Album < ApplicationRecord
     end
     notification.save! if notification.valid?
   end
+
 
 end

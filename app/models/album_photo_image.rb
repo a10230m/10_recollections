@@ -5,6 +5,7 @@ class AlbumPhotoImage < ApplicationRecord
   has_many :album_photo_comments, dependent: :destroy
   has_many :notifications, dependent: :destroy
 
+  validates :image, presence: true
 
   # belongstoをいれると、けんさくをかけてしまうので、関係ないものをいれないこと（バリデーションの動作をする）
     # accepts_nested_attributes_for :images
@@ -47,6 +48,8 @@ class AlbumPhotoImage < ApplicationRecord
     end
     notification.save! if notification.valid?
   end
+
+
 
 end
 

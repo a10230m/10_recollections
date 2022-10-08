@@ -3,9 +3,26 @@
     <%= image_tag @photo_image.get_image(200, 100), size: '200x100' %>
   <% end %>
   <br>
+  
+  
+  <div class="flex">
+    <div class="favo">
+      <div id="favorite_btn_<%= @photo_image.id %>">
+        <%= render partial: 'public/favorites/favorite', locals: {photo_image: @photo_image} %>
+      </div>
+    </div>
 
-  <div id="favorite_btn_<%= @photo_image.id %>">
-    <%= render partial: 'public/favorites/favorite', locals: {photo_image: @photo_image} %>
+    <div class="edit-delete">
+      <% if @photo_image.user == current_user %>
+        <%= link_to edit_photo_image_path(@photo_image.id) do %>
+          <i class="fa-solid fa-pen-to-square size"></i>
+        <% end %>
+        <%= link_to photo_image_path(@photo_image.id), method: :delete do %>
+          <i class="fa-solid fa-trash-can size"></i>
+        <% end %>
+        <br>
+      <% end %>
+    </div>
   </div>
 
 

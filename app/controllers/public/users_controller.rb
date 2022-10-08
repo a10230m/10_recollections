@@ -1,4 +1,5 @@
 class Public::UsersController < ApplicationController
+  before_action :authenticate_user!
 
   def new
     @user = User.new
@@ -24,7 +25,8 @@ class Public::UsersController < ApplicationController
   end
 
   def index
-    @users = User.all
+    @users = User.where(is_active: true)
+
   end
 
   def favorites

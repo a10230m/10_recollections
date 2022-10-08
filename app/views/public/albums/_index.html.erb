@@ -1,7 +1,6 @@
 <% albums.each do |album| %>
   <div class="col-3 px-2">
     <div class="content-album">
-
       <div class="content-album-img">
         <% if album.album_photo_images.any? && album.album_photo_images.first.image.attached? %>
           <%= link_to album_path(album.id) do %>
@@ -29,7 +28,6 @@
         </div>
       </div>
 
-<!--データがない場合一行分あける※高さを揃えたい-->
 
       <div class="info-album">
         <div class="title">
@@ -42,7 +40,7 @@
           <% end %>
         </div>
         <div class="cap">
-          <% if album.album_title.present? %>
+          <% if album.album_caption.present? %>
             <%= album.album_caption %>
           <% else%>
             <div class="blank"></div>

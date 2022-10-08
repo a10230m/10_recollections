@@ -5,6 +5,16 @@
       <div class="col-md-6 border rounded-pill p-3">
         <div class="photo_new">
           <h2 class="text-center">PHOTO</h2><br>
+
+          <% if @photo_image.errors.any? %>
+            <%= @photo_image.errors.count %>件のエラーが発生しました
+            <ul>
+              <% @photo_image.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          <% end %>
+
           <%= form_with model: @photo_image do |f| %>
 
             <%= f.file_field :image, accept: "image/*" %><br><br>
