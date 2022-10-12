@@ -1,5 +1,5 @@
 class AlbumPhotoGood < ApplicationRecord
   belongs_to :user
   belongs_to :album_photo_comment
-  has_many :notifications, dependent: :destroy
+  # has_many :notifications, dependent: :destroy←不要
 end

@@ -8,6 +8,7 @@
         <%= @album.user.name %><br>
         <%= @album.created_at.strftime('%Y/%m/%d %H:%M') %><br>
       </p>
+      <%= link_to "delete", admin_album_path(@album.id), method: :delete %>
     </div>
   </div>
 
@@ -30,8 +31,10 @@
 <!--</div>-->
 
 <div class="container">
-  <div class="row row no-gutters">
+  <div class="row no-gutters">
      <%= render 'admin/album_photo_images/index', album_photo_images: @album.album_photo_images %>
   </div>
-  <%= link_to "back", useralbums_admin_user_path(@user.id) %>
+  <%= link_to "Album All", admin_albums_path %><br>
+  <%= link_to "Userのアルバム一覧へ", useralbums_admin_user_path(@user) %>
+
 </div>

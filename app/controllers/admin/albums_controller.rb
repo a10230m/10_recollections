@@ -1,13 +1,15 @@
 class Admin::AlbumsController < ApplicationController
   def show
     @album = Album.find(params[:id])
-    # @user = @album.user
+    # @user = User.find(params[:id])
+
+    @albums = @album.user.albums
+    @user = @album.user
   end
 
   def index
-    @albums = current_user.albums
-    # @album_photo_images = album.album_photo_images
-    # @albums = Album.order('id DESC')
+    @albums = Album.all
+    @albums = Album.order('id DESC')
     # @albums = Album.page(params[:page])
   end
 
@@ -17,6 +19,13 @@ class Admin::AlbumsController < ApplicationController
     # @albums = @user.album.all.order('id DESC').limit(5)
   end
 
+  def destroy
+    @album = Album.find(params[:id])
+    @album.destroy
+    redirect_to admin_albums_path
+  end
+
+
   private
   # ストロングパラメータ
   def album_params
@@ -24,7 +33,7 @@ class Admin::AlbumsController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name, :email, :birthdate, :introduction, :albums_id, user_ids: [])
+    params.require(:user).permit(:name, :email, :birthdate, :introduction, :albums_id)
   end
 
   # def search_params

@@ -15,20 +15,6 @@ class Public::AlbumsController < ApplicationController
     end
 
     if @album.save
-       user_ids = params[:album][:user_ids]
-      unless user_ids == [""]
-        user_ids.shift
-        user_ids.each do |user_id|
-          @album.album_releases.create!(user_id: user_id)
-        end
-      else
-        User.where(is_active: true).pluck(:id).each do |user_id|
-          @album.album_releases.create!(user_id: user_id)
-        end
-
-      end
-
-
       redirect_to album_path(@album.id), notice: 'Created successfully! Thank you.'
     else
        @users = User.where(is_active: true).where.not(id: current_user.id)
@@ -84,22 +70,6 @@ class Public::AlbumsController < ApplicationController
       end
     end
 
-    user_ids = params[:album][:user_ids]
-    unless user_ids == [""]
-      user_ids.shift
-      user_ids.each do |user_id|
-        unless @album.album_releases.find_by(user_id: user_id)
-          album_release = AlbumRelease.new
-          album_release.album_id = @album.id
-          album_release.user_id = user_id
-          album_release.save
-        end
-        @album.album_releases.where.not(user_id: user_ids).delete_all
-      end
-    else
-        @album.album_releases.delete_all
-    end
-
     #添付画像を個別に削除
     album_photo_image_ids = params[:album][:album_photo_image_ids]
     if album_photo_image_ids
@@ -108,7 +78,7 @@ class Public::AlbumsController < ApplicationController
       album_photo_images.destroy_all
     end
 
-    if  @album.update(album_params)
+    if @album.update(album_params)
       redirect_to album_path(@album.id), notice: 'Updated successfully! Thank you.'
     else
       render :edit
@@ -131,7 +101,7 @@ class Public::AlbumsController < ApplicationController
   private
   # ストロングパラメータ
   def album_params
-    params.require(:album).permit(:album_title, :album_caption, album_photo_images: [])
+    params.require(:album).permit(:album_title, :album_caption, album_photo_images: [], user_ids: [])
   end
 
 

@@ -6,6 +6,8 @@ class Album < ApplicationRecord
   has_many :users, through: :album_releases
 
   validates :album_photo_images, presence: true
+  
+  before_save :set_user_ids
 
   def get_images(width, height)
     unless image.attached?
@@ -57,6 +59,12 @@ class Album < ApplicationRecord
     end
     notification.save! if notification.valid?
   end
+  
+  private
 
-
+  def set_user_ids
+    unless user_ids.reject(&:blank?).present?
+      self.user_ids = User.where(is_active: true).ids
+    end
+  end
 end

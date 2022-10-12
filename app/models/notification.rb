@@ -8,6 +8,6 @@ class Notification < ApplicationRecord
   	belongs_to :album_photo_comment, optional: true
   	belongs_to :visiter, class_name: 'User', foreign_key: 'visiter_id'
   	belongs_to :visited, class_name: 'User', foreign_key: 'visited_id'
-  	belongs_to :good, optional: true
-  	belongs_to :album_photo_good, optional: true
+  # 	belongs_to :good, optional: true
+  # 	belongs_to :album_photo_good, optional: true
 end

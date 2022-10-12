@@ -23,7 +23,4 @@ class PhotoComment < ApplicationRecord
     notification.save! if notification.valid?
   end
 
-
-
-
 end

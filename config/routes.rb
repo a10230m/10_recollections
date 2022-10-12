@@ -22,18 +22,23 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :homes, only: [:top]
-    resources :users, only: [:index, :show, :edit, :update] do
+    resources :users, only: [:index, :show, :edit, :destroy] do
       member do
         get :userphotos
         get :useralbums
       end
     end
-    resources :photo_images, only: [:index, :show, :edit, :update]
-    resources :albums, only: [:index, :show, :edit, :update]
-    resources :album_photo_images, only: [:index, :show, :edit, :update]
+    resources :photo_images, only: [:index, :show, :destroy] do
+      resources :photo_comments, only: [:create, :destroy]
+    end
+    resources :albums, only: [:index, :show, :destroy]
 
-
+    resources :album_photo_images, only: [:index, :show, :edit, :update] do
+      resources :album_photo_comments, only: [:destroy]
+    end
   end
+
+
 
   # scope module: :public do
   #   resources :users
@@ -106,4 +111,3 @@ Rails.application.routes.draw do
     end
   end
 end
-
