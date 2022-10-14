@@ -5,6 +5,14 @@ class Admin::AlbumPhotoImagesController < ApplicationController
     @album = @album_photo_image.album
   end
 
+  def destroy
+    @album_photo_image = AlbumPhotoImage.find(params[:id])
+    @album = @album_photo_image.album
+    @album_photo_image.destroy
+    redirect_to admin_album_path(@album.id)
+  end
+
+
   private
   # ストロングパラメータ
   def album_photo_image_params

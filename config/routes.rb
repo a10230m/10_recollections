@@ -33,7 +33,7 @@ Rails.application.routes.draw do
     end
     resources :albums, only: [:index, :show, :destroy]
 
-    resources :album_photo_images, only: [:index, :show, :edit, :update] do
+    resources :album_photo_images, only: [:index, :show, :edit, :destroy, :update] do
       resources :album_photo_comments, only: [:destroy]
     end
   end

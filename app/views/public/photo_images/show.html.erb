@@ -1,10 +1,10 @@
 <div class="container">
   <% if @photo_image.image.attached? %>
-    <%= image_tag @photo_image.get_image(200, 100), size: '200x100' %>
+    <%= image_tag @photo_image.get_image(500, 500), class: 'img-fluid' %>
   <% end %>
   <br>
-  
-  
+
+
   <div class="flex">
     <div class="favo">
       <div id="favorite_btn_<%= @photo_image.id %>">

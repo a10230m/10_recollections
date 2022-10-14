@@ -31,8 +31,9 @@ class Public::AlbumPhotoImagesController < ApplicationController
 
   def destroy
     @album_photo_image = AlbumPhotoImage.find(params[:id])
+    @album = @album_photo_image.album
     @album_photo_image.destroy
-    redirect_to album_photo_images_path
+    redirect_to album_path(@album.id)
   end
 
   private

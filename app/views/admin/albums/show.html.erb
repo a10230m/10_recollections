@@ -17,24 +17,13 @@
     </div>
   </div>
 
-<!--  <div class="row">-->
-<!--    <div class="col-4">-->
-<!--      <p class="text-right">-->
-<!--        <%# if @album.user == current_user %>-->
-<!--          <%#= link_to "edit", edit_album_path(@album.id) %>-->
-<!--          <%#= link_to "delete", album_path(@album.id), method: :delete %>-->
-<!--        <%# end %>-->
-<!--        <br>-->
-<!--      </p>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</div>-->
+
 
 <div class="container">
   <div class="row no-gutters">
      <%= render 'admin/album_photo_images/index', album_photo_images: @album.album_photo_images %>
   </div>
   <%= link_to "Album All", admin_albums_path %><br>
-  <%= link_to "Userのアルバム一覧へ", useralbums_admin_user_path(@user) %>
+  <%= link_to "#{@user.name}のalbum一覧へ", useralbums_admin_user_path(@user) %>
 
 </div>

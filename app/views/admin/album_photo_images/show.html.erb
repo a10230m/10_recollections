@@ -3,6 +3,13 @@
     <%= image_tag @album_photo_image.get_image(500, 500), class: 'img-fluid' %>
   <% end %>
   <br>
+  <div class="flex">
+    <div class="edit-delete">
+      <%= link_to admin_album_photo_image_path(@album_photo_image.id), method: :delete do %>
+        <i class="fa-solid fa-trash-can size"></i>
+      <% end %>
+    </div>
+  </div>
 
   <p>Title:<%= @album_photo_image.album_photo_title %></p>
   <p>caption:<%= @album_photo_image.album_photo_caption %></p>

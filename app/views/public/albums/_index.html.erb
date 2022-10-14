@@ -1,10 +1,12 @@
+<!--レイアウト大体OK-->
+
 <% albums.each do |album| %>
   <div class="col-3 px-2">
     <div class="content-album">
       <div class="content-album-img">
         <% if album.album_photo_images.any? && album.album_photo_images.first.image.attached? %>
           <%= link_to album_path(album.id) do %>
-            <%= image_tag album.album_photo_images.first.image %><br>
+            <%= image_tag album.album_photo_images.first.image, class: 'album-image-cover' %><br>
           <% end %>
         <% end %>
       </div>
@@ -47,10 +49,9 @@
           <% end %>
         </div>
 
-        <!--<div class="line2"></div>-->
         <div class="flex">
           <div class="name">
-            <%= image_tag album.user.get_profile_image(20,20) %>
+            <%= image_tag album.user.get_profile_image(20, 20) %>
             <%= album.user.name %>
           </div>
           <div class="count">
