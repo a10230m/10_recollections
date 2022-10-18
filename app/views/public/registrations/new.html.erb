@@ -22,6 +22,12 @@
           <%= f.label :name %>
           <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
         </div>
+        <div class="field">
+          <i class="fa-solid fa-image-portrait"></i>
+          <%= f.label :profile_image %>
+          <%#= f.file_field :profile_image %>
+          <%= f.file_field :profile_image, placeholder: "プロフィール画像", accept: "image/*" %>
+        </div>
 
         <div class="field">
           <i class="fa-solid fa-envelope"></i>

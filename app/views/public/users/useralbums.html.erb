@@ -1,5 +1,19 @@
-<h4>ALBUM ALL</h4>
-<div class="row row no-gutters">
-  <%= render 'public/albums/index', albums: @user.albums %>
+<div class="container">
+  <h1><%= @user.name %>のALBUM ALL</h1>
 </div>
-<%= link_to "back", user_path(@user.id) %>
+
+<div class="container">
+  <div class="row no-gutters">
+    <%= render 'public/albums/index', albums: @user.albums %>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row no-gutters">
+    <% if @user == current_user %>
+      <%= link_to "自分のpage", user_path(@user.id) %>へ
+    <% else %>
+      <%= link_to "#{@user.name}のpage", user_path(@user.id) %>へ
+    <% end %>
+  </div>
+</div>

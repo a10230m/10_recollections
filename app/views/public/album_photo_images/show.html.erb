@@ -37,7 +37,7 @@
 
   <div class="container">
     <p>
-      <i class="fa-solid fa-comment"></i>：<%= @album_photo_image.album_photo_comments.count %>
+      <i class="fa-solid fa-comment" style="color: #60a39b;"></i><%= @album_photo_image.album_photo_comments.count %>
     </p>
       <% @album_photo_image.album_photo_comments.each do |album_photo_comment| %>
         <p>
@@ -45,7 +45,7 @@
           <%= album_photo_comment.user.name %>
         </p>
         <p><%= album_photo_comment.comment %></p>
-        <p>[<%= album_photo_comment.created_at.strftime('%Y/%m/%d') %>]</p>
+        <p>[<%= album_photo_comment.created_at.strftime('%Y/%m/%d %H:%M') %>]</p>
 
         <div id="album_photo_good_btn_<%= album_photo_comment.id %>">
           <%= render partial: 'public/album_photo_goods/album_photo_good', locals: {album_photo_image: @album_photo_image, album_photo_comment: album_photo_comment} %>

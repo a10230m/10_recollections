@@ -33,5 +33,10 @@
   <div class="row row no-gutters">
      <%= render 'public/album_photo_images/index', album_photo_images: @album.album_photo_images %>
   </div>
-  <%= link_to "back", albums_path(@album) %>
+  <%= link_to "ALBUM ALL", albums_path(@album) %>へ<br>
+  <% if @album.user == current_user %>
+    <%= link_to "自分のalbum一覧", useralbums_user_path(@user) %>へ
+  <% else %>
+    <%= link_to "#{@user.name}のalbum一覧", useralbums_user_path(@user) %>へ
+  <% end %>
 </div>

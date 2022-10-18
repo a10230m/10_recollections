@@ -1,8 +1,7 @@
-
 <div class="container">
-  <h4>
-    <strong>User／<%= image_tag @user.get_profile_image(30,30) %><%= @user.name %></strong>
-  </h4>
+  <div class="circle">
+    <strong>User／<%= @user.name %></strong>
+  </div>
 </div>
 
 <div class="container">
@@ -17,7 +16,7 @@
     <tbody>
       <tr>
         <td>
-          <%= image_tag @user.get_profile_image(30,30) %>
+          <%= image_tag @user.get_profile_image(20,20), class: "rounded-circle" %>
           <%= @user.name %>
         </td>
         <td><%= @user.birthdate %></td>

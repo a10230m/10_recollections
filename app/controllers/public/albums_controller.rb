@@ -25,6 +25,7 @@ class Public::AlbumsController < ApplicationController
 
   def show
     @album = Album.find(params[:id])
+    @user = @album.user
   end
 
   def index

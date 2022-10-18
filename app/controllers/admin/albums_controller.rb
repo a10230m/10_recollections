@@ -16,6 +16,7 @@ class Admin::AlbumsController < ApplicationController
   def useralbums
     @album = Album.find(params[:id])
     @albums = @album.user.albums
+    @albumusers = @album.user
     # @albums = @user.album.all.order('id DESC').limit(5)
   end
 

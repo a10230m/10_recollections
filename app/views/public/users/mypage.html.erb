@@ -1,11 +1,14 @@
 
 <div class="container">
-  <h4>
-    <strong>Mypage／<%= image_tag @user.get_profile_image(30,30) %><%= @user.name %></strong>
-  </h4>
-  <% if user_signed_in? && @user == current_user %>
-    <%= link_to "EDIT", edit_users_path %><br>
-  <% end %>
+  <div class="circle">
+    <strong>Mypage／<%= @user.name %></strong>
+  </div>
+  <div class="edit">
+    <% if user_signed_in? && @user == current_user %>
+      <%= link_to "EDIT", edit_users_path %><br>
+    <% end %>
+  </div>
+
 </div>
 <div class="container">
   <table class="table table-borderless">
@@ -20,7 +23,7 @@
     <tbody>
       <tr>
         <td>
-          <%= image_tag @user.get_profile_image(30,30) %>
+          <%= image_tag @user.get_profile_image(20,20), class: "rounded-circle" %>
           <%= @user.name %>
         </td>
         <td><%= @user.birthdate %></td>

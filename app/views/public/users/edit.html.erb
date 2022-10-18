@@ -15,6 +15,13 @@
         </div>
 
         <div class="field">
+          <i class="fa-solid fa-image-portrait"></i>
+          <%= f.label :profile_image %>
+          <%#= f.file_field :profile_image %>
+          <%= f.file_field :profile_image, placeholder: "プロフィール画像", accept: "image/*" %>
+        </div>
+
+        <div class="field">
           <i class="fa-solid fa-cake-candles"></i>
           <%= f.label :birthdate %><span style="color:#a9a9a9;">（任意）</span>
           <%= f.date_field :birthdate %>
