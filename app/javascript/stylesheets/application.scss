@@ -8,11 +8,14 @@
 body {
   weight: 100%;
   height: 800px;
+  color: #6c757d;
 }
+
+
 
 // top
 .top {
-  color: gray;
+  color: #6c757d;
 }
 
 // header imege icon
@@ -21,13 +24,14 @@ body {
   margin: 10px;
 }
 
+
 // bootstrap icon
 .fa-image:hover, .fa-images:hover {
   color: #008075;
 }
 
 // linkなし
-a {
+a, .link {
   text-decoration: none;
 }
 
@@ -37,7 +41,7 @@ p {
 }
 
 .fontcolor {
-  color: gray;
+  color: #6c757d;
 }
 
 
@@ -106,6 +110,9 @@ p {
 
 
 // 写真
+.image {
+  text-align: center;
+}
 .photo {
   width: 100%;
   height: auto;
@@ -173,7 +180,7 @@ p {
 
 .info-album, .photo {
   display: block;
-  color: gray;
+  color: #6c757d;
   font-size: 15px;
   overflow: hidden;
   white-space: nowrap;
@@ -189,10 +196,15 @@ p {
 }
 
 // 写真・アルバム詳細のコメント欄
-.table table-borderless {
-  border-top: rgba(0, 51 ,39, 0.5);
-  // ボーダー効かない
-  margin-top: 15px;
+.comment-good {
+  word-wrap: break-word;
+  white-space: initial !important;
+  border-top: 1px solid #6c757d;
+  margin-top: 20px;
+}
+
+.text-comment {
+  margin: 15px 15px 15px 0px;
 }
 
 // 画像表示
@@ -276,4 +288,27 @@ p {
   border-top: 1px solid #dcdcdc;
   padding: 20px;
   text-align: center;
+}
+
+
+// ページネーション
+.pagination {
+  display: flex;
+  justify-content: center;
+}
+.pagination > li > a {
+  border: none;
+  color: #6c757d;
+}
+.pagination > li > a:hover {
+  color: #00a497;
+  background-color: white;
+}
+.pagination > .active > a {
+  color: #00a497;
+  background-color: white;
+}
+.pagination > .active > a:hover {
+  background-color: white;
+  color: #00a497;
 }

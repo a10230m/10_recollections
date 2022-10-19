@@ -33,7 +33,9 @@ class Public::PhotoImagesController < ApplicationController
   def userphotos
     # @user = @photo_images.user
     @photo_image = PhotoImage.find(params[:id])
-    @photo_images = @photo_image.user.photo_images.page(params[:page]).order('id DESC').limit(5)
+    @photo_images = @photo_image.user.photo_images
+    # .page(params[:page]).order('id DESC').limit(5)
+    # うまくできない
   end
 
 

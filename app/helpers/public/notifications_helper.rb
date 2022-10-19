@@ -19,10 +19,10 @@ module Public::NotificationsHelper
       tag.a(@visiter.name, href: user_path(@visiter), style:"font-weight: bold;")+"が"+tag.a('あなたの投稿', href: album_photo_image_path(notification.album_photo_image_id), style:"font-weight: bold;")+"にコメントしました"
       when "good" then
       @photo_comment = PhotoComment.find_by(id: @visiter_photo_comment)&.comment
-      tag.a(@visiter.name, href: user_path(@visiter), style:"font-weight: bold;")+"が"+tag.a('あなたの投稿', href: photo_image_path(notification.photo_image_id), style:"font-weight: bold;")+"にgoodしました"
+      tag.a(@visiter.name, href: user_path(@visiter), style:"font-weight: bold;")+"が"+tag.a('あなたのコメント', href: photo_image_path(notification.photo_image_id), style:"font-weight: bold;")+"にgoodしました"
       when "album_photo_good" then
       @album_photo_comment = AlbumPhotoComment.find_by(id: @visiter_album_photo_comment)&.comment
-      tag.a(@visiter.name, href: user_path(@visiter), style:"font-weight: bold;")+"が"+tag.a('あなたの投稿', href: album_photo_image_path(notification.album_photo_image_id), style:"font-weight: bold;")+"にgoodしました"
+      tag.a(@visiter.name, href: user_path(@visiter), style:"font-weight: bold;")+"が"+tag.a('あなたのコメント', href: album_photo_image_path(notification.album_photo_image_id), style:"font-weight: bold;")+"にgoodしました"
 
     end
   end
