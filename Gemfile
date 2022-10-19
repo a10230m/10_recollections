@@ -64,3 +64,5 @@ gem 'net-smtp'
 gem 'jquery-rails'
 
 gem "cocoon"
+
+gem 'kaminari','~> 1.2.1'

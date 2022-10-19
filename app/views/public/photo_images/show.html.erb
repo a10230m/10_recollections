@@ -1,148 +1,150 @@
-<div class="container">
-  <div class="photo">
-    <div class="row no-gutters">
-      <div class="col"></div>
-      <div class="col-10">
-      <% if @photo_image.image.attached? %>
-        <%= image_tag @photo_image.image, class: 'img-fluid' %>
-      <% end %>
-      </div>
-      <div class="col"></div>
-    </div>
 
-    <div class="row no-gutters">
-      <div class="col"></div>
+  <div class="container">
+    <div class="photo">
+      <div class="row no-gutters">
+        <div class="col"></div>
         <div class="col-10">
-          <div class="flex">
-            <div class="favo">
-              <div id="favorite_btn_<%= @photo_image.id %>">
-                <%= render partial: 'public/favorites/favorite', locals: {photo_image: @photo_image} %>
+        <% if @photo_image.image.attached? %>
+          <%= image_tag @photo_image.image, class: 'img-fluid' %>
+        <% end %>
+        </div>
+        <div class="col"></div>
+      </div>
+
+      <div class="row no-gutters">
+        <div class="col"></div>
+          <div class="col-10">
+            <div class="flex">
+              <div class="favo">
+                <div id="favorite_btn_<%= @photo_image.id %>">
+                  <%= render partial: 'public/favorites/favorite', locals: {photo_image: @photo_image} %>
+                </div>
+              </div>
+              <div class="comment">
+                <i class="fa-solid fa-comment" style="color: #60a39b;"></i><%= @photo_image.photo_comments.count %>
+              </div>
+              <div class="edit-delete">
+                <% if @photo_image.user == current_user %>
+                  <%= link_to edit_photo_image_path(@photo_image.id) do %>
+                    <i class="fa-solid fa-pen-to-square size"></i>
+                  <% end %>
+                  <%= link_to photo_image_path(@photo_image.id), method: :delete do %>
+                    <i class="fa-solid fa-trash-can size"></i>
+                  <% end %>
+                  <br>
+                <% end %>
               </div>
             </div>
-            <div class="edit-delete">
-              <% if @photo_image.user == current_user %>
-                <%= link_to edit_photo_image_path(@photo_image.id) do %>
-                  <i class="fa-solid fa-pen-to-square size"></i>
-                <% end %>
-                <%= link_to photo_image_path(@photo_image.id), method: :delete do %>
-                  <i class="fa-solid fa-trash-can size"></i>
-                <% end %>
-                <br>
+          </div>
+        <div class="col"></div>
+      </div>
+
+      <div class="row no-gutters">
+        <div class="col"></div>
+          <div class="col-10">
+            <div class="title">
+              <% if @photo_image.photo_title.present? %>
+                <%= @photo_image.photo_title %>
+              <% else %>
+                <div class="blank"></div>
+              <% end %>
+            </div>
+            <div class="cap">
+              <% if @photo_image.photo_caption.present? %>
+                <%= @photo_image.photo_caption %>
+              <% else %>
+                <div class="blank"></div>
+              <% end %>
+            </div>
+
+            <div class="flex">
+              <div class="name">
+                <%= image_tag @photo_image.user.get_profile_image(20,20) %>
+                <%= @photo_image.user.name %>
+              </div>
+              <div class="time">
+                <%= @photo_image.created_at.strftime('%Y/%m/%d %H:%M') %>
+              </div>
+            </div>
+          </div>
+        <div class="col"></div>
+      </div>
+
+
+      <div class="row no-gutters">
+        <div class="col"></div>
+          <div class="col-10">
+            <div class="comment-good">
+              <table class="table table-borderless">
+                <thead>
+                  <tr>
+                    <th colspan="12">comment</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% @photo_image.photo_comments.each do |photo_comment| %>
+                    <tr>
+                      <td colspan="2">
+                        <%= image_tag photo_comment.user.get_profile_image(20,20) %><%= photo_comment.user.name %>
+                      </td>
+                      <td colspan="5"><%= photo_comment.comment %></td>
+                      <td colspan="2">
+                        <% if photo_comment.user == current_user %>
+                          <%= link_to photo_image_photo_comment_path(photo_comment.photo_image, photo_comment), method: :delet do %>
+                            <i class="fa-solid fa-trash-can size"></i>
+                          <% end %>
+                        <% else %>
+                        <% end %>
+                      </td>
+                      <td colspan="2">
+                        <div id="good_btn_<%= photo_comment.id %>">
+                          <%= render partial: 'public/goods/good', locals: {photo_image: @photo_image, photo_comment: photo_comment} %>
+                        </div>
+                      </td>
+                      <td colspan="2">
+                        <%= photo_comment.created_at.strftime('%Y/%m/%d %H:%M') %>
+                      </td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        <div class="col"></div>
+      </div>
+
+      <div class="row no-gutters">
+        <div class="col"></div>
+          <div class="col-10">
+            <div class="comment">
+
+              <%= form_with model: [@photo_image, @new_photo_comment] do |f| %>
+                <div class="row">
+                  <div class="col-3　style="width:33%;"">
+                    <div class="form-group">
+                      <%= f.text_area :comment, rows: '2', placeholder: "コメントをここに" %>
+                    </div>
+                  </div>
+                  <div class="col-2 align-self-end">
+                    <div class="form-group">
+                      <%= f.submit "コメント", class: "btn btn-info" %>
+                    </div>
+                  </div>
+                </div>
               <% end %>
             </div>
           </div>
-        </div>
-      <div class="col"></div>
-    </div>
+        <div class="col"></div>
+      </div>
 
-    <div class="row no-gutters">
-      <div class="col"></div>
-        <div class="col-10">
-          <div class="title">
-            <% if @photo_image.photo_title.present? %>
-              <%= @photo_image.photo_title %>
-            <% else %>
-              <div class="blank"></div>
-            <% end %>
+      <div class="row no-gutters">
+        <div class="col"></div>
+          <div class="col-10">
+           <%= link_to "PHOTO ALLへ戻る",photo_images_path %>
           </div>
-          <div class="cap">
-            <% if @photo_image.photo_caption.present? %>
-              <%= @photo_image.photo_caption %>
-            <% else %>
-              <div class="blank"></div>
-            <% end %>
-          </div>
-
-          <div class="flex">
-            <div class="name">
-              <%= image_tag @photo_image.user.get_profile_image(20,20) %>
-              <%= @photo_image.user.name %>
-            </div>
-            <div class="time">
-              <%= @photo_image.created_at.strftime('%Y/%m/%d %H:%M') %>
-            </div>
-          </div>
-        </div>
-      <div class="col"></div>
+        <div class="col"></div>
+      </div>
     </div>
-
-
-    <div class="row no-gutters">
-      <div class="col"></div>
-        <div class="col-10">
-          <div class="comment-good">
-            <table class="table table-borderless">
-              <thead>
-                <tr>
-                  <th><i class="fa-solid fa-comment" style="color: #60a39b;"></i><%= @photo_image.photo_comments.count %></th>
-                </tr>
-              </thead>
-              <tbody>
-                <% @photo_image.photo_comments.each do |photo_comment| %>
-                  <tr>
-                    <td colspan="2">
-                      <%= image_tag photo_comment.user.get_profile_image(20,20) %><%= photo_comment.user.name %>
-                    </td>
-                    <td colspan="5"><%= photo_comment.comment %></td>
-                    <td colspan="2">
-                      <% if photo_comment.user == current_user %>
-                        <%= link_to photo_image_photo_comment_path(photo_comment.photo_image, photo_comment), method: :delet do %>
-                          <i class="fa-solid fa-trash-can size"></i>
-                        <% end %>
-                      <% else %>
-                      <% end %>
-                    </td>
-                    <td colspan="2">
-                      <div id="good_btn_<%= photo_comment.id %>">
-                        <%= render partial: 'public/goods/good', locals: {photo_image: @photo_image, photo_comment: photo_comment} %>
-                      </div>
-                    </td>
-                    <td colspan="2">
-                      <%= photo_comment.created_at.strftime('%Y/%m/%d %H:%M') %>
-                    </td>
-                  </tr>
-                <% end %>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      <div class="col"></div>
-    </div>
-
-    <div class="row no-gutters">
-      <div class="col"></div>
-        <div class="col-10">
-          <div class="comment">
-
-            <%= form_with model: [@photo_image, @new_photo_comment] do |f| %>
-              <div class="row">
-                <div class="col-3　style="width:33%;"">
-                  <div class="form-group">
-                    <%= f.text_area :comment, rows: '2', placeholder: "コメントをここに" %>
-                  </div>
-                </div>
-                <div class="col-2 align-self-end">
-                  <div class="form-group">
-                    <%= f.submit "コメント", class: "btn btn-info" %>
-                  </div>
-                </div>
-              </div>
-            <% end %>
-          </div>
-        </div>
-      <div class="col"></div>
-    </div>
-
-    <div class="row no-gutters">
-      <div class="col"></div>
-        <div class="col-10">
-         <%= link_to "PHOTO ALLへ戻る",photo_images_path %>
-        </div>
-      <div class="col"></div>
-    </div>
-
-
-
   </div>
-</div>
+
 

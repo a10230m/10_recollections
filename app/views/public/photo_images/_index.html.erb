@@ -1,34 +1,35 @@
 <% photo_images.each do |photo_image| %>
-<div class="col-3 px-2">
-  <%= link_to photo_image_path(photo_image.id) do %>
-    <%= image_tag photo_image.get_image(500, 500), class: 'album-image-cover' %>
-  <% end %>
+  <div class="col-3 px-2">
+    <div class="photo-all">
+      <%= link_to photo_image_path(photo_image.id) do %>
+        <%= image_tag photo_image.get_image(500, 500), class: 'album-image-cover' %>
+      <% end %>
 
-  <div class="flex">
-    <div class="favo">
-      <div id="favorite_btn_<%= photo_image.id %>">
-        <%= render partial: 'public/favorites/favorite', locals: {photo_image: photo_image} %>
+      <div class="flex">
+        <div class="favo">
+          <div id="favorite_btn_<%= photo_image.id %>">
+            <%= render partial: 'public/favorites/favorite', locals: {photo_image: photo_image} %>
+          </div>
+        </div>
+        <div class="comment">
+          <i class="fa-solid fa-comment" style="color: #60a39b;"></i>
+          <%= link_to "#{photo_image.photo_comments.count} ", photo_image_path(photo_image.id), :style=>"color: #60a39b;" %>
+        </div>
+        <div class="edit-delete">
+          <% if photo_image.user == current_user %>
+            <%= link_to edit_photo_image_path(photo_image.id) do %>
+              <i class="fa-solid fa-pen-to-square size"></i>
+            <% end %>
+            <%= link_to photo_image_path(photo_image.id), method: :delete do %>
+              <i class="fa-solid fa-trash-can size"></i>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="fontcolor">
+      <%= photo_image.created_at.strftime('%Y/%m/%d') %>
       </div>
     </div>
-    <div class="comment">
-      <i class="fa-solid fa-comment" style="color: #60a39b;"></i>
-      <%= link_to "#{photo_image.photo_comments.count} ", photo_image_path(photo_image.id), :style=>"color: #60a39b;" %>
-    </div>
-    <div class="edit-delete">
-      <% if photo_image.user == current_user %>
-        <%= link_to edit_photo_image_path(photo_image.id) do %>
-          <i class="fa-solid fa-pen-to-square size"></i>
-        <% end %>
-        <%= link_to photo_image_path(photo_image.id), method: :delete do %>
-          <i class="fa-solid fa-trash-can size"></i>
-        <% end %>
-      <% end %>
-    </div>
   </div>
-
-  <div class="fontcolor">
-  <%= photo_image.created_at.strftime('%Y/%m/%d') %>
-  </div>
-
-</div>
 <% end %>

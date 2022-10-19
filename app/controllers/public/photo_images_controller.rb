@@ -21,10 +21,8 @@ class Public::PhotoImagesController < ApplicationController
   end
 
   def index
-    @photo_images = PhotoImage.all.order('id DESC')
+    @photo_images = PhotoImage.page(params[:page]).order('id DESC')
     @photo_image_count = PhotoImage.where(params[:photo_image_id]).count
-    # @photo_images = PhotoImage.page(params[:page])
-    # @photo_images = PhotoImage.where(created_at: @month.in_time_zone.all_month).order(created_at: :asc)
   end
 
   def search
@@ -35,10 +33,9 @@ class Public::PhotoImagesController < ApplicationController
   def userphotos
     # @user = @photo_images.user
     @photo_image = PhotoImage.find(params[:id])
-    @photo_images = @photo_image.user.photo_images
-
-    # @albums = @user.album.all.order('id DESC').limit(5)
+    @photo_images = @photo_image.user.photo_images.page(params[:page]).order('id DESC').limit(5)
   end
+
 
 
   def edit

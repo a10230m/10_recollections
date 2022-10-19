@@ -1,11 +1,15 @@
-  <h4>
-    Photo All<span><%= @photo_images.count %>件</span>
-  </h4>
+<div class="container">
+  <h1><%= @user.name %>のPhoto All<span><%= @photo_images.count %>件</span></h1>
+</div>
 
-  <div class="container">
-    <div class="row row no-gutters">
-        <%= render 'public/photo_images/index', photo_images: @photo_images %>
-    </div>
-  </div>
+<div class="container">
+  <%= render 'public/photo_images/index', photo_images: @photo_images %>
+</div>
 
-    <%= link_to "back", user_path(@user.id) %>
+<div class="container">
+  <% if @user == current_user %>
+    <%= link_to "自分のpage", user_path(@user.id) %>
+   <% else %>
+    <%= link_to "#{@user.name}のpage", user_path(@user.id) %>へ
+  <% end %>
+</div>

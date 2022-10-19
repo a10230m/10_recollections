@@ -1,19 +1,9 @@
 <div class="container">
-  <div class="text-center">
-    <p>
-      Welcome! recollections / 回想<br>
-      一人ひとりの想い出を記録・共有<br>
-    </p>
-  </div>
-</div>
-
-<div class="container">
   <div class="row">
     <div class="col-md-3"></div>
-    <div class="col-md-6 border rounded-pill p-3">
-      <div class="sign_up">
-        <h2 class="text-center">SIGNUP</h2>
-        <br>
+    <div class="col-md-6">
+      <div class="sign_up-box">
+        <h2 class="signup">SIGNUP</h2>
         <%= form_with model: resource, as: resource_name, url: registration_path(resource_name) do |f| %>
         <%= render "public/shared/error_messages", resource: resource %>
 
@@ -25,7 +15,6 @@
         <div class="field">
           <i class="fa-solid fa-image-portrait"></i>
           <%= f.label :profile_image %>
-          <%#= f.file_field :profile_image %>
           <%= f.file_field :profile_image, placeholder: "プロフィール画像", accept: "image/*" %>
         </div>
 
@@ -45,14 +34,12 @@
           <i class="fa-solid fa-circle-info"></i>
           <%= f.label :introduction %><span style="color:#a9a9a9;">（任意）</span>
           <%= f.text_field :introduction, id: "introduction", placeholder: "about me" %>
-
         </div>
 
 
         <div class="field">
           <i class="fa-solid fa-key"></i>
           <%= f.label :password %>
-
           <%= f.password_field :password, autocomplete: "new-password" %>
         </div>
 
@@ -61,23 +48,18 @@
           <%= f.label :password_confirmation %>
           <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
         </div>
-        <br>
 
-        <div class="actions text-center">
-          <%= f.submit "新規登録", class: "btn btn-success" %>
+        <div class="actions">
+          <%= f.submit "新規登録", class: "btn btn-success w-50" %>
         </div>
-        <br>
-        <div class="line"></div>
         <% end %>
-        <br>
 
-        <div class="text-center">
+        <div class="ctionsr">
           <%= render "public/shared/links" %>
         </div>
-
-        <div class="col-md-3"></div>
       </div>
     </div>
+    <div class="col-md-3"></div>
   </div>
 </div>
 

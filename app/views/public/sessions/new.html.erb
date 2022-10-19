@@ -1,44 +1,42 @@
 <div class="container">
-  <div class="text-center">
-    <p>
-      Welcome! recollections / 回想<br>
-      一人ひとりの想い出を記録・共有<br>
-    </p>
+  <div class="row no-gutters">
+    <div class="col-md-3"></div>
+      <div class="col-md-6">
+        <div class="login-box">
+          <h2 class="login">LOGIN</h2>
+          <%= form_with model: resource, as: resource_name, url: session_path(resource_name) do |f| %>
+
+          <div class="field">
+            <%= f.label :email %><br />
+            <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+          </div>
+
+          <div class="field">
+            <%= f.label :password %><br />
+            <%= f.password_field :password, autocomplete: "current-password" %>
+          </div>
+
+          <div class="password-forgot">
+            👉パスワードを忘れた方はこちら
+          </div>
+
+          <% if devise_mapping.rememberable? %>
+            <div class="field">
+              <%= f.check_box :remember_me %>
+              <%= f.label :"ログイン情報を保存する"%>
+            </div>
+          <% end %>
+
+          <div class="actions">
+            <%= f.submit "LOGIN", class: "btn btn-primary w-50" %>
+          </div>
+          <% end %>
+
+          <div class="actions">
+            <%= render "public/shared/links" %>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3"></div>
   </div>
 </div>
-
-<h2>LOGIN</h2>
-
-<%= form_with model: resource, as: resource_name, url: session_path(resource_name) do |f| %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  <div class="password-forgot">
-    👉パスワードを忘れた方はこちら
-  </div>
-
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :"ログイン情報を保存する"%>
-    </div>
-  <% end %>
-
-  <div class="actions border-bottom border-secondary">
-    <%= f.submit "Log in", class: "btn btn-primary" %>
-  </div>
-  <br>
-
-
-
-<% end %>
-
-<%= render "public/shared/links" %>
