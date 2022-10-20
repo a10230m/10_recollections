@@ -1,53 +1,100 @@
 <div class="container">
+  <div class='profileimage'>
+    <%= image_tag @user.get_profile_image(120,120), class: "rounded-circle" %>
+  </div>
   <div class="circle">
-    <strong>User／<%= @user.name %></strong>
+    <strong><%= @user.name %></strong>
   </div>
 </div>
 
 <div class="container">
   <div class="row">
-    <div class="col-3">
-      <i class="fa-solid fa-user"></i>.name
+    <div class="col-1"></div>
+    <div class="col-2">
+      <div class="box">
+        <i class="fa-solid fa-user"></i> name
+      </div>
     </div>
-    <div class="col-3">
-      <i class="fa-solid fa-cake-candles"></i>.birthday
+    <div class="col-8">
+      <div class="box">
+        <%= @user.name %>
+      </div>
     </div>
-    <div class="col-6">
-      <i class="fa-solid fa-circle-info"></i>.introduction
+  </div>
+  <div class="row">
+    <div class="col-1"></div>
+    <div class="col-2">
+      <div class="box">
+        <i class="fa-solid fa-cake-candles"></i> birthday
+      </div>
     </div>
-    <div class="w-100">
+    <div class="col-8">
+      <div class="box">
+        <%= @user.birthdate %>
+      </div>
     </div>
-    <div class="col-3">
-      <%= image_tag @user.get_profile_image(20,20), class: "rounded-circle" %>
-      <%= @user.name %>
+  </div>
+  <div class="row">
+    <div class="col-1"></div>
+    <div class="col-2">
+      <div class="box">
+        <i class="fa-solid fa-circle-info"></i> introduction
+      </div>
     </div>
-    <div class="col-3">
-      <%= @user.birthdate %>
+    <div class="col-8">
+      <div class="box">
+        <%= @user.introduction %>
+      </div>
     </div>
-    <div class="col-6">
-      <%= @user.introduction %>
+  </div>
+  <div class="row">
+    <div class="col-1"></div>
+    <div class="col-2">
+      <div class="box"></div>
+    </div>
+    <div class="col-8">
+      <div class="box">
+        <%= link_to favorites_user_path(@user) do %>
+          <i class="fa-solid fa-heart hearton"></i><span style="color: gray;"> favorites</span>
+        <% end%>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-1"></div>
+    <div class="col-2">
+      <div class="box"></div>
+    </div>
+    <div class="col-8">
+      <div class="box">
+        <%= link_to userphotos_user_path(@user.id) do %>
+          <i class="fa-solid fa-image size"></i><span style="color: gray;"> PHOTO</span>
+        <% end %>
+        <span style="color: gray;"><<%= @user.photo_images.count %>photos></span>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-1"></div>
+    <div class="col-2">
+      <div class="box"></div>
+    </div>
+    <div class="col-8">
+      <div class="box">
+        <%= link_to  useralbums_user_path(@user.id)  do %>
+          <i class="fa-solid fa-images size"></i><span style="color: gray;"> ALBUM</span>
+        <% end %>
+        <span style="color: gray;"><<%= @user.albums.count %>albums></span>
+      </div>
     </div>
   </div>
 </div>
 
 <div class="container">
   <div class="row">
-    <div class="col-3">
-      <%= link_to favorites_user_path(@user) do %>
-        <i class="fa-solid fa-heart hearton"></i><span style="color: gray;"> favorites</span>
-      <% end%>
-    </div>
-    <div class="col-3">
-      <%= link_to userphotos_user_path(@user.id) do %>
-        <i class="fa-solid fa-image size"></i><span style="color: gray;"> PHOTO</span>
-      <% end %>
-          <span style="color: gray;"><<%= @user.photo_images.count %>photos></span>
-    </div>
-    <div class="col-3">
-      <%= link_to  useralbums_user_path(@user.id)  do %>
-        <i class="fa-solid fa-images size"></i><span style="color: gray;"> ALBUM</span>
-      <% end %>
-      <span style="color: gray;"><<%= @user.albums.count %>albums></span>
+    <div class="col-1"></div>
+    <div class="col-5">
+      <%= link_to "USER一覧へ戻る", users_path, class: "btn btn-outline-lightgreen w-90" %>
     </div>
   </div>
 </div>

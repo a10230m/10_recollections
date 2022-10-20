@@ -1,17 +1,27 @@
 @import '~bootstrap/scss/bootstrap';
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
+// @import url('https://fonts.googleapis.com/css2?family=Sacramento&display=swap');
 
 *{
   box-sizing: border-box; /*余白や線を幅や高さに含める*/
 }
 
-body {
+header, body, p, footer {
+  font-family:
+  'Raleway', 'Futura', 'Akzidenz Grotesk', 'Segoe UI', 'Palatino', 'Copperplate',
+  'alba', '遊ゴシック', '筑紫ゴシック', '中ゴシックBBB', 'メイリオ', 'Meiryo UI', 'Meiryo', sans-serif;
+}
+
+
+.title, body {
   weight: 100%;
   height: 800px;
   color: #6c757d;
 }
 
-
+.navbar-light .navbar-brand {
+  color: #6c757d;
+}
 
 // top
 .top {
@@ -20,7 +30,7 @@ body {
 
 // header imege icon
 .fa-2x {
-  color: black;
+  color: #6c757d;
   margin: 10px;
 }
 
@@ -30,10 +40,16 @@ body {
   color: #008075;
 }
 
-// linkなし
+// link
 a, .link {
   text-decoration: none;
+  color: #60a39b;
+  text-align: center;
 }
+.link a:hover {
+  color: #008075;
+}
+
 
 // 文字
 p {
@@ -44,6 +60,10 @@ p {
   color: #6c757d;
 }
 
+// mypage userpageの表の余白
+.box {
+  margin-bottom: 10px;
+}
 
 // 全てのcontainer
 .container {
@@ -58,14 +78,13 @@ p {
 
 // 名前の下敷き画像
 .circle {
-  color: black;
-  width: 180px;
+  width: 120px;
   height: 40px;
-  margin: 0 -15px;
+  line-height: 40px;
   mix-blend-mode: multiply;
   background: rgba( 255, 145, 171, 0.55 );
   border-radius: 30% 90% 30% 90%;
-  position: center center;
+  text-indent: 2rem;
 }
 
 
@@ -88,18 +107,6 @@ p {
   margin-left: auto;
   margin-top: 30px;
   margin-bottom: 30px;
-}
-
-
-// 罫線
-// .line {
-//   border-bottom: 1px solid #dcdcdc;
-//   margin-top: 30px;
-//   margin-bottom: 30px;
-// }
-
-.line2 {
-  border-bottom: 1px solid #dcdcdc;
 }
 
 
@@ -187,13 +194,21 @@ p {
   text-overflow: ellipsis;
 }
 
+.count-font {
+  font-size: 0.8em;
+  color: #9aa7b3;
+  font-weight: lighter;
+}
+
 
 
 
 // bootstrapボタンの色変更
 .size {
-  color: #008075;
+  color: #60a39b;
 }
+
+
 
 // 写真・アルバム詳細のコメント欄
 .comment-good {
@@ -244,14 +259,14 @@ p {
 
 // ヘッダーのbootstrapボタン
 .btn {
-  padding: 10px 20px;
   margin: 3px;
   border: 0 none;
-  font-weight: 700;
   letter-spacing: 0;
   text-transform: uppercase;
+  color: #6c757d;
 }
 
+// // // // ボタン1
 // 通常のボタン色
 .btn-outline-outline-turquoise,
 .btn-outline-turquoise.disabled, .btn-outline-turquoise:disabled {
@@ -262,7 +277,8 @@ p {
 
 // focusされた時の枠線の色
 .btn-outline-turquoise:focus, .btn-outline-turquoise.focus,
-.btn-outline-turquoise:not(:disabled):not(.disabled):active:focus, .btn-outline-turquoise:not(:disabled):not(.disabled).active:focus,
+.btn-outline-turquoise:not(:disabled):not(.disabled):active:focus,
+.btn-outline-turquoise:not(:disabled):not(.disabled).active:focus,
 .show > .btn-outline-turquoise.dropdown-toggle:focus {
   box-shadow: 0 0 0 0.2rem rgba(0, 204, 187, 0.5);
 }
@@ -276,7 +292,8 @@ p {
 }
 
 // active時の色（hover時と同等かさらに濃いor暗めの色を指定）
-.btn-outline-turquoise:not(:disabled):not(.disabled):active, .btn-outline-turquoise:not(:disabled):not(.disabled).active,
+.btn-outline-turquoise:not(:disabled):not(.disabled):active,
+.btn-outline-turquoise:not(:disabled):not(.disabled).active,
 .show > .btn-outline-turquoise.dropdown-toggle {
   color: #fff;
   background-color: #00665e;
@@ -312,3 +329,41 @@ p {
   background-color: white;
   color: #00a497;
 }
+
+
+// // // // ボタン2
+// 通常のボタン
+.btn-outline-outline-lightgreen,
+.btn-outline-lightgreen.disabled, .btn-outline-lightgreen:disabled {
+  color: #fff;
+  background-color: #60a39b;
+  border-color: #60a39b;
+}
+
+// focusされた時の枠線の色
+.btn-outline-lightgreen:focus, .btn-outline-lightgreen.focus,
+.btn-outline-lightgreen:not(:disabled):not(.disabled):active:focus,
+.btn-outline-lightgreen:not(:disabled):not(.disabled).active:focus,
+.show > .btn-outline-lightgreen.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem rgba(0, 204, 187, 0.5);
+}
+
+
+// hover時（マウスカーソルを重ねた時）の色（通常より濃いor暗めの色を指定）
+.btn-outline-lightgreen:hover {
+  color: #fff;
+  background-color: #60a39b;
+  border-color: #60a39b;
+}
+
+// active時の色（hover時と同等かさらに濃いor暗めの色を指定）
+.btn-outline-lightgreen:not(:disabled):not(.disabled):active,
+.btn-outline-lightgreen:not(:disabled):not(.disabled).active,
+.show > .btn-outline-lightgreen.dropdown-toggle {
+  color: #fff;
+  background-color: #00665e;
+  border-color: #00665e;
+}
+
+
+// // // // ボタン3

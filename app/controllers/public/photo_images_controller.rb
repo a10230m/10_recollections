@@ -21,7 +21,7 @@ class Public::PhotoImagesController < ApplicationController
   end
 
   def index
-    @photo_images = PhotoImage.page(params[:page]).order('id DESC')
+    @photo_images = PhotoImage.order('id DESC').page(params[:page])
     @photo_image_count = PhotoImage.where(params[:photo_image_id]).count
   end
 
@@ -30,13 +30,14 @@ class Public::PhotoImagesController < ApplicationController
   end
 
 
-  def userphotos
-    # @user = @photo_images.user
-    @photo_image = PhotoImage.find(params[:id])
-    @photo_images = @photo_image.user.photo_images
-    # .page(params[:page]).order('id DESC').limit(5)
-    # うまくできない
-  end
+  # def userphotos
+  #   # @user = @photo_images.user
+  #   @photo_image = PhotoImage.find(params[:id])
+  #   @photo_images = @photo_image.user.photo_images
+
+  #   # .page(params[:page]).order('id DESC').limit(5)
+  #   # うまくできない
+  # end
 
 
 

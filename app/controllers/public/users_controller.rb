@@ -9,7 +9,7 @@ class Public::UsersController < ApplicationController
     @user = current_user
     @photo_image_count = @user.photo_images.where(params[:photo_image_id]).count
     @photo_images = @user.photo_images
-    @albums = @user.albums.order('id DESC').limit(5)
+    @albums = @user.albums
 
   end
 
@@ -20,8 +20,8 @@ class Public::UsersController < ApplicationController
     end
     @photo_images = @user.photo_images
     @photo_image_count = @user.photo_images.where(params[:photo_image_id]).count
-    @photo_images = @user.photo_images.order('id DESC').limit(4)
-    @albums = @user.albums.order('id DESC').limit(5)
+    @photo_images = @user.photo_images.order('id DESC')
+    @albums = @user.albums
   end
 
   def index
@@ -57,12 +57,14 @@ class Public::UsersController < ApplicationController
 
   def userphotos
     @user = User.find(params[:id])
-    @photo_images = @user.photo_images
+    @photo_images = @user.photo_images.order('id DESC').page(params[:page])
+    @photo_images_count = @user.photo_images.count
   end
 
   def useralbums
     @user = User.find(params[:id])
-    @albums = @user.albums
+    @albums = @user.albums.order('id DESC').page(params[:page])
+    @albums_count = @user.albums.count
   end
 
 private

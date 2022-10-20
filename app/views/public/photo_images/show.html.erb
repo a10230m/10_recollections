@@ -1,7 +1,7 @@
 
   <div class="container">
     <div class="photo">
-      <div class="row no-gutters">
+      <div class="row">
         <div class="col"></div>
         <div class="col-10">
           <div class="image">
@@ -13,7 +13,7 @@
         <div class="col"></div>
       </div>
 
-      <div class="row no-gutters">
+      <div class="row">
         <div class="col"></div>
           <div class="col-10">
             <div class="flex">
@@ -41,7 +41,7 @@
         <div class="col"></div>
       </div>
 
-      <div class="row no-gutters">
+      <div class="row">
         <div class="col"></div>
           <div class="col-10">
             <div class="title">
@@ -73,7 +73,7 @@
       </div>
 
 
-      <div class="row no-gutters">
+      <div class="row">
         <div class="col"></div>
           <div class="col-10">
             <div class="comment-good">
@@ -83,7 +83,7 @@
                 <div class="col-2">
                     <%= image_tag photo_comment.user.get_profile_image(20,20) %><%= photo_comment.user.name %>
                 </div>
-                <div class="col-6">
+                <div class="col-5">
                   <%= photo_comment.comment %>
                 </div>
                 <div class="col-1">
@@ -91,7 +91,7 @@
                     <%= render partial: 'public/goods/good', locals: {photo_image: @photo_image, photo_comment: photo_comment} %>
                   </div>
                 </div>
-                 <div class="col-2">
+                 <div class="col-3">
                   <%= photo_comment.created_at.strftime('%Y/%m/%d %H:%M') %>
                 </div>
                 <div class="col-1">
@@ -109,7 +109,7 @@
         <div class="col"></div>
       </div>
 
-      <div class="row no-gutters">
+      <div class="row">
         <div class="col"></div>
           <div class="col-10">
             <div class="comment">
@@ -132,13 +132,11 @@
           </div>
         <div class="col"></div>
       </div>
+    </div>
 
-      <div class="row no-gutters">
-        <div class="col"></div>
-          <div class="col-10">
-           <%= link_to "PHOTO ALLへ戻る",photo_images_path %>
-          </div>
-        <div class="col"></div>
+    <div class="container">
+      <div class="link">
+        <%= link_to "PHOTO ALLへ戻る", photo_images_path, class: "btn btn-outline-lightgreen w-90" %>
       </div>
     </div>
   </div>

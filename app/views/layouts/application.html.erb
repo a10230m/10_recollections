@@ -9,6 +9,7 @@
 
       <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
       <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+      <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
       <script src="https://kit.fontawesome.com/7e258a15bb.js" crossorigin="anonymous"></script>
   </head>
 
@@ -40,19 +41,19 @@
                   <%= link_to "NOTICE", notifications_path, class: "btn btn-outline-turquoise w-90" %>
                 </li>
                 <li>
-                  <%= link_to "Mypage", mypage_users_path, class: "btn btn-outline-turquoise w-90" %>
+                  <%= link_to "MYPAGE", mypage_users_path, class: "btn btn-outline-turquoise w-90" %>
                 </li>
                 <li>
-                  <%= link_to "ALL", photo_images_path, class: "btn btn-outline-turquoise w-90" %>
+                  <%= link_to "PHOTO ALL", photo_images_path, class: "btn btn-outline-turquoise w-90" %>
                 </li>
                 <li>
                   <%= link_to "ALBUM", albums_path, class: "btn btn-outline-turquoise w-90" %>
                 </li>
                 <li>
-                  <%= link_to "User", users_path, class: "btn btn-outline-turquoise w-90" %>
+                  <%= link_to "USER", users_path, class: "btn btn-outline-turquoise w-90" %>
                 </li>
                 <li>
-                  <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "btn btn-outline-turquoise w-90" %>
+                  <%= link_to "LOGOUT", destroy_user_session_path, method: :delete, class: "btn btn-outline-turquoise w-90" %>
                 </li>
 
               <% elsif current_admin %>
@@ -60,16 +61,16 @@
                 <span class"text-center">management page</span>
               </li>
               <li>
-                <%= link_to "ALL", admin_photo_images_path, class: "btn btn-outline-turquoise w-90" %>
+                <%= link_to "PHOTO ALL", admin_photo_images_path, class: "btn btn-outline-turquoise w-90" %>
               </li>
               <li>
                 <%= link_to "ALBUM", admin_albums_path, class: "btn btn-outline-turquoise w-90" %>
               </li>
               <li>
-                <%= link_to "User", admin_users_path, class: "btn btn-outline-turquoise w-90" %>
+                <%= link_to "USER", admin_users_path, class: "btn btn-outline-turquoise w-90" %>
               </li>
               <li>
-                <%= link_to "logout", destroy_admin_session_path, method: :delete, class: "btn btn-outline-turquoise w-90" %>
+                <%= link_to "LOGOUT", destroy_admin_session_path, method: :delete, class: "btn btn-outline-turquoise w-90" %>
               </li>
 
               <% else %>
