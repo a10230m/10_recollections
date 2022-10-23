@@ -19,11 +19,11 @@
         </div>
         <div class="edit-delete">
           <% if album.user == current_user %>
-            <%= link_to edit_album_path(album.id) do %>
-              <i class="fa-solid fa-pen-to-square size"></i>
+            <%= link_to edit_album_path(album.id), class: "link" do %>
+              <i class="fa-solid fa-pen-to-square"></i>
             <% end %>
-            <%= link_to album_path(album.id), method: :delete do %>
-              <i class="fa-solid fa-trash-can size"></i>
+            <%= link_to album_path(album.id), method: :delete, class: "link" do %>
+              <i class="fa-solid fa-trash-can"></i>
             <% end %>
             <br>
           <% end %>
@@ -66,3 +66,6 @@
 
 <% end %>
 
+<div class="container">
+  <%= paginate @albums %>
+</div>

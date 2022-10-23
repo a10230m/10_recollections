@@ -11,23 +11,6 @@ class Admin::PhotoImagesController < ApplicationController
     @user = @photo_image.user
   end
 
-
-  # def edit
-  #   @photo_image = PhotoImage.find(params[:id])
-  #   if @photo_image.user != current_user
-  #     redirect_to admin_photo_images_path
-  #   end
-  # end
-
-  # def update
-  #   @photo_image = PhotoImage.find(params[:id])
-  #   if @photo_image.update(photo_image_params)
-  #     redirect_to admin_photo_image_path(@photo_image.id), notice: 'Updated successfully! Thank you.'
-  #   else
-  #     render :edit
-  #   end
-  # end
-
   def destroy
     @photo_image = PhotoImage.find(params[:id])
     @photo_image.destroy

@@ -7,5 +7,5 @@
   <%#= f.number_field :day %>
   <%#= f.select :number, *[01..31], include_blank: "day" %>
   <!--↑セレクトボックスにしてもいい　※ただし、年が4桁、月日が二桁で選択できるようにすること-->
-  <%= submit_tag 'Search' %>
+  <%= submit_tag 'Search', class: "btn btn-outline-lightgreen" %>
 <% end %>

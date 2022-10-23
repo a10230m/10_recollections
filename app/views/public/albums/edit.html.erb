@@ -1,38 +1,125 @@
-
-
 <div class="container">
-  <h2>ALBUM EDIT</h2>
-</div>
+  <div class="row">
+    <div class="col-1"></div>
+    <div class="col-11">
+      <div class="box">
+        <h2 class="text-left">ALBUM EDIT</h2>
+      </div>
+    </div>
+  </div>
 
 
-<div class="container">
+
+
   <%= form_with model: @album, url: album_path(@album.id), method: :patch do |f| %>
-    <%= f.file_field :images, multiple: true %><br><br>
-    <%= f.label :album_title %>
-    <%= f.text_field :album_title %><br>
-    <%= f.label :album_caption %>
-    <%= f.text_area :album_caption %>
-
-    <%= f.label :user_id %>
-    <%= f.collection_check_boxes :user_ids, @users, :id, :name %>
-
-    <div class="line"></div>
-    <p>削除する画像にチェック！</p>
-    <% @album.album_photo_images.each do |album_photo_image| %>
-      <% if album_photo_image.image.attached? %>
-        <div style="display: flex; flex-wrap: wrap; width: 100%;">
-          <div style="display: flex; margin:7px 7px 7px 7px;">
-            <%= f.check_box :album_photo_image_ids, { multiple: true , checked: false}, album_photo_image.id  %>
+  <div class="row">
+    <div class="col-1"></div>
+    <div class="col-md-3">
+      <div class="box">
+        <div class="field">
+          <i class="fa-solid fa-images"></i>
+          <%= f.label :album %>
+        </div>
+      </div>
+    </div>
+    <div class="col-8">
+      <div class="box">
+         <%= f.file_field :images, multiple: true %>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-1"></div>
+    <div class="col-md-3">
+      <div class="box">
+        <div class="field">
+          <%= f.label :title %>
+        </div>
+      </div>
+    </div>
+    <div class="col-8">
+      <div class="box">
+        <%= f.text_field :album_title %>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-1"></div>
+    <div class="col-md-3">
+      <div class="box">
+        <div class="field">
+          <%= f.label :caption %>
+        </div>
+      </div>
+    </div>
+    <div class="col-8">
+      <div class="box">
+        <%= f.text_area :album_caption %>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-1"></div>
+    <div class="col-md-3">
+      <div class="box">
+        <div class="field">
+          <%= f.label :'共有USER' %>
+        </div>
+      </div>
+    </div>
+    <div class="col-8 d-flex align-items-end">
+      <div class="box">
+          <%= f.collection_check_boxes :user_ids, @users, :id, :name do |b| %>
+            <%= b.check_box %>
+            <%= b.text %>
+          <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-1"></div>
+    <div class="col-md-3">
+      <div class="box">
+        <p>削除する画像を選択</p>
+      </div>
+    </div>
+    <div class="col-8">
+      <div class="box">
+        <% @album.album_photo_images.each do |album_photo_image| %>
+        <% if album_photo_image.image.attached? %>
+          <%= f.check_box :album_photo_image_ids, { multiple: true , checked: false}, album_photo_image.id  %>
             <label for="_image_ids_<%= album_photo_image.id %>" >
               <%= link_to album_photo_image_path(album_photo_image.id) do %>
-                <%= image_tag album_photo_image.image, size: '300x200' %>
+                <%= image_tag album_photo_image.get_image(500, 500), class: 'album-image-cover' %>
               <% end %>
-             </label>
-          </div>
-        </div>
-      <% end %>
-    <% end %>
-    <%= f.submit "UPDATE", class: "btn btn-success" %>
+            </label>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-1"></div>
+    <div class="col-md-3">
+    </div>
+    <div class="col-8">
+      <div class="box">
+        <%= f.submit 'UPDATE', class: "btn btn-outline-lightgreen w-25" %>
+      </div>
+    </div>
+  </div>
   <% end %>
-  <%= link_to "back", album_path(@album.id) %>
+
+  <div class="row">
+    <div class="col-1"></div>
+    <div class="col-md-3">
+    </div>
+    <div class="col-8">
+      <div class="box">
+        <%= link_to "ALBUMへ戻る", album_path(@album.id), class: "btn btn-outline-lightgreen w-25" %>
+      </div>
+    </div>
+  </div>
+
+
 </div>

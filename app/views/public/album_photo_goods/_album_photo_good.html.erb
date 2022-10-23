@@ -1,7 +1,7 @@
   <% if album_photo_comment.gooded_by?(current_user) %>
     <td>
       <%= link_to album_photo_image_album_photo_comment_album_photo_goods_path(album_photo_image.id, album_photo_comment.id), method: :delete, remote: true do %>
-        <i class="fa-solid fa-thumbs-up"></i>
+        <i class="fa-solid fa-thumbs-up" style="color: #60a39b;"></i>
       <% end %>
       <%= album_photo_comment.album_photo_goods.count %>
     </td>

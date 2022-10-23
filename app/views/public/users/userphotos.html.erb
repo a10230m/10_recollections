@@ -1,15 +1,24 @@
 <div class="container">
-  <h1><%= @user.name %>のPhoto<span class="count-font"><<%= @photo_images_count %>photos></span></h1>
+  <div class="container">
+  <% if @user == current_user %>
+    <h3>MY Photo<span class="count-font">　<<%= @photo_images_count %>photos></span></h3>
+  <% else %>
+    <h3><%= @user.name %>'s Photo<span class="count-font">　<<%= @photo_images_count %>photos></span></h3>
+  <% end %>
+</div>
+
 </div>
 
 <div class="container">
-  <%= render 'public/photo_images/index', photo_images: @photo_images %>
+  <div class="row">
+    <%= render 'public/photo_images/index', photo_images: @photo_images %>
+  </div>
 </div>
 
 <div class="container">
   <% if @user == current_user %>
-    <%= link_to "自分のpage", user_path(@user.id) %>
-   <% else %>
-    <%= link_to "#{@user.name}のpage", user_path(@user.id) %>へ
+    <%= link_to "My pageへ戻る", user_path(@user.id), class: "btn btn-outline-lightgreen" %>
+  <% else %>
+    <%= link_to "#{@user.name}'s pageへ戻る", user_path(@user.id), class: "btn btn-outline-lightgreen" %>
   <% end %>
 </div>

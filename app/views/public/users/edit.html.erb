@@ -1,62 +1,108 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-3"></div>
-    <div class="col-md-6 border rounded-pill p-3">
-      <div class="edit">
-        <h2 class="text-center">EDIT</h2>
-        <br>
+    <div class="col-1"></div>
+    <div class="col-11">
+      <div class="box">
+        <h2 class="text-left">EDIT</h2>
+      </div>
+    </div>
+  </div>
 
-        <%= form_with model: @user, url: mypage_users_path, local: true do |f| %>
+  <%= form_with model: @user, url: mypage_users_path, local: true do |f| %>
 
+  <div class="row">
+    <div class="col-1"></div>
+    <div class="col-3">
+      <div class="box">
         <div class="field">
           <i class="fa-solid fa-user"></i>
           <%= f.label :name %>
-          <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
         </div>
-
+      </div>
+    </div>
+    <div class="col-8">
+      <div class="box">
+        <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-1"></div>
+    <div class="col-3">
+      <div class="box">
         <div class="field">
           <i class="fa-solid fa-image-portrait"></i>
           <%= f.label :profile_image %>
-          <%#= f.file_field :profile_image %>
-          <%= f.file_field :profile_image, placeholder: "プロフィール画像", accept: "image/*" %>
         </div>
-
+      </div>
+    </div>
+    <div class="col-8">
+      <div class="box">
+        <%= f.file_field :profile_image, placeholder: "プロフィール画像", accept: "image/*" %>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-1"></div>
+    <div class="col-3">
+      <div class="box">
         <div class="field">
           <i class="fa-solid fa-cake-candles"></i>
           <%= f.label :birthdate %><span style="color:#a9a9a9;">（任意）</span>
-          <%= f.date_field :birthdate %>
         </div>
-
+      </div>
+    </div>
+    <div class="col-8">
+      <div class="box">
+        <%= f.date_field :birthdate %>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-1"></div>
+    <div class="col-3">
+      <div class="box">
         <div class="field">
           <i class="fa-solid fa-circle-info"></i>
           <%= f.label :introduction %><span style="color:#a9a9a9;">（任意）</span>
-          <%= f.text_field :introduction, id: "introduction", placeholder: "about me" %>
         </div>
+      </div>
+    </div>
+    <div class="col-8">
+      <div class="box">
+        <%= f.text_field :introduction, id: "introduction", placeholder: "about me" %>
+      </div>
+    </div>
+  </div>
 
+  <div class="row">
+    <div class="col-1"></div>
+    <div class="col-3"></div>
+    <div class="col-8">
+      <div class="box">
+        <%= f.submit "UPDATE", class: "btn btn-outline-lightgreen w-25" %>
+      </div>
+    </div>
+  </div>
 
-        <div class="field">
-          <i class="fa-solid fa-envelope"></i>
-          <%= f.label :email %>
-          <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-        </div>
-        <br>
-
-
-        <div class="actions text-center">
-          <%= f.submit "UPDATE", class: "btn btn-success" %>
-        </div>
-
-        <div class="line"></div>
-
-        <div class="actions text-center">
-          <%= link_to "退会する", confirm_users_path, class: "btn btn-danger" %>
-        </div>
-        <% end %>
-        <br>
-
-        <div class="col-md-3"></div>
+  <div class="row">
+    <div class="col-1"></div>
+    <div class="col-3"></div>
+    <div class="col-8">
+      <div class="box">
+        <%= link_to "退会する", confirm_users_path, class: "btn btn-outline-red w-25" %>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-1"></div>
+    <div class="col-3"></div>
+    <div class="col-8">
+      <div class="box">
+        <%= link_to "MYPAGEへ戻る", user_path(@user.id), class: "btn btn-outline-lightgreen w-25" %>
       </div>
     </div>
   </div>
 </div>
 
+<% end %>

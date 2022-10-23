@@ -1,17 +1,85 @@
-<div class="container">
-  <h2>PHOTO EDIT</h2>
-</div>
 
 <div class="container">
+  <div class="row">
+    <div class="col-1"></div>
+    <div class="col-11">
+      <div class="box">
+        <h2 class="text-left">PHOTO EDIT</h2>
+      </div>
+    </div>
+  </div>
+
   <%= form_with model: @photo_image, url: photo_image_path(@photo_image.id), method: :patch do |f| %>
-    <%= f.file_field :image, accept: "image/*" %><br><br>
-    <%= f.label :title %>
-    <%= f.text_field :photo_title %><br>
-    <%= f.label :caption %>
-    <%= f.text_area :photo_caption %>
-    <div class="line"></div>
-    <%= f.submit "UPDATE", class: "btn btn-success" %>
-　<% end %>
-　<%= link_to "back",photo_images_path %>
 
+
+  <div class="row">
+    <div class="col-1"></div>
+    <div class="col-md-3">
+      <div class="box">
+        <div class="field">
+          <i class="fa-solid fa-image"></i>
+          <%= f.label :photo %>
+        </div>
+      </div>
+    </div>
+    <div class="col-8">
+      <div class="box">
+        <%= f.file_field :image, accept: "image/*" %>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-1"></div>
+    <div class="col-md-3">
+      <div class="box">
+        <div class="field">
+          <%= f.label :title %>
+        </div>
+      </div>
+    </div>
+    <div class="col-8">
+      <div class="box">
+        <%= f.text_field :photo_title %>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-1"></div>
+    <div class="col-md-3">
+      <div class="box">
+        <div class="field">
+          <%= f.label :caption %>
+        </div>
+      </div>
+    </div>
+    <div class="col-8">
+      <div class="box">
+        <%= f.text_area :photo_caption %>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-1"></div>
+    <div class="col-md-3">
+    </div>
+    <div class="col-8">
+      <div class="box">
+        <%= f.submit 'UPDATE', class: "btn btn-outline-lightgreen w-25" %>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-1"></div>
+    <div class="col-md-3">
+    </div>
+    <div class="col-8">
+      <div class="box">
+        <%= link_to "PHOTOへ戻る", photo_images_path, class: "btn btn-outline-lightgreen w-25" %>
+      </div>
+    </div>
+  </div>
+  <% end %>
 </div>
+
+
+

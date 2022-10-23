@@ -1,144 +1,148 @@
 
-  <div class="container">
-    <div class="photo">
-      <div class="row">
-        <div class="col"></div>
-        <div class="col-10">
-          <div class="image">
-            <% if @photo_image.image.attached? %>
-              <%= image_tag @photo_image.image, class: 'img-fluid' %>
+<div class="container">
+  <div class="photo">
+    <div class="row">
+      <div class="col"></div>
+      <div class="col-10">
+        <div class="image">
+          <% if @photo_image.image.attached? %>
+            <%= image_tag @photo_image.image, class: 'img-fluid' %>
+          <% end %>
+        </div>
+      </div>
+      <div class="col"></div>
+    </div>
+
+    <div class="row">
+      <div class="col"></div>
+      <div class="col-10">
+        <div class="flex">
+          <div class="favo">
+            <div id="favorite_btn_<%= @photo_image.id %>">
+              <%= render partial: 'public/favorites/favorite', locals: {photo_image: @photo_image} %>
+            </div>
+          </div>
+          <div class="comments">
+            <i class="fa-solid fa-comment" style="color: #60a39b;"></i><%= @photo_image.photo_comments.count %>
+          </div>
+          <div class="edit-delete">
+            <% if @photo_image.user == current_user %>
+              <%= link_to edit_photo_image_path(@photo_image.id), class: "link" do %>
+                <i class="fa-solid fa-pen-to-square"></i>
+              <% end %>
+              <%= link_to photo_image_path(@photo_image.id), method: :delete, class: "link" do %>
+                <i class="fa-solid fa-trash-can"></i>
+              <% end %>
+              <br>
             <% end %>
           </div>
         </div>
-        <div class="col"></div>
       </div>
+      <div class="col"></div>
+    </div>
 
-      <div class="row">
-        <div class="col"></div>
-          <div class="col-10">
-            <div class="flex">
-              <div class="favo">
-                <div id="favorite_btn_<%= @photo_image.id %>">
-                  <%= render partial: 'public/favorites/favorite', locals: {photo_image: @photo_image} %>
+    <div class="row">
+      <div class="col"></div>
+        <div class="col-10">
+          <div class="title">
+            <% if @photo_image.photo_title.present? %>
+              <%= @photo_image.photo_title %>
+            <% else %>
+              <div class="blank"></div>
+            <% end %>
+          </div>
+          <div class="cap">
+            <% if @photo_image.photo_caption.present? %>
+              <%= @photo_image.photo_caption %>
+            <% else %>
+              <div class="blank"></div>
+            <% end %>
+          </div>
+
+          <div class="flex">
+            <div class="name">
+              <%= image_tag @photo_image.user.get_profile_image(20,20) %>
+              <%= @photo_image.user.name %>
+            </div>
+            <div class="time">
+              <%= @photo_image.created_at.strftime('%Y/%m/%d %H:%M') %>
+            </div>
+          </div>
+        </div>
+      <div class="col"></div>
+    </div>
+
+
+    <div class="row">
+      <div class="col"></div>
+      <div class="col-10">
+        <div class="comment-good">
+          <div class="text-comment">comment</div>
+          <% @photo_image.photo_comments.each do |photo_comment| %>
+          <div class="row">
+            <div class="col-2">
+              <div class="box">
+                <%= image_tag photo_comment.user.get_profile_image(20,20) %><%= photo_comment.user.name %>
+              </div>
+            </div>
+            <div class="col-5">
+              <div class="box">
+                <%= photo_comment.comment %>
+              </div>
+            </div>
+            <div class="col-1">
+              <div class="box">
+                <div id="good_btn_<%= photo_comment.id %>">
+                  <%= render partial: 'public/goods/good', locals: {photo_image: @photo_image, photo_comment: photo_comment} %>
                 </div>
               </div>
-              <div class="comment">
-                <i class="fa-solid fa-comment" style="color: #60a39b;"></i><%= @photo_image.photo_comments.count %>
+            </div>
+             <div class="col-3">
+               <div class="box">
+                <%= photo_comment.created_at.strftime('%Y/%m/%d %H:%M') %>
               </div>
-              <div class="edit-delete">
-                <% if @photo_image.user == current_user %>
-                  <%= link_to edit_photo_image_path(@photo_image.id) do %>
-                    <i class="fa-solid fa-pen-to-square size"></i>
+            </div>
+            <div class="col-1">
+              <div class="box">
+                <% if photo_comment.user == current_user %>
+                  <%= link_to photo_image_photo_comment_path(photo_comment.photo_image, photo_comment), method: :delete, class: "link" do %>
+                    <i class="fa-solid fa-trash-can"></i>
                   <% end %>
-                  <%= link_to photo_image_path(@photo_image.id), method: :delete do %>
-                    <i class="fa-solid fa-trash-can size"></i>
-                  <% end %>
-                  <br>
+                <% else %>
                 <% end %>
               </div>
             </div>
           </div>
-        <div class="col"></div>
+          <% end %>
+        </div>
       </div>
-
-      <div class="row">
-        <div class="col"></div>
-          <div class="col-10">
-            <div class="title">
-              <% if @photo_image.photo_title.present? %>
-                <%= @photo_image.photo_title %>
-              <% else %>
-                <div class="blank"></div>
-              <% end %>
-            </div>
-            <div class="cap">
-              <% if @photo_image.photo_caption.present? %>
-                <%= @photo_image.photo_caption %>
-              <% else %>
-                <div class="blank"></div>
-              <% end %>
-            </div>
-
-            <div class="flex">
-              <div class="name">
-                <%= image_tag @photo_image.user.get_profile_image(20,20) %>
-                <%= @photo_image.user.name %>
-              </div>
-              <div class="time">
-                <%= @photo_image.created_at.strftime('%Y/%m/%d %H:%M') %>
-              </div>
-            </div>
-          </div>
-        <div class="col"></div>
-      </div>
-
-
-      <div class="row">
-        <div class="col"></div>
-          <div class="col-10">
-            <div class="comment-good">
-              <div class="text-comment">comment</div>
-              <% @photo_image.photo_comments.each do |photo_comment| %>
-              <div class="row">
-                <div class="col-2">
-                    <%= image_tag photo_comment.user.get_profile_image(20,20) %><%= photo_comment.user.name %>
-                </div>
-                <div class="col-5">
-                  <%= photo_comment.comment %>
-                </div>
-                <div class="col-1">
-                  <div id="good_btn_<%= photo_comment.id %>">
-                    <%= render partial: 'public/goods/good', locals: {photo_image: @photo_image, photo_comment: photo_comment} %>
-                  </div>
-                </div>
-                 <div class="col-3">
-                  <%= photo_comment.created_at.strftime('%Y/%m/%d %H:%M') %>
-                </div>
-                <div class="col-1">
-                  <% if photo_comment.user == current_user %>
-                    <%= link_to photo_image_photo_comment_path(photo_comment.photo_image, photo_comment), method: :delete do %>
-                      <i class="fa-solid fa-trash-can size"></i>
-                    <% end %>
-                  <% else %>
-                  <% end %>
-                </div>
-              </div>
-              <% end %>
-            </div>
-          </div>
-        <div class="col"></div>
-      </div>
-
-      <div class="row">
-        <div class="col"></div>
-          <div class="col-10">
-            <div class="comment">
-
-              <%= form_with model: [@photo_image, @new_photo_comment] do |f| %>
-                <div class="row">
-                  <div class="col-3　style="width:33%;"">
-                    <div class="form-group">
-                      <%= f.text_area :comment, rows: '2', placeholder: "コメントをここに" %>
-                    </div>
-                  </div>
-                  <div class="col-2 align-self-end">
-                    <div class="form-group">
-                      <%= f.submit "コメント", class: "btn btn-info" %>
-                    </div>
-                  </div>
-                </div>
-              <% end %>
-            </div>
-          </div>
-        <div class="col"></div>
-      </div>
+      <div class="col"></div>
     </div>
-
-    <div class="container">
-      <div class="link">
-        <%= link_to "PHOTO ALLへ戻る", photo_images_path, class: "btn btn-outline-lightgreen w-90" %>
+    <div class="row">
+      <div class="col"></div>
+      <div class="col-10">
+        <div class="box">
+          <div class="flex">
+            <div class="comment">
+              <%= form_with model: [@photo_image, @new_photo_comment] do |f| %>
+                <%= f.text_area :comment, rows: '2', placeholder: "コメントをここに", style: "color:#a9a9a9;" %>
+            </div>
+            <div class="comment">
+                <%= f.submit "コメント", class: "btn btn-outline-lightgreen" %>
+              <% end %>
+            </div>
+          </div>
+        </div>
       </div>
+      <div class="col"></div>
     </div>
   </div>
+</div>
+
+<div class="container">
+  <div class="col-10">
+    <%= link_to "PHOTO ALLへ戻る", photo_images_path, class: "btn btn-outline-lightgreen" %>
+  </div>
+</div>
 
 

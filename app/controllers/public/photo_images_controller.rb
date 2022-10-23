@@ -26,20 +26,8 @@ class Public::PhotoImagesController < ApplicationController
   end
 
   def search
-    @photo_images = PhotoImage.search(params["search(1i)"],params["search(2i)"],params["search(3i)"])
+    @photo_images = PhotoImage.search(params["search(1i)"],params["search(2i)"],params["search(3i)"]).page(params[:page])
   end
-
-
-  # def userphotos
-  #   # @user = @photo_images.user
-  #   @photo_image = PhotoImage.find(params[:id])
-  #   @photo_images = @photo_image.user.photo_images
-
-  #   # .page(params[:page]).order('id DESC').limit(5)
-  #   # うまくできない
-  # end
-
-
 
   def edit
      @photo_image = PhotoImage.find(params[:id])

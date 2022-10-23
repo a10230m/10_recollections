@@ -1,34 +1,48 @@
 <div class="container">
-  <div class="row no-gutters">
-    <h4>User All</h4>
-  </div>
+  <h3>User All</h3>
 </div>
 
 
 <div class="container">
-  <table class="table table-borderless">
-    <thead>
-      <tr>
-        <th scope="col"><i class="fa-solid fa-user"></i>.name</th>
-        <th scope="col"><i class="fa-solid fa-cake-candles"></i>.birthday</th>
-        <th scope="col"><i class="fa-solid fa-circle-info"></i>.introduction</th>
-      </tr>
-    </thead>
-    <% @users.each do |user| %>
-    <tbody>
-      <tr>
-        <td>
-          <%= image_tag user.get_profile_image(20,20), class: "rounded-circle" %>
-          <%= link_to user_path(user.id) do %>
-            <%= user.name %>
-          <% end %>
-        </td>
-        <td><%= user.birthdate %></td>
-        <td><%= user.introduction %></td>
-      </tr>
-    </tbody>
-    <% end %>
-  </table>
+  <div class="row">
+    <div class="col-3">
+      <div class="box">
+        <i class="fa-solid fa-user"></i> name
+      </div>
+    </div>
+    <div class="col-3">
+      <div class="box">
+        <i class="fa-solid fa-cake-candles"></i> birthday
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="box">
+        <i class="fa-solid fa-circle-info"></i> introduction
+      </div>
+    </div>
+  </div>
+  <% @users.each do |user| %>
+  <div class="row">
+    <div class="col-3">
+      <div class="box">
+        　<%= image_tag user.get_profile_image(20,20), class: "rounded-circle" %>
+        <%= link_to user_path(user.id) , class: "link" do %>
+          <%= user.name %>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-3">
+      <div class="box">
+        　<%= user.birthdate %>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="box">
+        　<%= user.introduction %>
+      </div>
+    </div>
+  </div>
+  <% end %>
 </div>
 
 

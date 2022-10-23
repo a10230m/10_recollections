@@ -7,14 +7,15 @@ Rails.application.routes.draw do
 
   # 顧客用
   # URL /users/sign_in ...
-  devise_for :users,skip: [:passwords], controllers: {
+  devise_for :users, controllers: {
     registrations: "public/registrations",
-    sessions: 'public/sessions'
+    sessions: 'public/sessions',
+    passwords: 'public/passwords'
   }
 
   # 管理者用
   # URL /admin/sign_in ...
-  devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
+  devise_for :admin, skip: [:registrations] ,controllers: {
     sessions: "admin/sessions"
   }
 
@@ -38,11 +39,11 @@ Rails.application.routes.draw do
     end
   end
 
-
-
-  # scope module: :public do
-  #   resources :users
+  # devise_scope :user do
+  #   get '/password/new' => 'public/passwords#new'
+  #   get '/password/edit' => 'public/passwords#edit'
   # end
+
   scope module: :public do
     resources :users, only:[:mypage, :show, :index, :edit, :update] do
       member do

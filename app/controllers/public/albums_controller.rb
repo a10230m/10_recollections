@@ -33,7 +33,7 @@ class Public::AlbumsController < ApplicationController
 
     album_ids.push(current_user.album_releases.pluck(:album_id))
     album_ids.flatten!
-    @albums = Album.where(id: album_ids).order('id DESC').page(params[:page])
+    @albums = Album.where(id: album_ids).order('id DESC').page(params[:page]).per(12)
 
     # @album_photo_images = album.album_photo_images
     # @albums = Album.order('id DESC')
@@ -41,7 +41,7 @@ class Public::AlbumsController < ApplicationController
   end
 
   def search
-    @albums = Album.search(params["search(1i)"],params["search(2i)"],params["search(3i)"])
+    @albums = Album.search(params["search(1i)"],params["search(2i)"],params["search(3i)"]).page(params[:page])
 
   end
 

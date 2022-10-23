@@ -1,11 +1,17 @@
+
 <div class="container">
-  <div class='profileimage'>
-    <%= image_tag @user.get_profile_image(120,120), class: "rounded-circle" %>
-  </div>
-  <div class="circle">
-    <strong><%= @user.name %></strong>
+  <div class="row">
+    <div class="col-1">
+      <div class='profileimage'>
+        <%= image_tag @user.get_profile_image(120,120), class: "rounded-circle" %>
+      </div>
+    </div>
+    <div class="col-6 d-flex align-items-center">
+      <h3 class="bold"><%= @user.name %></h3>
+    </div>
   </div>
 </div>
+
 
 <div class="container">
   <div class="row">
@@ -54,8 +60,9 @@
     </div>
     <div class="col-8">
       <div class="box">
-        <%= link_to favorites_user_path(@user) do %>
-          <i class="fa-solid fa-heart hearton"></i><span style="color: gray;"> favorites</span>
+        <%= link_to favorites_user_path(@user),class: "link" do %>
+          <i class="fa-solid fa-heart hearton", onMouseOver="this.style.color='#cc7eb1'", onMouseOut="this.style.color='#d7003a'"></i>
+          <span style="color: gray;", onMouseOver="this.style.color='#cc7eb1'", onMouseOut="this.style.color='gray'", class="link"> favorites</span>
         <% end%>
       </div>
     </div>
@@ -67,8 +74,11 @@
     </div>
     <div class="col-8">
       <div class="box">
-        <%= link_to userphotos_user_path(@user.id) do %>
-          <i class="fa-solid fa-image size"></i><span style="color: gray;"> PHOTO</span>
+        <%= link_to userphotos_user_path(@user.id), class: "link" do %>
+          <i class="fa-solid fa-image"></i>
+          <span style="color: gray;", onMouseOver="this.style.color='#cc7eb1'", onMouseOut="this.style.color='gray'", class="link">
+             PHOTO
+          </span>
         <% end %>
         <span style="color: gray;"><<%= @user.photo_images.count %>photos></span>
       </div>
@@ -81,20 +91,25 @@
     </div>
     <div class="col-8">
       <div class="box">
-        <%= link_to  useralbums_user_path(@user.id)  do %>
-          <i class="fa-solid fa-images size"></i><span style="color: gray;"> ALBUM</span>
+        <%= link_to  useralbums_user_path(@user.id), class: "link" do %>
+          <i class="fa-solid fa-images"></i>
+          <span style="color: gray;", onMouseOver="this.style.color='#cc7eb1'", onMouseOut="this.style.color='gray'", class="link">
+             ALBUM
+          </span>
         <% end %>
         <span style="color: gray;"><<%= @user.albums.count %>albums></span>
       </div>
     </div>
   </div>
-</div>
-
-<div class="container">
   <div class="row">
     <div class="col-1"></div>
-    <div class="col-5">
-      <%= link_to "USER一覧へ戻る", users_path, class: "btn btn-outline-lightgreen w-90" %>
+    <div class="col-2">
+      <div class="box"></div>
+    </div>
+    <div class="col-8">
+      <%= link_to "USER一覧へ戻る", users_path, class: "btn btn-outline-lightgreen" %>
     </div>
   </div>
+
 </div>
+

@@ -1,14 +1,39 @@
 <div class="container">
-  Photo いいね一覧
+  <h3>PHOTO</h3>
 </div>
-<div class="container">
-  <div class="row row no-gutters">
-    <div class="col-4 px-2">
-      <% favorited_photo_images.each do |photo_image| %>
-        <%= link_to photo_image_path(photo_image.id) do %>
-          <%= image_tag photo_image.get_image(200, 100) %>
+
+<% favorited_photo_images.each do |photo_image| %>
+<div class="col-3 px-2">
+  <div class="photo-all">
+    <%= link_to photo_image_path(photo_image.id) do %>
+      <%= image_tag photo_image.get_image(500, 500), class: 'album-image-cover' %>
+    <% end %>
+
+    <div class="flex">
+      <div class="favo">
+        <div id="favorite_btn_<%= photo_image.id %>">
+          <%= render partial: 'public/favorites/favorite', locals: {photo_image: photo_image} %>
+        </div>
+      </div>
+      <div class="comments">
+        <i class="fa-solid fa-comment" style="color: #60a39b;"></i>
+        <%= link_to "#{photo_image.photo_comments.count} ", photo_image_path(photo_image.id), :style=>"color: #60a39b;" %>
+      </div>
+      <div class="edit-delete">
+        <% if photo_image.user == current_user %>
+          <%= link_to edit_photo_image_path(photo_image.id), class: "link" do %>
+            <i class="fa-solid fa-pen-to-square"></i>
+          <% end %>
+          <%= link_to photo_image_path(photo_image.id), method: :delete, class: "link" do %>
+            <i class="fa-solid fa-trash-can"></i>
+          <% end %>
         <% end %>
-      <% end %>
+      </div>
+    </div>
+
+    <div class="fontcolor">
+    <%= photo_image.created_at.strftime('%Y/%m/%d') %>
     </div>
   </div>
 </div>
+<% end %>

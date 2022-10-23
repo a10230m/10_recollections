@@ -30,9 +30,9 @@ class Public::UsersController < ApplicationController
   end
 
   def favorites
-    user = User.find(params[:id])
-    @favorited_photo_images = user.favorited_photo_images
-    @favorited_albums = user.favorited_albums
+    @user = User.find(params[:id])
+    @favorited_photo_images = @user.favorited_photo_images
+    @favorited_albums = @user.favorited_albums
   end
 
 
@@ -63,7 +63,7 @@ class Public::UsersController < ApplicationController
 
   def useralbums
     @user = User.find(params[:id])
-    @albums = @user.albums.order('id DESC').page(params[:page])
+    @albums = @user.albums.order('id DESC').page(params[:page]).per(12)
     @albums_count = @user.albums.count
   end
 
