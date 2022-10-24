@@ -3,6 +3,8 @@
 // @import url('https://fonts.googleapis.com/css2?family=Sacramento&display=swap');
 
 *{
+  margin: 0;
+  padding: 0;
   box-sizing: border-box; /*余白や線を幅や高さに含める*/
 }
 
@@ -12,12 +14,20 @@ header, body, p, footer {
   'alba', '遊ゴシック', '筑紫ゴシック', '中ゴシックBBB', 'メイリオ', 'Meiryo UI', 'Meiryo', sans-serif;
 }
 
+.header {
+  background-color: #fff;
+}
+
+body {
+  padding-top: 140px;
+}
 
 .title, body {
   weight: 100%;
   height: 800px;
   color: #6c757d;
 }
+
 
 .navbar-light .navbar-brand {
   color: #6c757d;
@@ -269,13 +279,6 @@ p {
   border-color: #00665e;
 }
 
-// フッター
-.footer-top {
-  border-top: 1px solid #dcdcdc;
-  padding: 20px;
-  text-align: center;
-}
-
 
 // ページネーション
 .pagination {
@@ -402,4 +405,17 @@ p {
   color: #fff;
   background-color: #1e50a2;
   border-color: #1e50a2;
+}
+
+
+// フッター
+.footer-top {
+  border-top: 1px solid #dcdcdc;
+  padding: 20px;
+  background-color: #fff;
+  text-align: center;
+}
+
+footer {
+  margin-top: auto;
 }
