@@ -8,9 +8,8 @@ class Admin::AlbumsController < ApplicationController
   end
 
   def index
-    @albums = Album.all
-    @albums = Album.order('id DESC')
-    # @albums = Album.page(params[:page])
+    @albums = Album.order('id DESC').page(params[:page]).per(12)
+    @album_count = Album.where(params[:album_id]).count
   end
 
   def useralbums
@@ -29,17 +28,14 @@ class Admin::AlbumsController < ApplicationController
 
   private
   # ストロングパラメータ
+
   def album_params
-    params.permit(:album_title, :album_caption, :user_id, :created_at, album_photo_images: {})
+    params.require(:album).permit(:album_title, :album_caption, album_photo_images: [], user_ids: [])
   end
+
 
   def user_params
-    params.require(:user).permit(:name, :email, :birthdate, :introduction, :albums_id)
+    params.require(:user).permit(:name, :email, :birthdate, :introduction, :albums_id, user_ids: [])
   end
-
-  # def search_params
-  #   params.require(:search).permit(:created_at)
-  # end
-
 
 end

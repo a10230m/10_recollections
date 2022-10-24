@@ -2,7 +2,7 @@ class Admin::PhotoImagesController < ApplicationController
   before_action :authenticate_admin!
 
   def index
-    @photo_images = PhotoImage.all.order('id DESC')
+    @photo_images = PhotoImage.order('id DESC').page(params[:page])
     @photo_image_count = PhotoImage.where(params[:photo_image_id]).count
   end
 

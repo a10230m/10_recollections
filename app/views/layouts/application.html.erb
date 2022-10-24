@@ -18,12 +18,15 @@
       <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
           <span>
-            <a class="navbar-brand" href="/">recollections</a>
-            <%= link_to new_photo_image_path do %>
-              <i class="fa-solid fa-image fa-2x"></i>
-            <% end %>
-            <%= link_to new_album_path do %>
-              <i class="fa-solid fa-images fa-2x"></i>
+            <a class="navbar-brand" href="/" >recollections</a>
+            <% if current_user %>
+              <%= link_to new_photo_image_path, class: "link" do %>
+                <i class="fa-solid fa-image fa-2x"></i>
+              <% end %>
+              <%= link_to new_album_path, class: "link" do %>
+                <i class="fa-solid fa-images fa-2x"></i>
+              <% end %>
+            <% else %>
             <% end %>
           </span>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">

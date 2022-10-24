@@ -23,7 +23,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :homes, only: [:top]
-    resources :users, only: [:index, :show, :edit, :destroy] do
+    resources :users, only: [:index, :show, :edit, :destroy, :update] do
       member do
         get :userphotos
         get :useralbums

@@ -1,41 +1,106 @@
 <div class="container">
-  <% if @album_photo_image.image.attached? %>
-    <%= image_tag @album_photo_image.get_image(500, 500), class: 'img-fluid' %>
-  <% end %>
-  <br>
-  <div class="flex">
-    <div class="edit-delete">
-      <%= link_to admin_album_photo_image_path(@album_photo_image.id), method: :delete do %>
-        <i class="fa-solid fa-trash-can size"></i>
-      <% end %>
+  <div class="photo">
+    <div class="row">
+      <div class="col"></div>
+      <div class="col-10">
+        <div class="image">
+          <% if @album_photo_image.image.attached? %>
+            <%= image_tag @album_photo_image.get_image(500, 500), class: 'img-fluid' %>
+          <% end %>
+        </div>
+      </div>
+      <div class="col"></div>
+    </div>
+    <div class="row">
+      <div class="col"></div>
+      <div class="col-10">
+        <div class="flex">
+          <div class="edit-delete">
+            <%= link_to admin_album_photo_image_path(@album_photo_image.id), method: :delete, class: "link" do %>
+              <i class="fa-solid fa-trash-can"></i>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="col"></div>
+    </div>
+
+    <div class="row">
+      <div class="col"></div>
+        <div class="col-10">
+          <div class="title">
+            <% if @album_photo_image.album_photo_title.present? %>
+              <%= @album_photo_image.album_photo_title %>
+            <% else %>
+              <div class="blank"></div>
+            <% end %>
+          </div>
+          <div class="cap">
+            <% if @album_photo_image.album_photo_caption.present? %>
+              <%= @album_photo_image.album_photo_caption %>
+            <% else %>
+              <div class="blank"></div>
+            <% end %>
+          </div>
+
+          <div class="flex">
+            <div class="name">
+              <%= image_tag @album_photo_image.album.user.get_profile_image(20,20) %>
+              <%= @album_photo_image.album.user.name %>
+            </div>
+            <div class="time">
+              <%= @album_photo_image.album.created_at.strftime('%Y/%m/%d %H:%M') %>
+            </div>
+          </div>
+        </div>
+      <div class="col"></div>
+    </div>
+
+
+
+
+    <div class="row">
+      <div class="col"></div>
+      <div class="col-10">
+        <div class="comment-good">
+          <div class="text-comment">comment</div>
+          <% @album_photo_image.album_photo_comments.each do |album_photo_comment| %>
+          <div class="row">
+            <div class="col-2">
+              <div class="box">
+                <%= image_tag album_photo_comment.user.get_profile_image(20,20) %>
+                <%= album_photo_comment.user.name %>
+              </div>
+            </div>
+            <div class="col-5">
+              <div class="box">
+                <%= album_photo_comment.comment %>
+              </div>
+            </div>
+             <div class="col-3">
+               <div class="box">
+                <%= album_photo_comment.created_at.strftime('%Y/%m/%d %H:%M') %>
+              </div>
+            </div>
+            <div class="col-1">
+              <div class="box">
+                <%= link_to admin_album_photo_image_album_photo_comment_path(album_photo_comment.album_photo_image, album_photo_comment),
+                method: :delete,class: "link" do %>
+                  <i class="fa-solid fa-trash-can"></i>
+                <% end %>
+              </div>
+            </div>
+          </div>
+          <% end %>
+        </div>
+      </div>
+      <div class="col"></div>
     </div>
   </div>
+</div>
 
-  <p>Title:<%= @album_photo_image.album_photo_title %></p>
-  <p>caption:<%= @album_photo_image.album_photo_caption %></p>
-  <p>
-    <%= image_tag @album_photo_image.album.user.get_profile_image(30,30) %>
-    <%= @album_photo_image.album.user.name %>
-  </p>
-  <%= @album_photo_image.album.created_at.strftime('%Y/%m/%d %H:%M') %>
-
-
-
-  <div class="container">
-    <p>
-      <i class="fa-solid fa-comment"></i>：<%= @album_photo_image.album_photo_comments.count %>
-    </p>
-      <% @album_photo_image.album_photo_comments.each do |album_photo_comment| %>
-        <p>
-          <%= image_tag album_photo_comment.user.get_profile_image(30,30) %>
-          <%= album_photo_comment.user.name %>
-        </p>
-        <p><%= album_photo_comment.comment %></p>
-        <p>[<%= album_photo_comment.created_at.strftime('%Y/%m/%d') %>]</p>
-
-          <%= link_to "削除", admin_album_photo_image_album_photo_comment_path(album_photo_comment.album_photo_image, album_photo_comment), method: :delete %>
-      <% end %>
-
-
-   <%= link_to "back", admin_album_path(@album.id) %>
+<div class="container">
+  <div class="col-10">
+    <%= link_to "ALBUMへ戻る", admin_album_path(@album.id), class: "btn btn-outline-lightgreen" %>
+  </div>
 </div>

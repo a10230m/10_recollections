@@ -82,7 +82,8 @@
             <div class="col-1">
               <div class="box">
                 <div id="album_photo_good_btn_<%= album_photo_comment.id %>">
-                  <%= render partial: 'public/album_photo_goods/album_photo_good', locals: {album_photo_image: @album_photo_image, album_photo_comment: album_photo_comment} %>
+                  <%= render partial: 'public/album_photo_goods/album_photo_good',
+                  locals: {album_photo_image: @album_photo_image, album_photo_comment: album_photo_comment} %>
                 </div>
               </div>
             </div>
@@ -94,7 +95,8 @@
             <div class="col-1">
               <div class="box">
                 <% if album_photo_comment.user == current_user %>
-                  <%= link_to album_photo_image_album_photo_comment_path(album_photo_comment.album_photo_image, album_photo_comment), method: :delete,class: "link" do %>
+                  <%= link_to album_photo_image_album_photo_comment_path(album_photo_comment.album_photo_image, album_photo_comment),
+                  method: :delete,class: "link" do %>
                     <i class="fa-solid fa-trash-can"></i>
                   <% end %>
                 <% else %>

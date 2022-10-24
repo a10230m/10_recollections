@@ -1,8 +1,27 @@
+
 <% photo_images.each do |photo_image| %>
-<div class="col-4 px-2">
-  <%= link_to admin_photo_image_path(photo_image.id) do %>
-    <%= image_tag photo_image.get_image(500, 500), class: 'album-image-cover' %>
-  <% end %>
-  <%= photo_image.created_at.strftime('%Y/%m/%d %H:%M') %><br>
-</div>
+  <div class="col-3 px-2">
+    <div class="photo-all">
+      <%= link_to admin_photo_image_path(photo_image.id)do %>
+        <%= image_tag photo_image.get_image(500, 500), class: 'album-image-cover' %>
+      <% end %>
+
+      <div class="flex">
+        <div class="comments">
+          <i class="fa-solid fa-comment" style="color: #60a39b;"></i>
+          <%= link_to "#{photo_image.photo_comments.count} ", photo_image_path(photo_image.id), :style=>"color: #60a39b;" %>
+        </div>
+        <div class="edit-delete">
+            <%= link_to admin_photo_image_path(photo_image.id), method: :delete, class: "link" do %>
+              <i class="fa-solid fa-trash-can"></i>
+            <% end %>
+        </div>
+      </div>
+      <%= photo_image.created_at.strftime('%Y/%m/%d') %>
+    </div>
+  </div>
 <% end %>
+<div class="container">
+  <%= paginate @photo_images %>
+</div>
+

@@ -1,5 +1,14 @@
-<h4>ALBUM ALL</h4>
-<div class="row row no-gutters">
-  <%= render 'admin/albums/index', albums: @user.albums %>
+
+<div class="container">
+  <h3><%= @user.name %>'s ALBUM<span class="count-font">　<<%= @albums_count %>albums></span></h3>
 </div>
-<%= link_to "back", admin_user_path(@user.id) %>
+
+<div class="container">
+  <div class="row">
+    <%= render 'admin/albums/index', albums: @user.albums %>
+  </div>
+</div>
+
+<div class="container">
+  <%= link_to "#{@user.name}'s pageへ戻る", admin_user_path(@user.id), class: "btn btn-outline-lightgreen" %>
+</div>

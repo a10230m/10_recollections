@@ -83,8 +83,8 @@
     </div>
     <div class="col-8">
       <div class="box">
-        <%= link_to favorites_user_path(@user), class: "link" do %>
-          <i class="fa-solid fa-heart hearton", onMouseOver="this.style.color='#cc7eb1'", onMouseOut="this.style.color='#d7003a'"></i>
+        <i class="fa-solid fa-heart hearton"></i>
+        <%= link_to favorites_user_path(@user), class: "link2" do %>
           <span style="color: gray;", onMouseOver="this.style.color='#cc7eb1'", onMouseOut="this.style.color='gray'", class="link"> favorites</span>
         <% end%>
       </div>
@@ -97,15 +97,13 @@
     </div>
     <div class="col-8">
       <div class="box">
-        <%= link_to userphotos_user_path(@user.id), class: "link" do %>
-          <i class="fa-solid fa-image size"></i>
+        <i class="fa-solid fa-image fa-1"></i>
+        <%= link_to userphotos_user_path(@user.id), class: "link2" do %>
           <span style="color: gray;", onMouseOver="this.style.color='#cc7eb1'", onMouseOut="this.style.color='gray'", class="link">
              PHOTO
           </span>
         <% end %>
-        <span style="color: gray;", onMouseOver="this.style.color='#cc7eb1'", onMouseOut="this.style.color='gray'", class="link">
-          <<%= @user.photo_images.count %>photos>
-        </span>
+        <span style="color: gray;"><<%= @user.photo_images.count %>photos></span>
       </div>
     </div>
   </div>
@@ -116,8 +114,8 @@
     </div>
     <div class="col-8">
       <div class="box">
-        <%= link_to  useralbums_user_path(@user.id), class: "link" do %>
-          <i class="fa-solid fa-images"></i>
+        <i class="fa-solid fa-images fa-1"></i>
+        <%= link_to  useralbums_user_path(@user.id), class: "link2" do  %>
           <span style="color: gray;", onMouseOver="this.style.color='#cc7eb1'", onMouseOut="this.style.color='gray'", class="link">
              ALBUM
           </span>

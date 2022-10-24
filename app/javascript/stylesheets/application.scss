@@ -33,6 +33,14 @@ body {
   color: #6c757d;
 }
 
+
+.navbar-light:hover .navbar-brand:hover {
+  color: #cc7eb1;
+  background-color: #fff;
+  border-color: #cc7eb1;
+}
+
+
 // top
 .top {
   color: #6c757d;
@@ -44,16 +52,32 @@ body {
   margin: 10px;
 }
 
+.fa-2x:hover {
+  color: #008075;
+  background-color: #fff;
+  border-color: #008075;
+}
+
+
+// サイズまま緑
+.fa-1 {
+  color: #008075;
+}
 
 // bootstrap icon
 // .fa-image:hover, .fa-images:hover {
 //   color: #008075;
 // }
 
-// link設定
+// link設定みどり
 .link {
   text-decoration: none !important;
   color: #008075;
+}
+
+.link2 {
+  text-decoration: none !important;
+  // color: #cc7eb1;
 }
 
 a:hover {

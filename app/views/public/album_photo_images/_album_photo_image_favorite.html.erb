@@ -1,19 +1,36 @@
-<% albums.each do |album| %>
-  <div class="col-3 px-2">
+
+<div class="container">
+  <h3>ALBUM PHOTO IMAGE</h3>
+</div>
+
+
+<% favorited_album_photo_images.each do |album_photo_image| %>
+<div class="col-3 px-2">
     <div class="content-album">
       <div class="content-album-img">
-        <% if album.album_photo_images.any? && album.album_photo_images.first.image.attached? %>
-          <%= link_to admin_album_path(album.id) do %>
+        <% if album_photo_images.any? && album_photo_images.first.image.attached? %>
+          <%= link_to album_path(album.id) do %>
             <%= image_tag album.album_photo_images.first.image, class: 'album-image-cover' %><br>
           <% end %>
         <% end %>
       </div>
 
       <div class="flex">
+        <div class="favo">
+          <div id="favorite_btn_<%= album_photo_image %>">
+            <%= render partial: 'public/album_photo_image_favorites/album_favorite', locals: {album_photo_image: album_photo_image} %>
+          </div>
+        </div>
         <div class="edit-delete">
-            <%= link_to admin_album_path(album.id), method: :delete, class: "link" do %>
-              <i class="fa-solid fa-trash-can"></i>
+          <% if album.user == current_user %>
+            <%= link_to edit_album_photo_image_path(album.id), class: "link" do %>
+              <i class="fa-solid fa-pen-to-square size"></i>
             <% end %>
+            <%= link_to album_photo_image_path(album.id), method: :delete, class: "link" do %>
+              <i class="fa-solid fa-trash-can size"></i>
+            <% end %>
+            <br>
+          <% end %>
         </div>
       </div>
 
@@ -21,7 +38,7 @@
       <div class="info-album">
         <div class="title">
           <% if album.album_title.present? %>
-            <%= link_to admin_album_path(album.id), class: "link" do %>
+            <%= link_to album_path(album.id), class: "link" do %>
               <%= album.album_title %>
             <% end %>
           <% else%>
@@ -50,9 +67,4 @@
       </div>
     </div>
   </div>
-
 <% end %>
-
-<div class="container">
-  <%= paginate @albums %>
-</div>

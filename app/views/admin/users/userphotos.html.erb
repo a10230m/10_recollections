@@ -1,11 +1,16 @@
-  <h4>
-    Photo All<span><%= @photo_images.count %>件</span>
-  </h4>
 
+<div class="container">
   <div class="container">
-    <div class="row row no-gutters">
-        <%= render 'admin/photo_images/index', photo_images: @photo_images %>
-    </div>
+    <h3><%= @user.name %>'s Photo<span class="count-font">　<<%= @photo_images_count %>photos></span></h3>
   </div>
+</div>
 
-    <%= link_to "back", admin_user_path(@user.id) %>
+<div class="container">
+  <div class="row">
+      <%= render 'admin/photo_images/index', photo_images: @photo_images %>
+  </div>
+</div>
+
+<div class="container">
+  <%= link_to "#{@user.name}'s pageへ戻る", admin_user_path(@user.id), class: "btn btn-outline-lightgreen" %>
+</div>
