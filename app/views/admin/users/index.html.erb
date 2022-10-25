@@ -5,24 +5,40 @@
 
 <div class="container">
   <div class="row">
+    <div class="col-1"></div>
+    <div class="col-1">
+      <div class="box">
+        <i class="fa-brands fa-ideal"></i> id
+      </div>
+    </div>
     <div class="col-3">
       <div class="box">
         <i class="fa-solid fa-user"></i> name
       </div>
     </div>
-    <div class="col-3">
+    <div class="col-4">
       <div class="box">
-        <i class="fa-solid fa-cake-candles"></i> birthday
+        <i class="fa-solid fa-cake-candles"></i> email
       </div>
     </div>
-    <div class="col-6">
+    <div class="col-3">
       <div class="box">
-        <i class="fa-solid fa-circle-info"></i> introduction
+        <p>会員ステータス</p>
       </div>
     </div>
   </div>
+
+
+
   <% @users.each do |user| %>
+
   <div class="row">
+    <div class="col-1"></div>
+    <div class="col-1">
+      <div class="box">
+        　<%= user.id %>
+      </div>
+    </div>
     <div class="col-3">
       <div class="box">
         　<%= image_tag user.get_profile_image(20,20), class: "rounded-circle" %>
@@ -31,18 +47,20 @@
         <% end %>
       </div>
     </div>
-    <div class="col-3">
+    <div class="col-4">
       <div class="box">
-        　<%= user.birthdate %>
+        　<%= user.email %>
       </div>
     </div>
-    <div class="col-6">
+    <div class="col-3">
       <div class="box">
-        　<%= user.introduction %>
+        <% if user.is_active %>
+          <p class="font-weight-bold text-success">　有効</p>
+        <% else %>
+          <p>　退会</p>
+        <% end %>
       </div>
     </div>
   </div>
   <% end %>
 </div>
-
-

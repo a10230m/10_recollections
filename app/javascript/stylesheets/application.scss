@@ -31,6 +31,7 @@ body {
 
 .navbar-light .navbar-brand {
   color: #6c757d;
+  font-size: 30px;
 }
 
 
@@ -38,8 +39,15 @@ body {
   color: #cc7eb1;
   background-color: #fff;
   border-color: #cc7eb1;
+  font-size: 30px;
 }
 
+.admin {
+  color: #f7a500;
+  font-size: 25px;
+  margin: 15px;
+  // border-radius: 9px;
+}
 
 // top
 .top {
@@ -260,7 +268,10 @@ p {
   border-bottom: 1px solid #dcdcdc;
 }
 
-// ヘッダーのbootstrapボタン
+
+
+
+// ボタン
 .btn {
   margin: 3px;
   border: 0 none;
@@ -304,31 +315,10 @@ p {
 }
 
 
-// ページネーション
-.pagination {
-  display: flex;
-  justify-content: center;
-}
-.pagination > li > a {
-  border: none;
-  color: #6c757d;
-}
-.pagination > li > a:hover {
-  color: #00a497;
-  background-color: white;
-}
-.pagination > .active > a {
-  color: #00a497;
-  background-color: white;
-}
-.pagination > .active > a:hover {
-  background-color: white;
-  color: #00a497;
-}
 
 
 // // // // 通常ボタン
-// 通常のボタン
+// ノーマルボタン
 .btn-outline-outline-lightgreen,
 .btn-outline-lightgreen.disabled, .btn-outline-lightgreen:disabled {
   color: #fff;
@@ -363,7 +353,7 @@ p {
 
 
 // // // // 赤ボタン
-// 通常のボタン
+// ノーマルボタン
 .btn-outline-outline-red,
 .btn-outline-red.disabled, .btn-outline-red:disabled {
   color: #fff;
@@ -398,7 +388,7 @@ p {
 
 
 // // // // 青ボタン
-// 通常のボタン
+// ノーマルボタン
 .btn-outline-outline-blue,
 .btn-outline-blue.disabled, .btn-outline-blue:disabled {
   color: #fff;
@@ -430,6 +420,66 @@ p {
   background-color: #1e50a2;
   border-color: #1e50a2;
 }
+
+
+
+// // // // 管理画面黄ボタン
+// ノーマルボタン
+.btn-outline-outline-yellow,
+.btn-outline-yellow.disabled, .btn-outline-yellow:disabled {
+  color: #fff;
+  background-color: #f8b500;
+  border-color: #f8b500;
+}
+
+// focusされた時の枠線の色
+.btn-outline-yellow:focus, .btn-outline-yellow.focus,
+.btn-outline-yellow:not(:disabled):not(.disabled):active:focus,
+.btn-outline-yellow:not(:disabled):not(.disabled).active:focus,
+.show > .btn-outline-yellow.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem rgba(0, 204, 187, 0.5);
+}
+
+
+// hover時（マウスカーソルを重ねた時）の色（通常より濃いor暗めの色を指定）
+.btn-outline-yellow:hover {
+  color: #fff;
+  background-color: #f8b500;
+  border-color: #f8b500;
+}
+
+// active時の色（hover時と同等かさらに濃いor暗めの色を指定）
+.btn-outline-yellow:not(:disabled):not(.disabled):active,
+.btn-outline-yellow:not(:disabled):not(.disabled).active,
+.show > .btn-outline-yellow.dropdown-toggle {
+  color: #fff;
+  background-color: #f7a500;
+  border-color: #f7a500;
+}
+
+
+// ページネーション
+.pagination {
+  display: flex;
+  justify-content: center;
+}
+.pagination > li > a {
+  border: none;
+  color: #6c757d;
+}
+.pagination > li > a:hover {
+  color: #00a497;
+  background-color: white;
+}
+.pagination > .active > a {
+  color: #00a497;
+  background-color: white;
+}
+.pagination > .active > a:hover {
+  background-color: white;
+  color: #00a497;
+}
+
 
 
 // フッター

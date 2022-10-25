@@ -61,21 +61,20 @@
 
               <% elsif current_admin %>
               <li>
-                <span class"text-center">management page</span>
+                <span class="admin">ADMIN</span>
               </li>
               <li>
-                <%= link_to "PHOTO ALL", admin_photo_images_path, class: "btn btn-outline-turquoise w-90" %>
+                <%= link_to "PHOTO", admin_photo_images_path, class: "btn btn-outline-yellow w-90" %>
               </li>
               <li>
-                <%= link_to "ALBUM ALL", admin_albums_path, class: "btn btn-outline-turquoise w-90" %>
+                <%= link_to "ALBUM", admin_albums_path, class: "btn btn-outline-yellow w-90" %>
               </li>
               <li>
-                <%= link_to "USER", admin_users_path, class: "btn btn-outline-turquoise w-90" %>
+                <%= link_to "USER", admin_users_path, class: "btn btn-outline-yellow w-90" %>
               </li>
               <li>
-                <%= link_to "LOGOUT", destroy_admin_session_path, method: :delete, class: "btn btn-outline-turquoise w-90" %>
+                <%= link_to "LOGOUT", destroy_admin_session_path, method: :delete, class: "btn btn-outline-yellow w-90" %>
               </li>
-
               <% else %>
                 <!--< %= link_to "About", about_path, class: "btn btn-turquoise" %>-->
                 <!--< %= link_to "商品一覧", items_path, class: "btn btn-turquoise" %>-->

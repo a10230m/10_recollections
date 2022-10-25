@@ -52,7 +52,7 @@ class Public::UsersController < ApplicationController
     @user.update(is_active: false)
     reset_session
     flash[:notice] = "ありがとうございました。またのご利用を心よりお待ちしております。"
-    redirect_to user_session_path
+    redirect_to root_path
   end
 
   def userphotos

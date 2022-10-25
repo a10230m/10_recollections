@@ -17,6 +17,22 @@
     <div class="col-3">
       <div class="box">
         <div class="field">
+          <i class="fa-brands fa-ideal"></i>
+          <%= f.label :id %>
+        </div>
+      </div>
+    </div>
+    <div class="col-8">
+      <div class="box">
+        <%= f.text_field :id, autofocus: true, autocomplete: "id" %>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-1"></div>
+    <div class="col-3">
+      <div class="box">
+        <div class="field">
           <i class="fa-solid fa-user"></i>
           <%= f.label :name %>
         </div>

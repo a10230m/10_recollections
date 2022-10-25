@@ -89,8 +89,9 @@ class Public::AlbumsController < ApplicationController
 
   def destroy
     @album = Album.find(params[:id])
+    @user = current_user
     @album.destroy
-    redirect_to albums_path
+    redirect_to useralbums_user_path(@user.id)
   end
 
 
