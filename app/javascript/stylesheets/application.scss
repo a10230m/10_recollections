@@ -1,6 +1,6 @@
 @import '~bootstrap/scss/bootstrap';
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
-// @import url('https://fonts.googleapis.com/css2?family=Sacramento&display=swap');
+
 
 *{
   margin: 0;
@@ -8,33 +8,28 @@
   box-sizing: border-box; /*余白や線を幅や高さに含める*/
 }
 
+
+
+// // // ヘッダー関連// // //
 header, body, p, footer {
   font-family:
   'Raleway', 'Futura', 'Akzidenz Grotesk', 'Segoe UI', 'Palatino', 'Copperplate',
   'alba', '遊ゴシック', '筑紫ゴシック', '中ゴシックBBB', 'メイリオ', 'Meiryo UI', 'Meiryo', sans-serif;
 }
 
+// ヘッダーの背景
 .header {
   background-color: #fff;
+  border-bottom: 1px solid #dcdcdc;
 }
 
-body {
-  padding-top: 140px;
-}
-
-.title, body {
-  weight: 100%;
-  height: 800px;
-  color: #6c757d;
-}
-
-
+// ヘッダーのNAV
 .navbar-light .navbar-brand {
   color: #6c757d;
   font-size: 30px;
 }
 
-
+// ヘッダーのnavホバー時
 .navbar-light:hover .navbar-brand:hover {
   color: #cc7eb1;
   background-color: #fff;
@@ -42,24 +37,13 @@ body {
   font-size: 30px;
 }
 
-.admin {
-  color: #f7a500;
-  font-size: 25px;
-  margin: 15px;
-  // border-radius: 9px;
-}
-
-// top
-.top {
-  color: #6c757d;
-}
-
-// header imege icon
+// headerのiconサイズ・カラー・余白
 .fa-2x {
   color: #6c757d;
   margin: 10px;
 }
 
+// headerのiconホバー時
 .fa-2x:hover {
   color: #008075;
   background-color: #fff;
@@ -67,46 +51,47 @@ body {
 }
 
 
-// サイズまま緑
+
+// // // メイン// // //
+body {
+  padding-top: 140px;
+}
+// topページのフォントカラー
+.top {
+  color: #6c757d;
+}
+
+// iconサイズまま・みどり系
 .fa-1 {
   color: #008075;
 }
 
-// bootstrap icon
-// .fa-image:hover, .fa-images:hover {
-//   color: #008075;
-// }
-
-// link設定みどり
+// // link設定みどり系
+// 通常時
 .link {
   text-decoration: none !important;
   color: #008075;
 }
-
 .link2 {
   text-decoration: none !important;
-  // color: #cc7eb1;
 }
 
+// ホバー時
 a:hover {
   color: #cc7eb1;
   background-color: #fff;
   border-color: #cc7eb1;
 }
 
-
-// 文字
+// 文字余白
 p {
   margin: 10px;
 }
 
-.fontcolor {
-  color: #6c757d;
-}
-
-//全ての表の余白
+//全ての表の余白、col内のフォントカラー
 .box {
   margin-bottom: 10px;
+  color: #6c757d;
 }
 
 // 全てのcontainer
@@ -120,9 +105,8 @@ p {
   margin-bottom: 30px;
 }
 
-
-
-
+// header height: 146px, footer height: 140px
+main { min-height: calc(100vh - 146px - 140px); }
 
 // 新規登録・ログイン
 .field {
@@ -130,91 +114,22 @@ p {
 }
 
 
-// 画像投稿
-.photo_new .album_new {
-  width: 400px;
-  margin-right: auto;
-  margin-left: auto;
-  margin-top: 30px;
-  margin-bottom: 30px;
-}
 
-
-
-// 写真
+// // // 写真・アルバム関連// // //
+// 写真詳細の画像位置
 .image {
   text-align: center;
 }
 
-.photo {
-  width: 100%;
-  height: auto;
-}
-
-.comment {
-  margin-top: 20px;
-}
-
-// 写真一覧のbottomあき
-.photo-all {
-  margin-bottom: 15px;
-}
-
-
-// アルバム一覧の設定
+// アルバム一覧の枠設定
 .content-album{
-  flex-wrap: wrap;
+  // flex-wrap: wrap;
   padding: 10px;
-  border: 1px solid rgba(0, 51 ,39, 0.5);
-  height: 100%;
+  border: 1px solid rgba(0, 51 ,39, 0.2);
+  // height: 100%;
 }
 
-.content-album-img img{
-  object-fit: cover;
-  width: 100%;
-}
-
-.name, .count {
-  display: flex;
-  align-items: center;
-}
-
-
-.col-3, .px-2 {
-  margin-bottom: 15px;
-}
-
-
-// 横並び
-.flex {
-  display: -webkit-flex;
-  display: -moz-flex;
-  display: -ms-flex;
-  display: -o-flex;
-  display: flex;
-  // margin-bottom: 10px;
-  gap: 0px 10px;
-}
-
-// 上のフレックスで右よせ
-.edit-delete, .count, .time {
-  margin-left: auto;
-  align-items: center;
-}
-
-
-
-// 写真・アルバム共通
-.title {
-  font-weight: bold;
-  height: 30px;
-}
-
-.cap {
-  text-indent: 1em;
-  height: 30px;
-}
-
+// アルバムの枠内の表示＋画像
 .info-album, .photo {
   display: block;
   color: #6c757d;
@@ -224,6 +139,79 @@ p {
   text-overflow: ellipsis;
 }
 
+// 画像表示
+.album-image-cover {
+  height: 150px;
+  width: 100%;
+  object-fit: cover;
+}
+
+// アルバム枠内のユーザー名と枚数カウント
+.name, .count {
+  display: flex;
+  align-items: center;
+}
+
+// 写真とアルバムのボトムの余白
+.px-2 {
+  margin-bottom: 15px;
+}
+
+// 横並び
+.flex {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: flex;
+  gap: 0px 10px;
+}
+
+// 上のフレックスで右よせにするもの
+.edit-delete, .count, .time {
+  margin-left: auto;
+  align-items: center;
+}
+
+// 写真・アルバムのタイトルのフォント
+.title {
+  font-weight: bold;
+  height: 30px;
+}
+
+// 写真・アルバムのキャプションの一字下げ
+.cap {
+  text-indent: 1em;
+  height: 30px;
+}
+
+// コメント入力欄の余白
+.comment {
+  margin-top: 20px;
+}
+
+// 写真・アルバム詳細のコメント欄
+.comment-good {
+  word-wrap: break-word;
+  white-space: initial !important;
+  border-top: 10px solid rgba(255, 236, 71, 0.6);
+  margin-top: 20px;
+}
+
+// 「comment」の文字余白
+.text-comment {
+  margin: 15px 15px 15px 0px;
+}
+
+// いいねボタンのオンオフの色
+.hearton {
+  color: #d7003a;
+}
+.heartoff {
+  color: #c0c6c9;
+}
+
+// userphoto useralbumのカウント
 .count-font {
   font-size: 0.8em;
   color: #9aa7b3;
@@ -232,46 +220,7 @@ p {
 
 
 
-// 写真・アルバム詳細のコメント欄
-.comment-good {
-  word-wrap: break-word;
-  white-space: initial !important;
-  border-top: 10px solid rgba( 128, 171, 169, 0.55 );
-  margin-top: 20px;
-}
-
-.text-comment {
-  margin: 15px 15px 15px 0px;
-}
-
-// 画像表示
-.album-image-cover {
-  height: 150px;
-  width: 100%;
-  object-fit: cover;
-}
-
-
-// いいねボタン
-.hearton {
-  color: #d7003a;
-}
-
-.heartoff {
-  color: #c0c6c9;
-}
-
-
-
-// ヘッダー
-.header {
-  border-bottom: 1px solid #dcdcdc;
-}
-
-
-
-
-// ボタン
+// // // ボタン// // //
 .btn {
   margin: 3px;
   border: 0 none;
@@ -280,7 +229,7 @@ p {
   color: #6c757d;
 }
 
-// // // // ヘッダーボタン
+// // ヘッダーボタン
 // 通常のボタン色
 .btn-outline-outline-turquoise,
 .btn-outline-turquoise.disabled, .btn-outline-turquoise:disabled {
@@ -317,7 +266,7 @@ p {
 
 
 
-// // // // 通常ボタン
+// // 通常ボタン
 // ノーマルボタン
 .btn-outline-outline-lightgreen,
 .btn-outline-lightgreen.disabled, .btn-outline-lightgreen:disabled {
@@ -352,7 +301,7 @@ p {
 }
 
 
-// // // // 赤ボタン
+// // 赤ボタン
 // ノーマルボタン
 .btn-outline-outline-red,
 .btn-outline-red.disabled, .btn-outline-red:disabled {
@@ -387,7 +336,7 @@ p {
 }
 
 
-// // // // 青ボタン
+// // 青ボタン
 // ノーマルボタン
 .btn-outline-outline-blue,
 .btn-outline-blue.disabled, .btn-outline-blue:disabled {
@@ -423,7 +372,8 @@ p {
 
 
 
-// // // // 管理画面黄ボタン
+
+// // 管理画面黄ボタン
 // ノーマルボタン
 .btn-outline-outline-yellow,
 .btn-outline-yellow.disabled, .btn-outline-yellow:disabled {
@@ -458,7 +408,8 @@ p {
 }
 
 
-// ページネーション
+
+// // // ページネーション// // //
 .pagination {
   display: flex;
   justify-content: center;
@@ -468,21 +419,21 @@ p {
   color: #6c757d;
 }
 .pagination > li > a:hover {
-  color: #00a497;
+  color: #f8b500;
   background-color: white;
 }
 .pagination > .active > a {
-  color: #00a497;
+  color: #f8b500;
   background-color: white;
 }
 .pagination > .active > a:hover {
   background-color: white;
-  color: #00a497;
+  color: #f8b500;
 }
 
 
 
-// フッター
+// // // フッター// // //
 .footer-top {
   border-top: 1px solid #dcdcdc;
   padding: 20px;
@@ -492,4 +443,13 @@ p {
 
 footer {
   margin-top: auto;
+}
+
+
+
+// // // アドミンページ// // //
+.admin {
+  color: #f7a500;
+  font-size: 25px;
+  margin: 15px;
 }

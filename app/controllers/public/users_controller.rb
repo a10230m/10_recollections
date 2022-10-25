@@ -33,6 +33,7 @@ class Public::UsersController < ApplicationController
     @user = User.find(params[:id])
     @favorited_photo_images = @user.favorited_photo_images
     @favorited_albums = @user.favorited_albums
+    @favorited_album_photo_images = @user.favorited_album_photo_images
   end
 
 

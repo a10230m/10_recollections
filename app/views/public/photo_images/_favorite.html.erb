@@ -1,5 +1,5 @@
 <div class="container">
-  <h3>PHOTO</h3>
+  <h4 class="box">PHOTO</h4>
 </div>
 
 <% favorited_photo_images.each do |photo_image| %>
@@ -10,12 +10,12 @@
     <% end %>
 
     <div class="flex">
-      <div class="favo">
+      <div class="favo box">
         <div id="favorite_btn_<%= photo_image.id %>">
           <%= render partial: 'public/favorites/favorite', locals: {photo_image: photo_image} %>
         </div>
       </div>
-      <div class="comments">
+      <div class="comments box">
         <i class="fa-solid fa-comment" style="color: #60a39b;"></i>
         <%= link_to "#{photo_image.photo_comments.count} ", photo_image_path(photo_image.id), :style=>"color: #60a39b;" %>
       </div>
@@ -31,7 +31,7 @@
       </div>
     </div>
 
-    <div class="fontcolor">
+    <div class="box">
     <%= photo_image.created_at.strftime('%Y/%m/%d') %>
     </div>
   </div>

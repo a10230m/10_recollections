@@ -1,23 +1,29 @@
 <div class="container">
   <div class="row">
-    <% if @user == current_user %>
-      <h3>MY FAVORITES<span class="count-font">　<<%= @photo_images_count %>photos></span></h3>
-    <% else %>
-      <h3><%= @user.name %>'s FAVORITES<span class="count-font">　<<%= @photo_images_count %>photos></span></h3>
-    <% end %>
+    <div class="box"><br>
+      <% if @user == current_user %>
+        <h3>MY FAVORITES<span class="count-font">　<<%= @photo_images_count %>photos></span></h3>
+      <% else %>
+        <h3><%= @user.name %>'s FAVORITES<span class="count-font">　<<%= @photo_images_count %>photos></span></h3>
+      <% end %>
+    </div>
   </div>
+  <br>
 
   <div class="row">
     <%= render 'public/photo_images/favorite', favorited_photo_images: @favorited_photo_images %>
   </div>
+  <br>
 
   <div class="row">
     <%= render 'public/albums/album_favorite', favorited_albums: @favorited_albums %>
   </div>
+  <br>
 
-  <!--<div class="row">-->
-  <!--  <%#= render 'public/album_photo_images/album_photo_image_favorite', favorited_album_photo_images: @favorited_album_photo_images %>-->
-  <!--</div>-->
+  <div class="row">
+    <%= render 'public/album_photo_images/album_photo_image_favorite', favorited_album_photo_images: @favorited_album_photo_images %>
+  </div>
+  <br>
 
   <div class="rouw">
     <% if @user == current_user %>

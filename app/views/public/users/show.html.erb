@@ -1,27 +1,26 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-1">
+    <div class="col-2">
       <div class='profileimage'>
         <%= image_tag @user.get_profile_image(120,120), class: "rounded-circle" %>
       </div>
     </div>
     <div class="col-6 d-flex align-items-center">
-      <h3 class="bold"><%= @user.name %></h3>
+      <h3 class="box"><%= @user.name %></h3>
     </div>
   </div>
 </div>
 
-
 <div class="container">
   <div class="row">
     <div class="col-1"></div>
-    <div class="col-2">
+    <div class="col-3">
       <div class="box">
         <i class="fa-solid fa-user"></i> name
       </div>
     </div>
-    <div class="col-8">
+    <div class="col-7">
       <div class="box">
         <%= @user.name %>
       </div>
@@ -29,12 +28,12 @@
   </div>
   <div class="row">
     <div class="col-1"></div>
-    <div class="col-2">
+    <div class="col-3">
       <div class="box">
         <i class="fa-solid fa-cake-candles"></i> birthday
       </div>
     </div>
-    <div class="col-8">
+    <div class="col-7">
       <div class="box">
         <%= @user.birthdate %>
       </div>
@@ -42,12 +41,12 @@
   </div>
   <div class="row">
     <div class="col-1"></div>
-    <div class="col-2">
+    <div class="col-3">
       <div class="box">
         <i class="fa-solid fa-circle-info"></i> introduction
       </div>
     </div>
-    <div class="col-8">
+    <div class="col-7">
       <div class="box">
         <%= @user.introduction %>
       </div>
@@ -55,10 +54,10 @@
   </div>
   <div class="row">
     <div class="col-1"></div>
-    <div class="col-2">
+    <div class="col-3">
       <div class="box"></div>
     </div>
-    <div class="col-8">
+    <div class="col-7">
       <div class="box">
         <i class="fa-solid fa-heart hearton"></i>
         <%= link_to favorites_user_path(@user), class: "link2" do %>
@@ -69,10 +68,10 @@
   </div>
   <div class="row">
     <div class="col-1"></div>
-    <div class="col-2">
+    <div class="col-3">
       <div class="box"></div>
     </div>
-    <div class="col-8">
+    <div class="col-7">
       <div class="box">
         <i class="fa-solid fa-image fa-1"></i>
         <%= link_to userphotos_user_path(@user.id), class: "link2" do %>
@@ -86,10 +85,10 @@
   </div>
   <div class="row">
     <div class="col-1"></div>
-    <div class="col-2">
+    <div class="col-3">
       <div class="box"></div>
     </div>
-    <div class="col-8">
+    <div class="col-7">
       <div class="box">
         <i class="fa-solid fa-images fa-1"></i>
         <%= link_to  useralbums_user_path(@user.id), class: "link2" do  %>
@@ -103,10 +102,10 @@
   </div>
   <div class="row">
     <div class="col-1"></div>
-    <div class="col-2">
+    <div class="col-3">
       <div class="box"></div>
     </div>
-    <div class="col-8">
+    <div class="col-7">
       <%= link_to "USER一覧へ戻る", users_path, class: "btn btn-outline-lightgreen" %>
     </div>
   </div>

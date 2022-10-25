@@ -35,11 +35,15 @@
 
   <div class="row justify-content-between">
     <div class="col-4">
-      <%= image_tag @album.user.get_profile_image(20,20), class: "rounded-circle" %>
-      <%= @album.user.name %>
+      <div class="box">
+        <%= image_tag @album.user.get_profile_image(20,20), class: "rounded-circle" %>
+        <%= @album.user.name %>
+      </div>
     </div>
     <div class="col-4 text-right">
-      <%= @album.created_at.strftime('%Y/%m/%d %H:%M') %>
+      <div class="box">
+        <%= @album.created_at.strftime('%Y/%m/%d %H:%M') %>
+      </div>
     </div>
   </div>
 </div>

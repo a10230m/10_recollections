@@ -1,12 +1,12 @@
 class Album < ApplicationRecord
   belongs_to :user
   has_many :album_favorites, dependent: :destroy
-  has_many :album_photo_images, inverse_of: :album
+  has_many :album_photo_images, inverse_of: :album, dependent: :destroy
   has_many :album_releases, dependent: :destroy
   has_many :users, through: :album_releases
 
   validates :album_photo_images, presence: true
-  
+
   before_save :set_user_ids
 
   def get_images(width, height)
@@ -59,7 +59,7 @@ class Album < ApplicationRecord
     end
     notification.save! if notification.valid?
   end
-  
+
   private
 
   def set_user_ids

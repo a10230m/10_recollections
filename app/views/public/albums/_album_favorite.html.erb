@@ -1,6 +1,6 @@
 
 <div class="container">
-  <h3>ALBUM</h3>
+  <h3 class="box">ALBUM</h3>
 </div>
 
 
@@ -16,7 +16,7 @@
       </div>
 
       <div class="flex">
-        <div class="favo">
+        <div class="favo box">
           <div id="favorite_btn_<%= album.id %>">
             <%= render partial: 'public/album_favorites/album_favorite', locals: {album: album} %>
           </div>
@@ -63,7 +63,10 @@
           </div>
         </div>
 
-        <%= album.created_at.strftime('%Y/%m/%d %H:%M') %><br>
+        <div class="box">
+          <%= album.created_at.strftime('%Y/%m/%d %H:%M') %>
+          <br>
+        </div>
       </div>
     </div>
   </div>

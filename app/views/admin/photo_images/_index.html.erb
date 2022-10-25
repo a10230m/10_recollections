@@ -9,7 +9,7 @@
       <div class="flex">
         <div class="comments">
           <i class="fa-solid fa-comment" style="color: #60a39b;"></i>
-          <%= link_to "#{photo_image.photo_comments.count} ", photo_image_path(photo_image.id), :style=>"color: #60a39b;" %>
+          <%= link_to "#{photo_image.photo_comments.count} ", photo_image_path(photo_image.id), :style=>"color: gray;" %>
         </div>
         <div class="edit-delete">
             <%= link_to admin_photo_image_path(photo_image.id), method: :delete, class: "link" do %>
@@ -17,7 +17,9 @@
             <% end %>
         </div>
       </div>
-      <%= photo_image.created_at.strftime('%Y/%m/%d') %>
+      <div class="box">
+        <%= photo_image.created_at.strftime('%Y/%m/%d') %>
+      </div>
     </div>
   </div>
 <% end %>

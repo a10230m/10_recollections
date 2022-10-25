@@ -17,21 +17,6 @@ class Public::FavoritesController < ApplicationController
   def set_photo_image
     @photo_image = PhotoImage.find(params[:photo_image_id])
   end
-
-# # ここから通知機能
-#   def notification_create
-#     favorite = current_user.favorites.new(photo_image_id: @photo_image.id)
-#     favorite.save
-#     @photo_image = PhotoImage.find(params[:photo_image_id])
-#     #通知の作成
-#     @photo_image.create_notification_by(current_user)
-#     respond_to do |format|
-#       format.html {redirect_to request.referrer}
-#       format.js
-#     end
-#   end
-
-
 end
 
 

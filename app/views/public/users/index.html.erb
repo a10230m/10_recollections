@@ -1,21 +1,22 @@
 <div class="container">
-  <h3>User All</h3>
+  <br>
+  <h3 class="box">User All</h3>
 </div>
 
 
 <div class="container">
   <div class="row">
-    <div class="col-3">
+    <div class="col-6 col-sm-3">
       <div class="box">
         <i class="fa-solid fa-user"></i> name
       </div>
     </div>
-    <div class="col-3">
+    <div class="col-6 col-sm-3">
       <div class="box">
         <i class="fa-solid fa-cake-candles"></i> birthday
       </div>
     </div>
-    <div class="col-6">
+    <div class="col-12 col-sm-6">
       <div class="box">
         <i class="fa-solid fa-circle-info"></i> introduction
       </div>
@@ -23,7 +24,7 @@
   </div>
   <% @users.each do |user| %>
   <div class="row">
-    <div class="col-3">
+    <div class="col-6 col-sm-3">
       <div class="box">
         　<%= image_tag user.get_profile_image(20,20), class: "rounded-circle" %>
         <%= link_to user_path(user.id) , class: "link" do %>
@@ -31,12 +32,12 @@
         <% end %>
       </div>
     </div>
-    <div class="col-3">
+    <div class="col-6 col-sm-3">
       <div class="box">
         　<%= user.birthdate %>
       </div>
     </div>
-    <div class="col-6">
+    <div class="col-12 col-sm-6">
       <div class="box">
         　<%= user.introduction %>
       </div>

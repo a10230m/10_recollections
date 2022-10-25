@@ -8,11 +8,6 @@ class Public::AlbumPhotoImagesController < ApplicationController
     # ひもづいているものがひとつであれば、findは不要
   end
 
-  # def download
-  #   data = @album.album_photo_image.image.download
-  #   send_data(data, type: 'image/png', filename: 'download.jpg')
-  # end
-
   def edit
      @album_photo_image = AlbumPhotoImage.find(params[:id])
      if @album_photo_image.album.user != current_user
@@ -39,6 +34,6 @@ class Public::AlbumPhotoImagesController < ApplicationController
   private
   # ストロングパラメータ
   def album_photo_image_params
-    params.require(:album_photo_image).permit(:album_photo_image_title, :album_photo_image_caption, :created_at, :album_id, :image)
+    params.require(:album_photo_image).permit(:created_at, :album_id, :image)
   end
 end

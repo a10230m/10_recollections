@@ -50,7 +50,7 @@
 
           <div class="flex">
             <div class="name">
-              <%= image_tag @album_photo_image.album.user.get_profile_image(20,20) %>
+              <%= image_tag @album_photo_image.album.user.get_profile_image(20,20), class: "rounded-circle" %>
               <%= @album_photo_image.album.user.name %>
             </div>
             <div class="time">
@@ -68,9 +68,9 @@
           <div class="text-comment">comment</div>
           <% @album_photo_image.album_photo_comments.each do |album_photo_comment| %>
           <div class="row">
-            <div class="col-2">
+            <div class="col-3">
               <div class="box">
-                <%= image_tag album_photo_comment.user.get_profile_image(20,20) %>
+                <%= image_tag album_photo_comment.user.get_profile_image(20,20), class: "rounded-circle" %>
                 <%= album_photo_comment.user.name %>
               </div>
             </div>
@@ -87,13 +87,13 @@
                 </div>
               </div>
             </div>
-             <div class="col-3">
+             <div class="col-2">
                <div class="box">
-                <%= album_photo_comment.created_at.strftime('%Y/%m/%d %H:%M') %>
+                <%= time_ago_in_words(album_photo_comment.created_at) %>
               </div>
             </div>
             <div class="col-1">
-              <div class="box">
+              <div class="box text-right">
                 <% if album_photo_comment.user == current_user %>
                   <%= link_to album_photo_image_album_photo_comment_path(album_photo_comment.album_photo_image, album_photo_comment),
                   method: :delete,class: "link" do %>

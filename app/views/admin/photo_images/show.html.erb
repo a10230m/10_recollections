@@ -17,7 +17,7 @@
       <div class="col-10">
         <div class="flex">
           <div class="comments">
-            <i class="fa-solid fa-comment" style="color: #60a39b;"></i><%= @photo_image.photo_comments.count %>
+            <i class="fa-solid fa-comment" style="color: #60a39b;"></i> <%= @photo_image.photo_comments.count %>
           </div>
           <div class="edit-delete">
             <%= link_to admin_photo_image_path(@photo_image.id), method: :delete, class: "link" do %>

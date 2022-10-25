@@ -35,10 +35,6 @@ class Public::AlbumsController < ApplicationController
     album_ids.flatten!
     @albums = Album.where(id: album_ids).order('id DESC').page(params[:page]).per(12)
     @album_count = Album.where(params[:album_id]).count
-
-    # @album_photo_images = album.album_photo_images
-    # @albums = Album.order('id DESC')
-    # @albums = Album.page(params[:page])
   end
 
   def search

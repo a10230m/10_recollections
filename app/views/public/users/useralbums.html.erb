@@ -1,8 +1,9 @@
 <div class="container">
+  <br>
   <% if @user == current_user %>
-    <h3>MY ALBUM<span class="count-font">　<<%= @albums_count %>albums></span></h3>
+    <h3 class="box">MY ALBUM<span class="count-font">　<<%= @albums_count %>albums></span></h3>
   <% else %>
-    <h3><%= @user.name %>'s ALBUM<span class="count-font">　<<%= @albums_count %>albums></span></h3>
+    <h3 class="box"><%= @user.name %>'s ALBUM<span class="count-font">　<<%= @albums_count %>albums></span></h3>
   <% end %>
 </div>
 

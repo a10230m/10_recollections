@@ -61,19 +61,19 @@ ja:
     - :day
   datetime:
     distance_in_words:
-      about_x_hours: 約%{count}時間
-      about_x_months: 約%{count}ヶ月
+      about_x_hours: 約%{count}時間前
+      about_x_months: 約%{count}ヶ月前
       about_x_years: 約%{count}年
       almost_x_years: "%{count}年弱"
       half_a_minute: 30秒前後
       less_than_x_seconds: "%{count}秒未満"
       less_than_x_minutes: "%{count}分未満"
-      over_x_years: "%{count}年以上"
-      x_seconds: "%{count}秒"
-      x_minutes: "%{count}分"
-      x_days: "%{count}日"
-      x_months: "%{count}ヶ月"
-      x_years: "%{count}年"
+      over_x_years: "%{count}年以上前"
+      x_seconds: "%{count}秒前"
+      x_minutes: "%{count}分前"
+      x_days: "%{count}日前"
+      x_months: "%{count}ヶ月前"
+      x_years: "%{count}年前"
     prompts:
       second: 秒
       minute: 分

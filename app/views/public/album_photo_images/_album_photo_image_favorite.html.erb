@@ -1,70 +1,44 @@
 
 <div class="container">
-  <h3>ALBUM PHOTO IMAGE</h3>
+  <br>
+  <h3 class="box">ALBUM PHOTO IMAGE</h3>
 </div>
 
 
 <% favorited_album_photo_images.each do |album_photo_image| %>
 <div class="col-3 px-2">
-    <div class="content-album">
-      <div class="content-album-img">
-        <% if album_photo_images.any? && album_photo_images.first.image.attached? %>
-          <%= link_to album_path(album.id) do %>
-            <%= image_tag album.album_photo_images.first.image, class: 'album-image-cover' %><br>
+  <div class="photo-all">
+    <% if album_photo_image.image.attached? %>
+      <%= link_to album_photo_image_path(album_photo_image.id) do %>
+        <%= image_tag album_photo_image.image, class: 'album-image-cover' %><br>
+      <% end %>
+    <% end %>
+
+    <div class="flex">
+      <div class="favo box">
+        <div id="favorite_btn_<%= album_photo_image.id %>">
+          <%= render partial: 'public/album_photo_image_favorites/album_photo_image_favorite', locals: {album_photo_image: album_photo_image} %>
+        </div>
+      </div>
+      <div class="comments box">
+        <i class="fa-solid fa-comment" style="color: #60a39b;"></i>
+        <%= link_to "#{album_photo_image.album.album_photo_images.count} ", album_photo_image_path(album_photo_image.id), :style=>"color: #60a39b;" %>
+      </div>
+      <div class="edit-delete">
+        <% if album_photo_image.album.user && album_photo_image.album.user.id == current_user.id %>
+          <%= link_to edit_album_photo_image_path(album_photo_image.id), class: "link" do %>
+            <i class="fa-solid fa-pen-to-square"></i>
+          <% end %>
+          <%= link_to album_photo_image_path(album_photo_image.id), method: :delete, class: "link" do %>
+            <i class="fa-solid fa-trash-can"></i>
           <% end %>
         <% end %>
       </div>
+    </div>
 
-      <div class="flex">
-        <div class="favo">
-          <div id="favorite_btn_<%= album_photo_image %>">
-            <%= render partial: 'public/album_photo_image_favorites/album_favorite', locals: {album_photo_image: album_photo_image} %>
-          </div>
-        </div>
-        <div class="edit-delete">
-          <% if album.user == current_user %>
-            <%= link_to edit_album_photo_image_path(album.id), class: "link" do %>
-              <i class="fa-solid fa-pen-to-square size"></i>
-            <% end %>
-            <%= link_to album_photo_image_path(album.id), method: :delete, class: "link" do %>
-              <i class="fa-solid fa-trash-can size"></i>
-            <% end %>
-            <br>
-          <% end %>
-        </div>
-      </div>
-
-
-      <div class="info-album">
-        <div class="title">
-          <% if album.album_title.present? %>
-            <%= link_to album_path(album.id), class: "link" do %>
-              <%= album.album_title %>
-            <% end %>
-          <% else%>
-            <div class="blank"></div>
-          <% end %>
-        </div>
-        <div class="cap">
-          <% if album.album_caption.present? %>
-            <%= album.album_caption %>
-          <% else%>
-            <div class="blank"></div>
-          <% end %>
-        </div>
-
-        <div class="flex">
-          <div class="name">
-            <%= image_tag album.user.get_profile_image(20, 20) %>
-            <%= album.user.name %>
-          </div>
-          <div class="count">
-            <%= album.album_photo_images.count %>photos
-          </div>
-        </div>
-
-        <%= album.created_at.strftime('%Y/%m/%d %H:%M') %><br>
-      </div>
+    <div class="box">
+      <%= album_photo_image.created_at.strftime('%Y/%m/%d %H:%M') %><br>
     </div>
   </div>
+</div>
 <% end %>
