@@ -1,60 +1,53 @@
 <% albums.each do |album| %>
-  <div class="col-3 px-2">
-    <div class="content-album">
-      <div class="content-album-img">
-        <% if album.album_photo_images.any? && album.album_photo_images.first.image.attached? %>
-          <%= link_to admin_album_path(album.id) do %>
-            <%= image_tag album.album_photo_images.first.image, class: 'album-image-cover' %><br>
+<div class="col-3 px-2">
+  <div class="content-album">
+    <div class="content-album-img">
+      <% if album.album_photo_images.any? && album.album_photo_images.first.image.attached? %>
+        <%= link_to admin_album_path(album.id) do %>
+          <%= image_tag album.album_photo_images.first.image, class: 'album-image-cover' %><br>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="flex">
+      <div class="edit-delete">
+          <%= link_to admin_album_path(album.id), method: :delete, class: "link" do %>
+            <i class="fa-solid fa-trash-can"></i>
           <% end %>
+      </div>
+    </div>
+    <div class="info-album">
+      <div class="title">
+        <% if album.album_title.present? %>
+          <%= link_to admin_album_path(album.id), class: "link" do %>
+            <%= album.album_title %>
+          <% end %>
+        <% else%>
+          <div class="blank"></div>
         <% end %>
       </div>
-
+      <div class="cap">
+        <% if album.album_caption.present? %>
+          <%= album.album_caption %>
+        <% else%>
+          <div class="blank"></div>
+        <% end %>
+      </div>
       <div class="flex">
-        <div class="edit-delete">
-            <%= link_to admin_album_path(album.id), method: :delete, class: "link" do %>
-              <i class="fa-solid fa-trash-can"></i>
-            <% end %>
+        <div class="name">
+          <%= image_tag album.user.get_profile_image(20, 20), class: "rounded-circle" %>
+          <%= album.user.name %>
+        </div>
+        <div class="count">
+          <%= album.album_photo_images.count %>photos
         </div>
       </div>
-
-
-      <div class="info-album">
-        <div class="title">
-          <% if album.album_title.present? %>
-            <%= link_to admin_album_path(album.id), class: "link" do %>
-              <%= album.album_title %>
-            <% end %>
-          <% else%>
-            <div class="blank"></div>
-          <% end %>
-        </div>
-        <div class="cap">
-          <% if album.album_caption.present? %>
-            <%= album.album_caption %>
-          <% else%>
-            <div class="blank"></div>
-          <% end %>
-        </div>
-
-        <div class="flex">
-          <div class="name">
-            <%= image_tag album.user.get_profile_image(20, 20) %>
-            <%= album.user.name %>
-          </div>
-          <div class="count">
-            <%= album.album_photo_images.count %>photos
-          </div>
-        </div>
-        <div class="box">
-          <%= album.created_at.strftime('%Y/%m/%d %H:%M') %><br>
-        </div>
-
+      <div class="box">
+        <%= album.created_at.strftime('%Y/%m/%d %H:%M') %><br>
       </div>
     </div>
   </div>
-
+</div>
 <% end %>
-
 <div class="container">
   <%= paginate @albums %>
 </div>

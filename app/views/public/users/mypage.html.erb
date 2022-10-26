@@ -1,10 +1,11 @@
-
 <div class="container">
   <div class="row d-flex align-items-center">
     <div class="col-2">
-      <div class='profileimage'>
-        <%= image_tag @user.get_profile_image(120,120), class: "rounded-circle" %>
-      </div>
+      <!--<div class='flex'>-->
+        <!--<div class="bg_icon">-->
+          <%= image_tag @user.get_profile_image(120,120), class: "rounded-circle" %>
+        <!--</div>-->
+      <!--</div>-->
     </div>
     <div class="col-2">
       <h3 class="box">Mypage</h3>
@@ -15,13 +16,11 @@
           <%= link_to edit_users_path, class: "link" do %>
             <i class="fa-solid fa-pen-to-square"></i>
           <% end %>
-      <% end %>
+        <% end %>
       </div>
     </div>
   </div>
 </div>
-
-
 <div class="container">
   <div class="row">
     <div class="col-1"></div>
@@ -75,7 +74,6 @@
       </div>
     </div>
   </div>
-
   <div class="row">
     <div class="col-1"></div>
     <div class="col-2">
@@ -134,6 +132,3 @@
     </div>
   </div>
 </div>
-
-
-

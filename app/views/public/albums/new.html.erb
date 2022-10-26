@@ -1,4 +1,3 @@
-
 <div class="container">
   <div class="row">
     <div class="col-1"></div>
@@ -8,7 +7,6 @@
       </div>
     </div>
   </div>
-
   <div class="row">
     <div class="col-1"></div>
     <div class="col-md-11">
@@ -84,19 +82,16 @@
     </div>
     <div class="col-8 d-flex align-items-end">
       <div class="box">
-          <%= f.collection_check_boxes :user_ids, @users, :id, :name do |b| %>
-            <%= b.check_box %>
-            <%= b.text %>
-          <% end %>
+        <%= f.collection_check_boxes :user_ids, @users, :id, :name do |b| %>
+          <%= b.check_box %>
+          <%= b.text %>
+        <% end %>
       </div>
     </div>
   </div>
-
-
   <div class="row">
     <div class="col-1"></div>
-    <div class="col-md-3">
-    </div>
+    <div class="col-md-3"></div>
     <div class="col-8">
       <div class="box">
         <%= f.submit 'UPLOAD', class: "btn btn-outline-lightgreen w-25" %>
@@ -104,5 +99,4 @@
     </div>
   </div>
   <% end %>
-
 </div>

@@ -7,10 +7,6 @@
       </div>
     </div>
   </div>
-
-
-
-
   <%= form_with model: @album, url: album_path(@album.id), method: :patch do |f| %>
   <div class="row">
     <div class="col-1"></div>
@@ -69,10 +65,10 @@
     </div>
     <div class="col-8 d-flex align-items-end">
       <div class="box">
-          <%= f.collection_check_boxes :user_ids, @users, :id, :name do |b| %>
-            <%= b.check_box %>
-            <%= b.text %>
-          <% end %>
+        <%= f.collection_check_boxes :user_ids, @users, :id, :name do |b| %>
+          <%= b.check_box %>
+          <%= b.text %>
+        <% end %>
       </div>
     </div>
   </div>
@@ -100,8 +96,7 @@
   </div>
   <div class="row">
     <div class="col-1"></div>
-    <div class="col-md-3">
-    </div>
+    <div class="col-md-3"></div>
     <div class="col-8">
       <div class="box">
         <%= f.submit 'UPDATE', class: "btn btn-outline-lightgreen w-25" %>
@@ -109,17 +104,13 @@
     </div>
   </div>
   <% end %>
-
   <div class="row">
     <div class="col-1"></div>
-    <div class="col-md-3">
-    </div>
+    <div class="col-md-3"></div>
     <div class="col-8">
       <div class="box">
         <%= link_to "ALBUMへ戻る", album_path(@album.id), class: "btn btn-outline-lightgreen w-25" %>
       </div>
     </div>
   </div>
-
-
 </div>

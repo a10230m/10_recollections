@@ -7,20 +7,16 @@
       </div>
     </div>
   </div>
-
-<%= form_with model: resource, as: resource_name, url: registration_path(resource_name) do |f| %>
-
+  <%= form_with model: resource, as: resource_name, url: registration_path(resource_name) do |f| %>
   <div class="row">
     <div class="col-1"></div>
-    <div class="col-md-3">
-    </div>
+    <div class="col-md-3"></div>
     <div class="col-8">
       <div class="box">
         <%= render "public/shared/error_messages", resource: resource %>
       </div>
     </div>
   </div>
-
   <div class="row">
     <div class="col-1"></div>
     <div class="col-md-3">
@@ -133,11 +129,9 @@
       </div>
     </div>
   </div>
-
   <div class="row">
     <div class="col-1"></div>
-    <div class="col-md-3">
-    </div>
+    <div class="col-md-3"></div>
     <div class="col-8">
       <div class="box">
         <%= f.submit "新規登録", class: "btn btn-outline-lightgreen w-25" %>
@@ -145,11 +139,9 @@
     </div>
   </div>
   <% end %>
-
   <div class="row">
     <div class="col-1"></div>
-    <div class="col-md-3">
-    </div>
+    <div class="col-md-3"></div>
     <div class="col-8">
       <div class="box">
         <%= render "public/shared/links" %>
@@ -157,4 +149,3 @@
     </div>
   </div>
 </div>
-

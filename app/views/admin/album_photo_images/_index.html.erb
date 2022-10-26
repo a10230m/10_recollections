@@ -1,20 +1,18 @@
-
-
 <% album_photo_images.each do |album_photo_image| %>
-  <div class="col-3 px-2">
-    <div class="albumphoto-all">
-      <%= link_to admin_album_photo_image_path(album_photo_image.id) do %>
-        <%= image_tag album_photo_image.get_image(500, 500), class: 'album-image-cover' %>
-      <% end %>
-    </div>
-
-    <div class="flex">
-      <div class="comments">
-        <i class="fa-solid fa-comment" style="color: #60a39b;"></i>
-        <%= link_to "#{album_photo_image.album_photo_comments.count} ", album_photo_image_path(album_photo_image.id), :style=>"color: gray;" %>
-      </div>
+<div class="col-3 px-2">
+  <div class="albumphoto-all">
+    <%= link_to admin_album_photo_image_path(album_photo_image.id) do %>
+      <%= image_tag album_photo_image.get_image(500, 500), class: 'album-image-cover' %>
+    <% end %>
+  </div>
+  <div class="flex">
+    <div class="comments">
+      <i class="fa-solid fa-comment" style="color: #60a39b;"></i>
+      <%= link_to "#{album_photo_image.album_photo_comments.count} ",
+      album_photo_image_path(album_photo_image.id), :style=>"color: gray;" %>
     </div>
   </div>
+</div>
 <% end %>
 
 

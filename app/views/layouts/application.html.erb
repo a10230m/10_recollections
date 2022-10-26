@@ -6,13 +6,11 @@
       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
       <%= csrf_meta_tags %>
       <%= csp_meta_tag %>
-
       <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
       <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
       <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
       <script src="https://kit.fontawesome.com/7e258a15bb.js" crossorigin="anonymous"></script>
   </head>
-
   <body>
     <header class="header fixed-top">
       <nav class="navbar navbar-expand-lg navbar-light">
@@ -29,13 +27,13 @@
             <% else %>
             <% end %>
           </span>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+          aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-
               <% if current_user %>
                 <% if unchecked_notifications.any? %>
                   <i class="fa fa-circle" style="color: gold;"></i>
@@ -58,31 +56,26 @@
                 <li>
                   <%= link_to "LOGOUT", destroy_user_session_path, method: :delete, class: "btn btn-outline-turquoise w-90" %>
                 </li>
-
               <% elsif current_admin %>
-              <li>
-                <span class="admin">ADMIN</span>
-              </li>
-              <li>
-                <%= link_to "PHOTO", admin_photo_images_path, class: "btn btn-outline-yellow w-90" %>
-              </li>
-              <li>
-                <%= link_to "ALBUM", admin_albums_path, class: "btn btn-outline-yellow w-90" %>
-              </li>
-              <li>
-                <%= link_to "USER", admin_users_path, class: "btn btn-outline-yellow w-90" %>
-              </li>
-              <li>
-                <%= link_to "LOGOUT", destroy_admin_session_path, method: :delete, class: "btn btn-outline-yellow w-90" %>
-              </li>
+                <li>
+                  <span class="admin">ADMIN</span>
+                </li>
+                <li>
+                  <%= link_to "PHOTO", admin_photo_images_path, class: "btn btn-outline-yellow w-90" %>
+                </li>
+                <li>
+                  <%= link_to "ALBUM", admin_albums_path, class: "btn btn-outline-yellow w-90" %>
+                </li>
+                <li>
+                  <%= link_to "USER", admin_users_path, class: "btn btn-outline-yellow w-90" %>
+                </li>
+                <li>
+                  <%= link_to "LOGOUT", destroy_admin_session_path, method: :delete, class: "btn btn-outline-yellow w-90" %>
+                </li>
               <% else %>
-                <!--< %= link_to "About", about_path, class: "btn btn-turquoise" %>-->
-                <!--< %= link_to "商品一覧", items_path, class: "btn btn-turquoise" %>-->
                 <%= link_to "新規登録", new_user_registration_path, class: "btn btn-outline-turquoise" %>
                 <%= link_to "LOGIN", user_session_path, class: "btn btn-outline-turquoise" %>
               <% end %>
-
-
             </li>
             </ul>
           </div>
@@ -100,6 +93,4 @@
       </div>
     </footer>
   </body>
-
-
 </html>

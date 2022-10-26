@@ -1,23 +1,24 @@
 <% album_photo_images.each do |album_photo_image| %>
-  <div class="col-3 px-2">
-    <div class="albumphoto-all">
-      <%= link_to album_photo_image_path(album_photo_image.id) do %>
-        <%= image_tag album_photo_image.get_image(500, 500), class: 'album-image-cover' %>
-      <% end %>
+<div class="col-3 px-2">
+  <div class="albumphoto-all">
+    <%= link_to album_photo_image_path(album_photo_image.id) do %>
+      <%= image_tag album_photo_image.get_image(500, 500), class: 'album-image-cover' %>
+    <% end %>
+  </div>
+  <div class="flex">
+    <div class="favo box">
+      <div id="favorite_btn_<%= album_photo_image.id %>">
+        <%= render partial: 'public/album_photo_image_favorites/album_photo_image_favorite',
+        locals: {album_photo_image: album_photo_image} %>
+      </div>
     </div>
-
-    <div class="flex">
-      <div class="favo box">
-        <div id="favorite_btn_<%= album_photo_image.id %>">
-          <%= render partial: 'public/album_photo_image_favorites/album_photo_image_favorite', locals: {album_photo_image: album_photo_image} %>
-        </div>
-      </div>
-      <div class="comments">
-        <i class="fa-solid fa-comment" style="color: #60a39b;"></i>
-        <%= link_to "#{album_photo_image.album_photo_comments.count} ", album_photo_image_path(album_photo_image.id), :style=>"color: #60a39b;" %>
-      </div>
+    <div class="comments">
+      <i class="fa-solid fa-comment" style="color: #60a39b;"></i>
+      <%= link_to "#{album_photo_image.album_photo_comments.count} ", album_photo_image_path(album_photo_image.id),
+      :style=>"color: #60a39b;" %>
     </div>
   </div>
+</div>
 <% end %>
 
 

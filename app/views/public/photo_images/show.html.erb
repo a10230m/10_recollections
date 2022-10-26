@@ -4,6 +4,7 @@
       <div class="col"></div>
       <div class="col-10">
         <div class="image">
+          <div class="line"></div>
           <% if @photo_image.image.attached? %>
             <%= image_tag @photo_image.image, class: 'img-fluid' %>
           <% end %>
@@ -11,7 +12,6 @@
       </div>
       <div class="col"></div>
     </div>
-
     <div class="row">
       <div class="col"></div>
       <div class="col-10">
@@ -39,39 +39,35 @@
       </div>
       <div class="col"></div>
     </div>
-
     <div class="row">
       <div class="col"></div>
-        <div class="col-10">
-          <div class="title">
-            <% if @photo_image.photo_title.present? %>
-              <%= @photo_image.photo_title %>
-            <% else %>
-              <div class="blank"></div>
-            <% end %>
+      <div class="col-10">
+        <div class="title">
+          <% if @photo_image.photo_title.present? %>
+            <%= @photo_image.photo_title %>
+          <% else %>
+            <div class="blank"></div>
+          <% end %>
+        </div>
+        <div class="cap">
+          <% if @photo_image.photo_caption.present? %>
+            <%= @photo_image.photo_caption %>
+          <% else %>
+            <div class="blank"></div>
+          <% end %>
+        </div>
+        <div class="flex">
+          <div class="name">
+            <%= image_tag @photo_image.user.get_profile_image(20,20), class: "rounded-circle" %>
+            <%= @photo_image.user.name %>
           </div>
-          <div class="cap">
-            <% if @photo_image.photo_caption.present? %>
-              <%= @photo_image.photo_caption %>
-            <% else %>
-              <div class="blank"></div>
-            <% end %>
-          </div>
-
-          <div class="flex">
-            <div class="name">
-              <%= image_tag @photo_image.user.get_profile_image(20,20), class: "rounded-circle" %>
-              <%= @photo_image.user.name %>
-            </div>
-            <div class="time">
-              <%= @photo_image.created_at.strftime('%Y/%m/%d %H:%M') %>
-            </div>
+          <div class="time">
+            <%= @photo_image.created_at.strftime('%Y/%m/%d %H:%M') %>
           </div>
         </div>
+      </div>
       <div class="col"></div>
     </div>
-
-
     <div class="row">
       <div class="col"></div>
       <div class="col-10">
@@ -138,11 +134,8 @@
     </div>
   </div>
 </div>
-
 <div class="container">
   <div class="col-10">
     <%= link_to "PHOTO ALLへ戻る", photo_images_path, class: "btn btn-outline-lightgreen" %>
   </div>
 </div>
-
-

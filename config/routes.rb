@@ -1,12 +1,9 @@
 Rails.application.routes.draw do
 
-  # get 'homes/top'
   get '/top' => 'homes#top'
   root to: 'homes#top'
 
-
-  # 顧客用
-  # URL /users/sign_in ...
+  # ユーザー用
   devise_for :users, controllers: {
     registrations: "public/registrations",
     sessions: 'public/sessions',
@@ -14,12 +11,9 @@ Rails.application.routes.draw do
   }
 
   # 管理者用
-  # URL /admin/sign_in ...
   devise_for :admin, skip: [:registrations] ,controllers: {
     sessions: "admin/sessions"
   }
-
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
   namespace :admin do
     resources :homes, only: [:top]
@@ -30,19 +24,14 @@ Rails.application.routes.draw do
       end
     end
     resources :photo_images, only: [:index, :show, :destroy] do
-      resources :photo_comments, only: [:create, :destroy]
+      resources :photo_comments, only: [:destroy]
     end
     resources :albums, only: [:index, :show, :destroy]
 
-    resources :album_photo_images, only: [:index, :show, :edit, :destroy, :update] do
+    resources :album_photo_images, only: [:index, :show, :destroy] do
       resources :album_photo_comments, only: [:destroy]
     end
   end
-
-  # devise_scope :user do
-  #   get '/password/new' => 'public/passwords#new'
-  #   get '/password/edit' => 'public/passwords#edit'
-  # end
 
   scope module: :public do
     resources :users, only:[:mypage, :show, :index, :edit, :update] do
@@ -60,12 +49,8 @@ Rails.application.routes.draw do
         get '/mypage' => 'users#update', as: 'update'
         get :confirm
         patch 'withdraw' => 'users#withdraw', as: 'withdraw'
-        # get 'photo_images/download/:id' => 'photo_images#download'
       end
     end
-
-
-
     resources :photo_images, only: [:new, :create, :index, :show, :edit, :destroy, :update] do
       resource :favorites, only: [:create, :destroy]
       resources :photo_comments, only: [:create, :destroy] do
@@ -77,10 +62,7 @@ Rails.application.routes.draw do
       collection do
         get 'search'
       end
-
     end
-
-
     resources :albums, only: [:new, :create, :index, :show, :edit, :destroy, :update] do
       collection do
         get 'search'
@@ -91,7 +73,6 @@ Rails.application.routes.draw do
         get :album
       end
     end
-
     resources :album_photo_images, only: [:index, :show, :edit, :destroy, :update] do
       resource :album_photo_image_favorites, only: [:create, :destroy]
       resources :album_photo_comments, only: [:create, :destroy] do
@@ -100,11 +81,7 @@ Rails.application.routes.draw do
       member do
         get :album_photo_images
       end
-      # collection do
-      #   get 'album_photo_images/download/:id' => 'album_photo_images#download'
-      # end
     end
-
     resources :notifications, only: [:index, :destroy] do
       collection do
         post 'destroy_all' => 'notifications#destroy_all'

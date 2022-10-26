@@ -4,6 +4,7 @@
       <div class="col"></div>
       <div class="col-10">
         <div class="image">
+          <div class="line"></div>
           <% if @album_photo_image.image.attached? %>
             <%= image_tag @album_photo_image.get_image(500, 500), class: 'img-fluid' %>
           <% end %>
@@ -17,7 +18,8 @@
         <div class="flex">
           <div class="favo">
             <div id="favorite_btn_<%= @album_photo_image.id %>">
-              <%= render 'public/album_photo_image_favorites/album_photo_image_favorite', album_photo_image: @album_photo_image %>
+              <%= render 'public/album_photo_image_favorites/album_photo_image_favorite',
+              album_photo_image: @album_photo_image %>
             </div>
           </div>
           <div class="edit-delete">
@@ -29,8 +31,7 @@
       </div>
       <div class="col"></div>
     </div>
-
-  <div class="row">
+    <div class="row">
       <div class="col"></div>
         <div class="col-10">
           <div class="title">
@@ -60,7 +61,6 @@
         </div>
       <div class="col"></div>
     </div>
-
     <div class="row">
       <div class="col"></div>
       <div class="col-10">
@@ -87,7 +87,7 @@
                 </div>
               </div>
             </div>
-             <div class="col-2">
+            <div class="col-2">
                <div class="box">
                 <%= time_ago_in_words(album_photo_comment.created_at) %>
               </div>
@@ -95,7 +95,8 @@
             <div class="col-1">
               <div class="box text-right">
                 <% if album_photo_comment.user == current_user %>
-                  <%= link_to album_photo_image_album_photo_comment_path(album_photo_comment.album_photo_image, album_photo_comment),
+                  <%= link_to album_photo_image_album_photo_comment_path(album_photo_comment.album_photo_image,
+                  album_photo_comment),
                   method: :delete,class: "link" do %>
                     <i class="fa-solid fa-trash-can"></i>
                   <% end %>
@@ -129,7 +130,6 @@
     </div>
   </div>
 </div>
-
 <div class="container">
   <div class="col-10">
     <%= link_to "ALBUMへ戻る", album_path(@album.id), class: "btn btn-outline-lightgreen" %>

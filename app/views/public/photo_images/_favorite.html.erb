@@ -1,14 +1,12 @@
 <div class="container">
   <h4 class="box">PHOTO</h4>
 </div>
-
 <% favorited_photo_images.each do |photo_image| %>
 <div class="col-3 px-2">
   <div class="photo-all">
     <%= link_to photo_image_path(photo_image.id) do %>
       <%= image_tag photo_image.get_image(500, 500), class: 'album-image-cover' %>
     <% end %>
-
     <div class="flex">
       <div class="favo box">
         <div id="favorite_btn_<%= photo_image.id %>">
@@ -30,9 +28,8 @@
         <% end %>
       </div>
     </div>
-
     <div class="box">
-    <%= photo_image.created_at.strftime('%Y/%m/%d') %>
+      <%= photo_image.created_at.strftime('%Y/%m/%d') %>
     </div>
   </div>
 </div>

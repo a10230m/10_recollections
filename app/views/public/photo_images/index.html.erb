@@ -2,13 +2,11 @@
   <br>
   <h3 class="box">PHOTO ALL <span><%= @photo_image_count %>件</span></h3>
 </div>
-
 <div class="container">
   <div class="row">
     <%= render 'public/photo_images/search' %>
   </div>
 </div>
-
 <div class="container">
   <div class="row">
     <%= render 'public/photo_images/index', photo_images: @photo_images %>

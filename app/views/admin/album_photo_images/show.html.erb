@@ -24,7 +24,6 @@
       </div>
       <div class="col"></div>
     </div>
-
     <div class="row">
       <div class="col"></div>
         <div class="col-10">
@@ -42,10 +41,9 @@
               <div class="blank"></div>
             <% end %>
           </div>
-
           <div class="flex">
             <div class="name">
-              <%= image_tag @album_photo_image.album.user.get_profile_image(20,20) %>
+              <%= image_tag @album_photo_image.album.user.get_profile_image(20,20), class: "rounded-circle" %>
               <%= @album_photo_image.album.user.name %>
             </div>
             <div class="time">
@@ -55,10 +53,6 @@
         </div>
       <div class="col"></div>
     </div>
-
-
-
-
     <div class="row">
       <div class="col"></div>
       <div class="col-10">
@@ -68,7 +62,7 @@
           <div class="row">
             <div class="col-2">
               <div class="box">
-                <%= image_tag album_photo_comment.user.get_profile_image(20,20) %>
+                <%= image_tag album_photo_comment.user.get_profile_image(20,20), class: "rounded-circle" %>
                 <%= album_photo_comment.user.name %>
               </div>
             </div>
@@ -98,7 +92,6 @@
     </div>
   </div>
 </div>
-
 <div class="container">
   <div class="col-10">
     <%= link_to "ALBUMへ戻る", admin_album_path(@album.id), class: "btn btn-outline-lightgreen" %>

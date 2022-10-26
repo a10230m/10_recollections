@@ -28,7 +28,7 @@
       <div class="box">
         <div class="cap">
           <% if @album.album_caption.present? %>
-            　<%= @album.album_caption %>
+            <%= @album.album_caption %>
           <% else%>
             <div class="blank"></div>
           <% end %>
@@ -36,7 +36,6 @@
       </div>
     </div>
   </div>
-
   <div class="row justify-content-between">
     <div class="col-4">
       <div class="box">
@@ -51,12 +50,9 @@
     </div>
   </div>
 </div>
-
-
-
 <div class="container">
   <div class="row">
-     <%= render 'public/album_photo_images/index', album_photo_images: @album.album_photo_images %>
+    <%= render 'public/album_photo_images/index', album_photo_images: @album.album_photo_images %>
   </div>
 </div>
 <div class="container">
