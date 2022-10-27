@@ -24,6 +24,8 @@
               <%= link_to new_album_path, class: "link" do %>
                 <i class="fa-solid fa-images fa-2x"></i>
               <% end %>
+            <% elsif current_admin %>
+              <span class="admin">ADMIN</span>
             <% else %>
             <% end %>
           </span>
@@ -57,9 +59,6 @@
                   <%= link_to "LOGOUT", destroy_user_session_path, method: :delete, class: "btn btn-outline-turquoise w-90" %>
                 </li>
               <% elsif current_admin %>
-                <li>
-                  <span class="admin">ADMIN</span>
-                </li>
                 <li>
                   <%= link_to "PHOTO", admin_photo_images_path, class: "btn btn-outline-yellow w-90" %>
                 </li>
