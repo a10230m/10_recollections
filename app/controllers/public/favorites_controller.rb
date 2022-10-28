@@ -7,6 +7,10 @@ class Public::FavoritesController < ApplicationController
     render :toggle
   end
 
+  # def index
+  #   @photo_image.favorites.all(user_id: current_user.id).order('id DESC')
+  # end
+
   def destroy
     @photo_image.favorites.find_by(user_id: current_user.id).destroy
     render :toggle

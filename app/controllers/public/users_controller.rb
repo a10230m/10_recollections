@@ -31,10 +31,11 @@ class Public::UsersController < ApplicationController
 
   def favorites
     @user = User.find(params[:id])
-    @favorited_photo_images = @user.favorited_photo_images.order('id DESC')
-    @favorited_albums = @user.favorited_albums.order('id DESC')
-    @favorited_album_photo_images = @user.favorited_album_photo_images.order('id DESC')
+    @favorited_photo_images = @user.favorited_photo_images.order('id DESC').limit(8)
+    @favorited_albums = @user.favorited_albums.order('id DESC').limit(8)
+    @favorited_album_photo_images = @user.favorited_album_photo_images.order('id DESC').limit(8)
   end
+  # ここでそれぞれのリンクを作成し、全部を表示させる
 
 
   def edit
@@ -46,7 +47,6 @@ class Public::UsersController < ApplicationController
     @user.update(user_params)
     redirect_to mypage_users_path
   end
-
 
   def withdraw
     @user = current_user

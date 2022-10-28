@@ -52,7 +52,7 @@ Rails.application.routes.draw do
       end
     end
     resources :photo_images, only: [:new, :create, :index, :show, :edit, :destroy, :update] do
-      resource :favorites, only: [:create, :destroy]
+      resource :favorites, only: [:create, :index, :destroy]
       resources :photo_comments, only: [:create, :destroy] do
         resource :goods, only: [:create, :destroy]
       end
