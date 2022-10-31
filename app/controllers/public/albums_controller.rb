@@ -89,8 +89,6 @@ class Public::AlbumsController < ApplicationController
     redirect_to useralbums_user_path(@user.id)
   end
 
-
-
   def releases
     @album = Album.first
 
@@ -102,7 +100,6 @@ class Public::AlbumsController < ApplicationController
     params.require(:album).permit(:album_title, :album_caption, album_photo_images: [], user_ids: [])
   end
 
-
   def user_params
     params.require(:user).permit(:name, :email, :birthdate, :introduction, :albums_id, user_ids: [])
   end
@@ -110,6 +107,5 @@ class Public::AlbumsController < ApplicationController
   def search_params
     params.require(:search).permit(:created_at)
   end
-
 
 end

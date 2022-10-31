@@ -35,8 +35,21 @@ class Public::UsersController < ApplicationController
     @favorited_albums = @user.favorited_albums.order('id DESC').limit(8)
     @favorited_album_photo_images = @user.favorited_album_photo_images.order('id DESC').limit(8)
   end
-  # ここでそれぞれのリンクを作成し、全部を表示させる
 
+  def favo_photoall
+    @user = User.find(params[:id])
+    @favorited_photo_images = @user.favorited_photo_images.order('id DESC').page(params[:page])
+  end
+
+  def favo_albumall
+    @user = User.find(params[:id])
+    @favorited_albums = @user.favorited_albums.order('id DESC').page(params[:page])
+  end
+
+  def favo_albumphotoall
+    @user = User.find(params[:id])
+    @favorited_album_photo_images = @user.favorited_album_photo_images.order('id DESC').page(params[:page])
+  end
 
   def edit
     @user = current_user

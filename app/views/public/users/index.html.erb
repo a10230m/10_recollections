@@ -23,14 +23,10 @@
   <% @users.each do |user| %>
   <div class="row">
     <div class="col-6 col-sm-3">
-      <!--<div class="flex">-->
-        <!--<div class="bg_icon">-->
-        　<%= image_tag user.get_profile_image(20,20), class: "rounded-circle" %>
-        <!--</div>-->
-          <%= link_to user_path(user.id) , class: "link" do %>
-            <%= user.name %>
-          <% end %>
-        <!--</div>-->
+    　<%= image_tag user.get_profile_image(20,20), class: "rounded-circle" %>
+      <%= link_to user_path(user.id) , class: "link" do %>
+        <%= user.name %>
+      <% end %>
     </div>
     <div class="col-6 col-sm-3">
       <div class="box">

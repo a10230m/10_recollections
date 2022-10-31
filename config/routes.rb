@@ -34,7 +34,7 @@ Rails.application.routes.draw do
   end
 
   scope module: :public do
-    resources :users, only:[:mypage, :show, :index, :edit, :update] do
+    resources :users, only:[:mypage, :show, :index, :favo_photoall, :edit, :update] do
       member do
         get :photo_images
         get :favorites
@@ -42,6 +42,9 @@ Rails.application.routes.draw do
         get :album_photo_images_favorites
         get :useralbums
         get :userphotos
+        get :favo_photoall
+        get :favo_albumall
+        get :favo_albumphotoall
       end
       collection do
         get '/mypage' => 'users#mypage', as: 'mypage'
@@ -51,8 +54,9 @@ Rails.application.routes.draw do
         patch 'withdraw' => 'users#withdraw', as: 'withdraw'
       end
     end
+
     resources :photo_images, only: [:new, :create, :index, :show, :edit, :destroy, :update] do
-      resource :favorites, only: [:create, :index, :destroy]
+      resource :favorites, only: [:create, :destroy]
       resources :photo_comments, only: [:create, :destroy] do
         resource :goods, only: [:create, :destroy]
       end

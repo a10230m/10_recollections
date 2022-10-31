@@ -53,9 +53,6 @@ class Public::PhotoImagesController < ApplicationController
   end
 
 
-
-
-
   private
   # ストロングパラメータ
   def photo_image_params

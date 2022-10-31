@@ -2,9 +2,9 @@
   <div class="row">
     <div class="box"><br>
       <% if @user == current_user %>
-        <h3>MY FAVORITES<span class="count-font">　<<%= @photo_images_count %>photos></span></h3>
+        <h3>MY FAVORITES</h3>
       <% else %>
-        <h3><%= @user.name %>'s FAVORITES<span class="count-font">　<<%= @photo_images_count %>photos></span></h3>
+        <h3><%= @user.name %>'s FAVORITES</h3>
       <% end %>
     </div>
   </div>
@@ -12,19 +12,28 @@
   <div class="row">
     <%= render 'public/photo_images/favorite', favorited_photo_images: @favorited_photo_images %>
   </div>
-  <!--<div class="row">-->
-  <!--  <%#= link_to favorites_user_path(@user), class: "link2" do %>-->
-  <!--    <p style="color: gray;", onMouseOver="this.style.color='#cc7eb1'", onMouseOut="this.style.color='gray'", class="link"> more...</p>-->
-  <!--  <%# end%>-->
-  <!--</div>-->
-
+  <div class="row">
+    <%= link_to favo_photoall_user_path(@user), class: "link2" do %>
+      <p style="color: gray;", onMouseOver="this.style.color='#cc7eb1'", onMouseOut="this.style.color='gray'", class="link"> more...</p>
+    <% end%>
+  </div>
   <br>
   <div class="row">
     <%= render 'public/albums/album_favorite', favorited_albums: @favorited_albums %>
   </div>
+  <div class="row">
+    <%= link_to favo_albumall_user_path(@user), class: "link2" do %>
+      <p style="color: gray;", onMouseOver="this.style.color='#cc7eb1'", onMouseOut="this.style.color='gray'", class="link"> more...</p>
+    <% end%>
+  </div>
   <br>
   <div class="row">
     <%= render 'public/album_photo_images/album_photo_image_favorite', favorited_album_photo_images: @favorited_album_photo_images %>
+  </div>
+  <div class="row">
+    <%= link_to favo_albumphotoall_user_path(@user), class: "link2" do %>
+      <p style="color: gray;", onMouseOver="this.style.color='#cc7eb1'", onMouseOut="this.style.color='gray'", class="link"> more...</p>
+    <% end%>
   </div>
   <br>
   <div class="rouw">
