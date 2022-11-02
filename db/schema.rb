@@ -83,8 +83,8 @@ ActiveRecord::Schema.define(version: 2022_10_04_103118) do
   end
 
   create_table "album_photo_images", force: :cascade do |t|
-    t.string "album_photo_title", default: "", null: false
-    t.text "album_photo_caption", default: "", null: false
+    t.string "album_photo_title"
+    t.text "album_photo_caption"
     t.integer "album_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -100,7 +100,7 @@ ActiveRecord::Schema.define(version: 2022_10_04_103118) do
 
   create_table "albums", force: :cascade do |t|
     t.integer "user_id", null: false
-    t.string "album_title", default: "", null: false
+    t.string "album_title"
     t.text "album_caption"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
