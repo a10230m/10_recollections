@@ -12,8 +12,10 @@
 
   users = User.create!(
     [
-      {email: 'mio@test.com', name: 'mio', password: '111111', birthdate: '1978/12/18', introduction: '趣味は映画・ドラマ鑑賞です。', profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-user1.jpg"), filename:"sample-user1.jpg")},
-      {email: 'yuto@test.com', name: 'yuto', password: '222222', birthdate: '1989/10/20', introduction: '趣味は旅行です。', profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-user2.jpg"), filename:"sample-user2.jpg")},
-      {email: 'araki@test.com', name: 'araki', password: '333333', birthdate: '1991/11/22', introduction: '好きなスポーツはバレーボールです。', profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-user3.jpg"), filename:"sample-user3.jpg")},
+      {email: 'mio@test.com', name: 'mio', password: '111111', birthdate: '1978/12/18', introduction: '紅葉が癒し。ストレス発散は甘いもの食べること♪', profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-user1.jpg"), filename:"sample-user1.jpg")},
+      {email: 'yuto@test.com', name: 'yuto', password: '222222', birthdate: '1989/10/20', introduction: '好きな季節は夏。最近のブームは散歩！', profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-user2.jpg"), filename:"sample-user2.jpg")},
+      {email: 'araki@test.com', name: 'araki', password: '333333', birthdate: '1991/11/22', introduction: '趣味はものづくり♪台湾が好き！', profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-user3.jpg"), filename:"sample-user3.jpg")},
+      {email: 'mami@test.com', name: 'mami', password: '444444', birthdate: '1987/03/10', introduction: '沖縄大好き！おしゃれなところを探すのが得意。', profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-user4.jpg"), filename:"sample-user4.jpg")},
+      {email: 'tomo@test.com', name: 'tomo', password: '555555', birthdate: '1990/09/15', introduction: '動物が好き。最近ハマっていることはラーメン巡り…', profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-user5.jpg"), filename:"sample-user5.jpg")}
     ]
   )
