@@ -10,9 +10,6 @@ if Admin.find_by(email: 'a10230m@gmail.com').nil?
   Admin.create!(email: 'a10230m@gmail.com', password: '000111', password_confirmation: '000111')
 end
 
-
-
-
 users =
   [
     {email: 'mio@test.com', name: 'mio', password: '111111', birthdate: '1978/12/18', introduction: '紅葉が癒し。ストレス発散は甘いもの食べること♪', profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-user1.jpg"), filename:"sample-user1.jpg")},
@@ -28,14 +25,14 @@ users =
     user
   end
 
-# mio = 0
-# yuto = 1
-# araki = 2
-# mami = 3
-# tomo = 4
+# userlist
+  # mio   = 0
+  # yuto  = 1
+  # araki = 2
+  # mami  = 3
+  # tomo  = 4
 
-
-# photo
+# photoimage
   [
     # mio
     {photo_title: 'ストロベリーティラミス', photo_caption: 'おいしかった〜', image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-user1-photo1.jpg"), filename:"sample-user1-photo1.jpg"), user_id: users[0].id, created_at: '2020/08/21' },
@@ -69,23 +66,37 @@ users =
   end
 
 
+# album
+  albums = [
+    # mio
+    {album_title: '紅葉', album_caption: 'きれいだった✨', user_id: users[0].id, created_at: '2019/11/24'},
+    # yuto
+    {album_title: '夏の思い出', album_caption: '', user_id: users[1].id, created_at: '2021/08/19'},
+    # araki
+    {album_title: '京都旅行', album_caption: '友達と京都いってきた♪', user_id: users[2].id, created_at: '2021/10/05'},
+    {album_title: '台湾旅行', album_caption: '初台湾！楽しかった♡', user_id: users[2].id, created_at: '2019/09/28'},
+    # mami
+    {album_title: '沖縄', album_caption: '食べて、飲んで、お祭りもいったよ〜', user_id: users[3].id, created_at: '2018/07/09'},
+    # tomo
+    {album_title: 'ふくろうカフェ', album_caption: 'いろんな顔があってかわいかった♪', user_id: users[4].id, created_at: '2022/08/17'}
+  ].map do |album|
+    if Album.find_by(album_title: album[:album_title]).nil?
+      album = Album.new(album)
+      album.save!(validate: false)
+      album
+    end
+  end
 
+  albums.each do |album|
+    #files = album.album_photo_images
+    # fixtures/アルバムタイトルと同じフォルダの画像を複数取得
+    #files.each do |file|
+    path = "#{Rails.root}/db/fixtures/#{album[:album_title]}/"
+    Dir.foreach(path) do |image_file_name|
+      next if image_file_name == '.' or image_file_name == '..'
+      album.album_photo_images.create!({image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/#{album[:album_title]}/#{image_file_name}"), filename: "#{image_file_name}")})
+    #end
+    end
 
-# # album
-#   albums = [
-#     {album_title: '京都旅行', album_caption: '友達と京都いってきた♪', user_id: users[2].id, created_at: '2021/10/05'}
-
-#   ].map do |album|
-#     if Album.find_by(album_title: album[:album_title]).nil?
-#       Album.create!(album)
-#     end
-#   end
-
-#   albums.each do |album|
-#     files =
-#     # fixtures/アルバムタイトルと同じフォルダの画像を複数取得
-#     files.each do |file|
-#       album.album_photo_images.create!(image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/#{album[:album_title]}.jpg")
-#     end
-#   end
+  end
 

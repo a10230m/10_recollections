@@ -27,6 +27,8 @@ class Public::PhotoImagesController < ApplicationController
 
   def search
     @photo_images = PhotoImage.search(params["search(1i)"],params["search(2i)"],params["search(3i)"]).page(params[:page])
+    @photo_image_count = PhotoImage.where(params[:photo_image_id]).count
+    render :index
   end
 
   def edit
