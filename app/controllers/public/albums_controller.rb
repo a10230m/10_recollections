@@ -39,6 +39,8 @@ class Public::AlbumsController < ApplicationController
 
   def search
     @albums = Album.search(params["search(1i)"],params["search(2i)"],params["search(3i)"]).page(params[:page])
+    @album_count = Album.where(params[:album_id]).count
+    render :index
   end
 
   def useralbums

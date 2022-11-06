@@ -1,5 +1,5 @@
 <div class="box">
-  <%= form_with url: search_albums_path, local: true, method: :get do |f| %>
+  <%= form_with url: search_albums_path({album_id: params[:album_id]}), local: true, method: :get do |f| %>
   <%= f.label :検索 %>
     <%= f.date_select :search, {start_year: 2022, end_year: (Time.now.year - 18),
     include_blank: true, use_two_digit_numbers: true} %>
